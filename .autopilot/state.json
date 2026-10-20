@@ -4,5 +4,9 @@
   "weekly_cap": 10,
   "week_start": "2026-10-19",
   "week_commits": 0,
-  "today": { "date": null, "rolled": null, "made": 0 }
+  "today": {
+    "date": "2026-10-20",
+    "rolled": 1,
+    "made": 0
+  }
 }

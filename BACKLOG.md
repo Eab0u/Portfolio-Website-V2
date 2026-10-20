@@ -7,7 +7,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 **Current theme: Foundation and intro ritual**
 
 ## Foundation (loader, settings, shared pieces)
-- [ ] Use `content/profile.ts` (name and tagline) in the hero text instead of the hardcoded strings
+- [!] Use `content/profile.ts` (name and tagline) in the hero text instead of the hardcoded strings (artist critic rejected: critique targeted the existing crystal scene, not the text change; needs crystal art tickets first, code critic approved)
 - [ ] Add `src/lib/palette.ts` with color tokens: dark navy base, one mint accent, and per-theme accents (blue and garnet, racing red, sand, ice, grass)
 - [ ] Add a `useReducedMotion` hook and use it to slow the hero crystal rotation
 - [ ] Pause canvas rendering when the tab is hidden
