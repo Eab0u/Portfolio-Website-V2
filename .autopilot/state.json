@@ -1,0 +1,8 @@
+{
+  "roll_min": 1,
+  "roll_max": 3,
+  "weekly_cap": 8,
+  "week_start": "2026-10-19",
+  "week_commits": 0,
+  "today": { "date": null, "rolled": null, "made": 0 }
+}

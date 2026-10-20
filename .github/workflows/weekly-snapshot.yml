@@ -1,0 +1,40 @@
+name: Weekly snapshot
+
+on:
+  schedule:
+    # Mondays 03:30 UTC = Sunday night in New York
+    - cron: "30 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm i --no-save playwright && npx playwright install --with-deps chromium
+      - name: Start site
+        run: |
+          npm start &
+          npx --yes wait-on http://localhost:3000 --timeout 60000
+      - name: Capture snapshot
+        run: node tools/snapshot.mjs
+      - name: Commit and tag
+        run: |
+          git config user.name "Eab0u"
+          git config user.email "75275340+Eab0u@users.noreply.github.com"
+          WEEK=$(node -p "require('./public/snapshots/index.json').slice(-1)[0].week")
+          git add public/snapshots
+          git commit -m "chore: weekly snapshot (week ${WEEK})" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
+          git tag "week-$(printf '%02d' "$WEEK")"
+          git push origin main --tags
