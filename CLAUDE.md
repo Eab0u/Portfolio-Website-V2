@@ -23,18 +23,25 @@ Rahul's interests include real brands, teams, and games. Use their mood and colo
 3. No file over 200 lines. Split components instead.
 4. Never mix refactors and features in one commit.
 5. Every commit must pass `npm run check` (typecheck, lint, build) before it is pushed.
-6. Every commit must be approved by a separate reviewer agent that sees only the ticket and the diff.
+6. Every commit must be approved by separate reviewer agents with fresh context: the code critic always, and the artist critic for anything rendered or any model. Rubrics are in `.autopilot/reviewers/`. Full procedure is in `AUTOPILOT.md`.
 7. Never commit secrets, `.env` files, or personal data beyond what is in `content/`.
 8. Commit author is the repo owner, so contributions count for them:
    `git config user.name "Eab0u"` and `git config user.email "75275340+Eab0u@users.noreply.github.com"`.
    End every commit message with `Co-Authored-By: Claude <noreply@anthropic.com>`.
 9. Commit message format: `type: short description` (feat, fix, style, perf, docs, chore).
 
+## Ticket types
+- `(code)`: a small change, 30 to 50 lines. The default.
+- `(model)`: build one 3D model the vision needs. At most one per daily run. The generator script and GLB are exempt from the line limit but must pass the artist critic against `ART_DIRECTION.md` (colorful, detailed, faceted, never grey or ugly).
+
 ## 3D assets
-- Prefer procedural geometry in code.
-- For hand-built models, write a deterministic Blender Python script in `tools/blender/`, run it headless, and export a Draco-compressed GLB to `public/models/`. Keep each GLB under 500 KB and under 20k triangles.
-- Assets and generator scripts are exempt from the line budget, but the script should stay short and readable.
-- If headless Blender is unavailable in the sandbox, fall back to Three.js procedural geometry. Do not block on it.
+- Prefer procedural geometry in code for simple pieces.
+- For models, write a deterministic generator script (Blender Python in `tools/blender/`, or Node in `tools/models/`), run it headless, and export a Draco-compressed GLB to `public/models/`. Keep each GLB under 500 KB and under 20k triangles.
+- If headless Blender is unavailable in the sandbox, fall back to Node or procedural Three.js geometry. Do not block on it.
+- Never use real-brand shapes or logos (see Brands and IP).
+
+## Personal info
+All personal facts live in `content/` (`profile.ts`, `experience.ts`, `projects.ts`). Use only what is there. Never invent personal facts. Phone and email are intentionally not published.
 
 ## Autopilot
 The daily and weekly procedures are in `AUTOPILOT.md`. State is in `.autopilot/state.json`. Work comes from `BACKLOG.md`. If a file named `PAUSE` exists in the repo root, do nothing and exit.

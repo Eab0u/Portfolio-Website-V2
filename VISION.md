@@ -14,13 +14,17 @@ Rahul's interests are the raw material for the world. Each one can become a dist
 - **Minecraft (blocky mood only):** voxel terrain, block-building toy, day and night cycle, a mining quarry district.
 - **Rocket League (car-football mood only):** a boosting toy car in a walled arena with a big ball.
 - **FIFA (football-game mood only):** a quick match scoreboard, penalty shootout toy.
+- **Public transit systems:** a low-poly tram or metro line with stations, route-map style UI, little trains gliding on rails. Great as a connector between districts.
+- **Food culture:** a street-food market or night-market block with colorful stalls, steam particles, and small dishes (generic, no brands).
+- **Language learning:** greetings in Spanish, French, and Catalan appearing on signs, a "say hello" easter egg that cycles languages.
+- **Cinematography:** camera language as a feature: letterbox bars on intro, depth of field, slow dolly shots, a "director's cut" camera mode.
 
 ## Default concept (agents may evolve it, reviewers may change it)
 A floating low-poly archipelago. Each island is a district themed on one interest, and each district holds one part of the portfolio (projects, about, timeline, contact). Visitors move a small vehicle or character between islands, or fly the camera on touch devices. Panels open over the world as small windows (a nod to the retro-OS idea in the benchmarks) for project details and settings.
 
 ## Portfolio content that must exist
 - Hero and intro ritual (loader, then "Start", then sound opt-in).
-- About, projects, and contact, driven by files in `content/` (placeholders until Rahul supplies real text).
+- About, projects, experience, and contact, driven by `content/profile.ts`, `content/experience.ts`, and `content/projects.ts` (real info from Rahul's resume; project links are filled in later). No phone or email is published unless `content/profile.ts` says so.
 - A `/timeline` page that shows the weekly snapshots of this site as it grew.
 - Settings panel (quality, sound, reduced motion), controls help, and a credits page.
 - A footer credit: "Built by Claude, one commit at a time."

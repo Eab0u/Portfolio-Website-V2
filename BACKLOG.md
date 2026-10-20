@@ -7,7 +7,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 **Current theme: Foundation and intro ritual**
 
 ## Foundation (loader, settings, shared pieces)
-- [ ] Add `content/profile.ts` with name, tagline, and link placeholders, and use it in the hero text
+- [ ] Use `content/profile.ts` (name and tagline) in the hero text instead of the hardcoded strings
 - [ ] Add `src/lib/palette.ts` with color tokens: dark navy base, one mint accent, and per-theme accents (blue and garnet, racing red, sand, ice, grass)
 - [ ] Add a `useReducedMotion` hook and use it to slow the hero crystal rotation
 - [ ] Pause canvas rendering when the tab is hidden
@@ -21,6 +21,24 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a skip link and landmark roles
 - [ ] Add Open Graph metadata and a generated SVG favicon
 - [ ] Set canvas `dpr` from the quality setting
+
+## Model tooling (do these before any `(model)` ticket)
+- [ ] Add a `/dev/model-preview` route that loads a GLB from `?src=` on a plain night background with a warm sun light and a fill light
+- [ ] Add an `?angle=0..3` query param to `/dev/model-preview` for 4 preset camera angles
+- [ ] Add `tools/models/README.md` explaining the model workflow and how to run a generator script
+- [ ] Try installing `bpy` in the sandbox and log in `.autopilot/log.md` whether headless Blender works; if not, note the Node fallback
+
+## 3D models (one per ticket, follow `ART_DIRECTION.md`, original and generic art only)
+- [ ] (model) Crystal cluster: 5 to 7 faceted crystals of different heights, mint and violet, one glowing core
+- [ ] (model) Floating rock island: faceted rock underside, grass top in 3 greens, a few small trees
+- [ ] (model) Generic open-wheel race car: bright body, contrasting wing and nose, visible wheels and a small cockpit detail
+- [ ] (model) Low-poly tram: 2 coupled cars, rounded roof, window row, coral and ice colors, small pantograph
+- [ ] (model) Stadium floodlight tower with a glowing lamp bank
+- [ ] (model) Volleyball net with posts, referee stand, and a ball
+- [ ] (model) Street-food stall: striped awning, counter, lanterns, steaming pot
+- [ ] (model) Tire stack and barrier set (generic, no sponsor marks)
+- [ ] (model) Ancient arch ruin with glowing glyph lines (generic sci-fi, no game symbols)
+- [ ] (model) Pine and palm tree set in 3 sizes
 
 ## World base
 - [ ] Add a procedural `Island` component: faceted top, tapered underside, flat shading
@@ -50,9 +68,10 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a "stuck? respawn" button
 
 ## Portfolio content windows
-- [ ] Add `content/projects.ts` with 3 placeholder projects
-- [ ] Add an About `WindowPanel` with placeholder copy from `content/profile.ts`
-- [ ] Add a Projects `WindowPanel` listing project cards
+- [ ] Add an About `WindowPanel` showing the bio, skills, and interests from `content/profile.ts`
+- [ ] Add an Experience section to the About window from `content/experience.ts`
+- [ ] Show experience entries on the `/timeline` route as a career strip above the snapshots
+- [ ] Add a Projects `WindowPanel` listing project cards from `content/projects.ts` (hide link buttons when a link is null)
 - [ ] Add a project detail view inside the Projects window
 - [ ] Add a Contact `WindowPanel` with email and social links
 - [ ] Add a Tools list (React, Three.js, TypeScript, AI agents) to About
@@ -135,11 +154,9 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add alt text and aria labels to all non-decorative elements
 - [ ] Add a Vitest setup with one test for the content files
 
-## 3D assets (procedural first, Blender script when needed)
-- [ ] Try installing `bpy` in the sandbox and log whether headless Blender works in `.autopilot/log.md`
-- [ ] If Blender works, add `tools/blender/crystal_cluster.py` and export `public/models/crystal-cluster.glb`
-- [ ] Load a GLB with `useGLTF` and show it on the hub island
-- [ ] Add a gltf-transform script to compress GLBs (dev script only)
+## Using models in the scene
+- [ ] Load a finished GLB with `useGLTF` and place it on the hub island
+- [ ] Add a gltf-transform script to Draco-compress GLBs (dev script only, may need a ticket-approved dev dependency)
 
 ## Housekeeping
 - [ ] Add `.nvmrc` and an `engines` field in `package.json`
