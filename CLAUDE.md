@@ -5,11 +5,17 @@ A self-building 3D portfolio for Rahul (GitHub: Eab0u). Claude makes small commi
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind, React Three Fiber, drei, postprocessing, GSAP, Lenis. Deployed on Vercel from `main`.
 
+## Direction
+Read `VISION.md` (the creative brief and themes) and `benchmarks/BRIEF.md` (style targets from reference sites) before planning or reviewing. The site is an explorable low-poly world, not a long page.
+
 ## Visual style
-- Low-poly baseline: flat shading, faceted geometry, limited palette (see `:root` in `src/app/globals.css`).
-- Moving, layered, and a bit complex: parallax, floating objects, particles, scroll-driven camera, reactive lighting.
-- Performance matters: keep draw calls low, prefer instancing, respect `prefers-reduced-motion`, and never block first paint on heavy assets.
-- Reference sites live in `benchmarks/` (if present). Use them for inspiration and scoring only. Never copy their code, layout, or assets.
+- Low-poly baseline: flat shading, faceted geometry, limited palette (see `src/lib/palette.ts` once it exists, otherwise `:root` in `src/app/globals.css`).
+- Moving, layered, and a bit complex: parallax, floating objects, particles, interactive toys, reactive lighting.
+- Performance matters: keep draw calls low, prefer instancing, respect `prefers-reduced-motion`, never autoplay sound, and never block first paint on heavy assets.
+- Reference sites are for inspiration and scoring only. Never copy their code, layout, copy, models, textures, sounds, or fonts.
+
+## Brands and IP (hard rule)
+Rahul's interests include real brands, teams, and games. Use their mood and colors only. Never use logos, crests, wordmarks, kit designs, official fonts, copyrighted characters, vehicles, maps, textures, models, or music. All 3D art is original and generic. Details are in `VISION.md`.
 
 ## Commit rules (hard)
 1. One small problem per commit. Target 30 to 50 changed lines. If a diff goes past about 60 lines (excluding lockfiles, generated files, and `.glb` assets), revert it and split the ticket.

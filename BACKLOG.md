@@ -1,134 +1,148 @@
 # Backlog
 
 Status: `[ ]` todo, `[~]` in progress, `[x]` done, `[!]` blocked (reason after it).
-Each ticket is ONE small problem (about 30 to 50 changed lines). Take the top unchecked ticket. Reviewers add new tickets at the top.
+Each ticket is ONE small problem (about 30 to 50 changed lines). Take the top unchecked ticket that fits the current theme. If none fit, take the top unchecked ticket. Reviewers add new tickets at the top.
+Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before planning new tickets.
 
-## Foundation
-- [ ] Add a `content/profile.ts` file with name, tagline, and links as placeholders, and use it in the hero text
-- [ ] Add `src/lib/palette.ts` exporting the color tokens used in 3D scenes
-- [ ] Add a `prefers-reduced-motion` hook and use it to slow the hero crystal rotation
-- [ ] Add a basic loading fallback shown while the 3D canvas loads
-- [ ] Add Open Graph metadata and a favicon (generated SVG)
-- [ ] Add a `useWindowSize` hook for responsive camera distance
-- [ ] Make the canvas pause rendering when the tab is hidden
-- [ ] Add a skip-to-content link and landmark roles
-- [ ] Set `dpr` and antialias based on device pixel ratio and a simple performance check
-- [ ] Add smooth scrolling with Lenis in a small `SmoothScroll` component
+**Current theme: Foundation and intro ritual**
 
-## Hero scene
-- [ ] Add a ring of 12 small octahedrons orbiting the hero crystal (instanced mesh)
-- [ ] Give the hero crystal a slow breathing scale animation
-- [ ] Add mouse parallax: camera drifts slightly toward the pointer
-- [ ] Add a low-poly ground plane with a faceted grid look under the crystal
-- [ ] Add a second smaller crystal with a different rotation speed
-- [ ] Add fog to fade distant objects into the background color
-- [ ] Add a point light that follows the pointer with a soft accent color
-- [ ] Add a particle field of 300 tiny tetrahedrons drifting upward
-- [ ] Add subtle bloom with `@react-three/postprocessing` (low intensity)
-- [ ] Add a vignette effect to focus attention on the center
-- [ ] Add a slow camera dolly-in on first load
-- [ ] Color the hero crystal faces with a vertex-color gradient
-- [ ] Add a thin wireframe shell around the hero crystal
-- [ ] Add floating low-poly mountains in the background (procedural, 3 peaks)
-- [ ] Add a slow day-to-night color shift on the background based on time
+## Foundation (loader, settings, shared pieces)
+- [ ] Add `content/profile.ts` with name, tagline, and link placeholders, and use it in the hero text
+- [ ] Add `src/lib/palette.ts` with color tokens: dark navy base, one mint accent, and per-theme accents (blue and garnet, racing red, sand, ice, grass)
+- [ ] Add a `useReducedMotion` hook and use it to slow the hero crystal rotation
+- [ ] Pause canvas rendering when the tab is hidden
+- [ ] Add a preloader overlay that shows a percent counter using drei `useProgress`
+- [ ] Make the preloader end on a "Start" button that fades the overlay out
+- [ ] Add a sound opt-in step after Start: "Enter" or "Enter (no music)", saved in state only
+- [ ] Add a `SettingsContext` (quality, sound, reduced motion) with safe localStorage persistence (try/catch)
+- [ ] Add a reusable `WindowPanel` component with a path-style title bar and a close button
+- [ ] Add a settings button that opens a settings `WindowPanel`
+- [ ] Add a controls help `WindowPanel` for mouse, touch, and keyboard
+- [ ] Add a skip link and landmark roles
+- [ ] Add Open Graph metadata and a generated SVG favicon
+- [ ] Set canvas `dpr` from the quality setting
 
-## Scroll experience
-- [ ] Split the page into sections: hero, about, projects, contact (empty sections with ids)
-- [ ] Add GSAP ScrollTrigger and link scroll progress to camera Y position
-- [ ] Rotate the hero crystal based on scroll progress
-- [ ] Fade the hero text out as the user scrolls down
-- [ ] Add a scroll progress bar at the top edge
-- [ ] Add section titles that slide in on scroll
-- [ ] Move the camera along a curved path between sections
-- [ ] Change the background color slightly per section
-- [ ] Add a "scroll" hint with a small animated arrow
-- [ ] Add section snap points for keyboard navigation
+## World base
+- [ ] Add a procedural `Island` component: faceted top, tapered underside, flat shading
+- [ ] Place a central hub island and 4 smaller islands in a loose ring
+- [ ] Add a sky gradient background and distance fog
+- [ ] Add a slow drifting cloud layer below the islands (instanced low-poly clouds)
+- [ ] Add camera pointer parallax
+- [ ] Add a slow camera dolly-in after Start
+- [ ] Add 300 drifting low-poly particles (instanced tetrahedrons)
+- [ ] Add subtle bloom with low intensity
+- [ ] Add a vignette pass
+- [ ] Add gentle bobbing to every island with different phases
+- [ ] Add a day and night color shift tied to local time
 
-## About section
-- [ ] Add the about text block with placeholder copy from `content/profile.ts`
-- [ ] Add a low-poly floating shape next to the about text that reacts to hover
-- [ ] Add a skills list (React, Three.js, TypeScript, AI agents) as floating tags
-- [ ] Animate skill tags with a gentle bob using CSS only
-- [ ] Add a small timeline component for education and work
-- [ ] Add an "Adept Systems" highlight card in the about section
-- [ ] Add a UMD mention with a low-poly turtle-style icon (procedural shapes)
+## Navigation between districts
+- [ ] Add island name labels using drei `Html`
+- [ ] Focus the camera on an island when its label is clicked (GSAP tween)
+- [ ] Add keyboard navigation between islands (left and right arrows)
+- [ ] Add swipe navigation between islands on touch
+- [ ] Add a small map panel listing islands with click-to-fly
+- [ ] Add a "back to hub" button
+- [ ] Add a low-poly hover vehicle component (procedural)
+- [ ] Move the vehicle with WASD and arrow keys on an island (simple kinematic movement)
+- [ ] Add boost on Shift with a particle trail
+- [ ] Add on-screen touch joystick for the vehicle
+- [ ] Add portal rings that fly the vehicle to another island
+- [ ] Add a "stuck? respawn" button
 
-## Projects section
-- [ ] Add a `content/projects.ts` file with 3 placeholder projects
-- [ ] Add a `ProjectCard` component with title, description, and links
-- [ ] Render project cards in a responsive grid
-- [ ] Make each card tilt in 3D on hover using CSS transforms
-- [ ] Add a small 3D preview shape per project inside each card
-- [ ] Add a filter bar for project tags
-- [ ] Add a project detail route at `/projects/[slug]`
-- [ ] Add a back link and keyboard focus styles on project pages
-- [ ] Add project images as procedurally generated low-poly covers
-- [ ] Add a "featured" badge style and sort featured projects first
-
-## Contact and footer
-- [ ] Add a contact section with email and social links from `content/profile.ts`
-- [ ] Add a footer with the build date injected at build time
-- [ ] Add a "Built by Claude, one commit at a time" credit with a link to the repo
-- [ ] Add a live commit count from the GitHub public API (client side, cached)
-- [ ] Add a copy-email button with a small confirmation animation
-- [ ] Add a simple `404` page with a broken low-poly crystal
+## Portfolio content windows
+- [ ] Add `content/projects.ts` with 3 placeholder projects
+- [ ] Add an About `WindowPanel` with placeholder copy from `content/profile.ts`
+- [ ] Add a Projects `WindowPanel` listing project cards
+- [ ] Add a project detail view inside the Projects window
+- [ ] Add a Contact `WindowPanel` with email and social links
+- [ ] Add a Tools list (React, Three.js, TypeScript, AI agents) to About
+- [ ] Add an "Adept Systems" highlight card to About
+- [ ] Add a Credits `WindowPanel` with an attributions section
+- [ ] Add a footer line: "Built by Claude, one commit at a time"
+- [ ] Add a `404` page with a broken low-poly crystal
 
 ## Timeline and snapshots
 - [ ] Add a `/timeline` route with a placeholder list
-- [ ] Add `public/snapshots/index.json` with an empty array and a type for entries
+- [ ] Add a snapshot entry type and a loader for `public/snapshots/index.json`
 - [ ] Render snapshot entries as cards on `/timeline`
-- [ ] Add a 3D gallery layout for snapshot cards (flat planes in a row)
-- [ ] Add camera movement between snapshot planes on scroll
-- [ ] Show commits, lines added, and lines removed per week on each snapshot
-- [ ] Link each snapshot to its frozen Vercel deployment URL
 - [ ] Add an empty state for weeks with no snapshot yet
-- [ ] Add a nav link to `/timeline` in the header
+- [ ] Show commits, lines added, and lines removed on each card
+- [ ] Add a 3D gallery layout for snapshot cards (flat planes in a row)
+- [ ] Move the camera between snapshot planes on scroll
+- [ ] Add a nav link to `/timeline` in the world UI
 
-## Navigation and layout
-- [ ] Add a minimal sticky header with anchor links
-- [ ] Highlight the current section in the header based on scroll position
-- [ ] Add a mobile menu with a simple open/close animation
+## Football district (blue and garnet mood, original art only)
+- [ ] Add a procedural pitch island with stripe pattern and goals
+- [ ] Add a low-poly ball that can be clicked to kick (simple arc animation)
+- [ ] Add a goal detector and a score counter
+- [ ] Add instanced stadium stands around the pitch
+- [ ] Add glowing floodlights with soft bloom
+- [ ] Add confetti burst on goal
+- [ ] Add a penalty shootout toy (aim and shoot with the pointer)
+- [ ] Add a generic faceless low-poly player figure that idles near the ball
+
+## Racing district (generic circuit)
+- [ ] Add a spline-based low-poly race circuit
+- [ ] Add a generic open-wheel car that drives the circuit on a loop
+- [ ] Add tire stacks and barriers as instanced meshes
+- [ ] Add a lap timer and best lap saved in state
+- [ ] Add speed lines when the car passes the camera
+- [ ] Add a pit building with a small light gantry
+- [ ] Let the player drive the car with WASD
+
+## Volleyball district
+- [ ] Add a sand court island with a net
+- [ ] Add a ball serve animation on click
+- [ ] Add a spike toy: timed click for a power meter
+- [ ] Add a gentle sand ripple shader under the ball landing spot
+- [ ] Add a rally counter
+
+## Sci-fi ruins district (mood only)
+- [ ] Add floating faceted ruins with arches
+- [ ] Add a glowing artifact with bloom and slow rotation
+- [ ] Add a vertical light beam and drifting shards
+- [ ] Add a quiet sky change when the camera is near this island
+
+## Voxel quarry district
+- [ ] Add a voxel terrain using instanced cubes
+- [ ] Add a block placement toy (click to add, shift click to remove)
+- [ ] Add a simple day and night cycle for the quarry sun
+- [ ] Add a tool belt of 4 plain colored block types
+
+## Arena district (car and ball mood only)
+- [ ] Add a walled arena with a generic boxy car
+- [ ] Add a large ball with simple bounce physics (no new dependency)
+- [ ] Add boost pads and a boost trail
+- [ ] Add a goal counter
+
+## Secrets and polish
+- [ ] Add 7 hidden easter eggs, one per district, and a "secrets found" counter in settings
 - [ ] Add a cursor follower dot on desktop only
-- [ ] Add a custom focus ring style that matches the palette
-- [ ] Add responsive font sizes with `clamp()`
-- [ ] Add a dark/light accent toggle that changes the 3D accent color
-
-## 3D assets (procedural first, Blender script when needed)
-- [ ] Add a procedural low-poly tree component (cone and cylinder stack)
-- [ ] Add a procedural low-poly cloud component and drift a few across the sky
-- [ ] Add a procedural low-poly planet with a faceted ring
-- [ ] Add a procedural low-poly spaceship and fly it across the scene occasionally
-- [ ] Try installing `bpy` in the sandbox and log whether headless Blender works in `.autopilot/log.md`
-- [ ] If Blender works, add `tools/blender/crystal_cluster.py` and export `public/models/crystal-cluster.glb`
-- [ ] Load a GLB with `useGLTF` and show it in the hero scene
-- [ ] Add a gltf-transform script to compress GLBs (dev script only)
-- [ ] Add a low-poly laptop model generated by a Blender or Three.js script
-- [ ] Add a low-poly desk scene with the laptop for the about section
-
-## Animation polish
-- [ ] Add easing to the hero crystal float using a custom curve
-- [ ] Add a one-time intro animation where the crystal assembles from shards
 - [ ] Add hover glow on interactive 3D objects
-- [ ] Add click ripples that push nearby particles away
-- [ ] Add idle camera sway that stops when the user scrolls
-- [ ] Add a subtle chromatic aberration pass at the screen edges
-- [ ] Add a text scramble effect on the hero title (CSS and small JS)
-- [ ] Add staggered fade-in for the hero text lines
+- [ ] Add a one-time intro animation where the hub island assembles from shards
+- [ ] Add a text scramble effect on the hero title
+- [ ] Add a subtle chromatic aberration pass
+- [ ] Add idle camera sway that stops on interaction
+- [ ] Add a light and dark accent toggle
 
 ## Performance and quality
-- [ ] Add `next/dynamic` with a lightweight placeholder for below-the-fold 3D scenes
-- [ ] Add an FPS monitor in dev mode only and lower quality if FPS drops
+- [ ] Add adaptive quality: lower `dpr` when FPS drops
 - [ ] Dispose of geometries and materials on unmount in scene components
+- [ ] Memoize shared geometries and materials
+- [ ] Add a simple error boundary around the canvas with a text fallback
+- [ ] Add a `noscript` fallback with links
 - [ ] Add a Lighthouse CI config with performance budgets
 - [ ] Add alt text and aria labels to all non-decorative elements
-- [ ] Add a `noscript` fallback with a static message and links
-- [ ] Memoize shared geometries and materials across scene components
-- [ ] Add a unit test setup (Vitest) with one test for the content files
-- [ ] Add a simple error boundary around the canvas
+- [ ] Add a Vitest setup with one test for the content files
+
+## 3D assets (procedural first, Blender script when needed)
+- [ ] Try installing `bpy` in the sandbox and log whether headless Blender works in `.autopilot/log.md`
+- [ ] If Blender works, add `tools/blender/crystal_cluster.py` and export `public/models/crystal-cluster.glb`
+- [ ] Load a GLB with `useGLTF` and show it on the hub island
+- [ ] Add a gltf-transform script to compress GLBs (dev script only)
 
 ## Housekeeping
-- [ ] Add a `.nvmrc` and `engines` field in `package.json`
-- [ ] Add a `CONTRIBUTING.md` that explains the autopilot loop in 10 lines
-- [ ] Add a README section with a project structure overview
-- [ ] Add a README badge for the CI status
-- [ ] Add a `sitemap.ts` and `robots.ts`
+- [ ] Add `.nvmrc` and an `engines` field in `package.json`
+- [ ] Add a README structure overview
+- [ ] Add a CI status badge to the README
+- [ ] Add `sitemap.ts` and `robots.ts`
