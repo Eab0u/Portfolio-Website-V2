@@ -10,8 +10,8 @@ A model ticket counts as one commit. Do at most ONE model ticket per daily run.
 ## Reviewers
 Reviews are done by separate subagents with fresh context. Each gets ONLY its rubric file, the ticket text, and its inputs. Never give them your own reasoning or a prior verdict.
 - **Code critic** (`.autopilot/reviewers/code-critic.md`): input is the ticket and `git diff`. Always used.
-- **Artist critic** (`.autopilot/reviewers/artist-critic.md`): input is the ticket and screenshots. Used whenever a change touches anything rendered, and always for `(model)` tickets.
-Run the reviewers on Sonnet. On REJECT, allow one revision and re-review. A second reject means revert and mark the ticket `[!]` with the critic's notes.
+- **Artist critic** (`.autopilot/reviewers/artist-critic.md`): input is the ticket and screenshots. Used whenever a change touches how something looks (not for pure text or data swaps), and always for `(model)` tickets. For `(code)` tickets it runs in **change mode**: it gets `before.png` and `latest.png`, judges only what the ticket changed, and approves if that change is good and the scene is not worse. Whole-scene scoring is for `(model)` tickets and the weekly visual review.
+Run the reviewers on Sonnet. On REJECT, allow one revision and re-review. If the critic's fixes are about things the ticket did not touch, do not revise; re-review once with a reminder to stay in change mode. A second reject means revert and mark the ticket `[!]` with the critic's notes.
 
 ## Screenshots
 Needs playwright: `npm i --no-save playwright` (do not commit it). `tools/shot.mjs` uses the system Chrome at `/opt/google/chrome/chrome` if present, because the sandbox blocks Playwright's own browser download.
@@ -29,7 +29,7 @@ If screenshots cannot be taken, say so in the log and fall back to the code crit
    - `allowed = min(rolled - made, weekly_cap - week_commits)`. If `allowed <= 0`, log and stop.
 4. Repeat `allowed` times:
    a. Take the top unchecked ticket in `BACKLOG.md` that matches the "Current theme" line, or the top unchecked ticket if none match. Skip `(model)` tickets after the first one this run. If no unchecked tickets remain, write 6 new small tickets from `VISION.md` first (commit as `docs: refill backlog`), then continue. Mark the ticket `[~]` while working.
-   b. Implement only that ticket. For `(model)` tickets, follow the Model workflow.
+   b. For rendered tickets, first take a baseline shot to `.autopilot/shots/before.png`. Implement only that ticket. For `(model)` tickets, follow the Model workflow.
    c. For `(code)` tickets, check `git diff --shortstat`. If over about 60 changed lines (excluding lockfiles and `.glb`), revert with `git checkout -- . && git clean -fd`, split the ticket into smaller tickets in `BACKLOG.md`, and continue.
    d. Run `npm run check`. On failure, try one fix. If it still fails, revert, mark the ticket `[!]` with a one-line reason, and continue.
    e. If the change touches anything rendered (`src/components`, `src/app`, `public/models`, palette, styles), take a screenshot (see Screenshots).
