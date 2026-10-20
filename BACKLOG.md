@@ -4,10 +4,20 @@ Status: `[ ]` todo, `[~]` in progress, `[x]` done, `[!]` blocked (reason after i
 Each ticket is ONE small problem (about 30 to 50 changed lines). Take the top unchecked ticket that fits the current theme. If none fit, take the top unchecked ticket. Reviewers add new tickets at the top.
 Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before planning new tickets.
 
-**Current theme: Foundation and intro ritual**
+**Current theme: Model tooling and first models**
+
+## Model tooling (do these before any `(model)` ticket)
+- [ ] Add a `/dev/model-preview` route that loads a GLB from `?src=` on a plain night background with a warm sun light and a fill light
+- [ ] Add an `?angle=0..3` query param to `/dev/model-preview` for 4 preset camera angles
+- [ ] Add `tools/models/README.md` explaining the model workflow and how to run a generator script
+- [ ] Try installing `bpy` in the sandbox and log in `.autopilot/log.md` whether headless Blender works; if not, note the Node fallback
+
+## First models (art must exist before small visual tickets can pass)
+- [ ] (model) Crystal cluster: 5 to 7 faceted crystals of different heights, mint and violet, one glowing core
+- [ ] (model) Floating rock island: faceted rock underside, grass top in 3 greens, a few small trees
 
 ## Foundation (loader, settings, shared pieces)
-- [!] Use `content/profile.ts` (name and tagline) in the hero text instead of the hardcoded strings (artist critic rejected: critique targeted the existing crystal scene, not the text change; needs crystal art tickets first, code critic approved)
+- [ ] Use `content/profile.ts` (name and tagline) in the hero text instead of the hardcoded strings
 - [ ] Add `src/lib/palette.ts` with color tokens: dark navy base, one mint accent, and per-theme accents (blue and garnet, racing red, sand, ice, grass)
 - [ ] Add a `useReducedMotion` hook and use it to slow the hero crystal rotation
 - [ ] Pause canvas rendering when the tab is hidden
@@ -22,15 +32,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add Open Graph metadata and a generated SVG favicon
 - [ ] Set canvas `dpr` from the quality setting
 
-## Model tooling (do these before any `(model)` ticket)
-- [ ] Add a `/dev/model-preview` route that loads a GLB from `?src=` on a plain night background with a warm sun light and a fill light
-- [ ] Add an `?angle=0..3` query param to `/dev/model-preview` for 4 preset camera angles
-- [ ] Add `tools/models/README.md` explaining the model workflow and how to run a generator script
-- [ ] Try installing `bpy` in the sandbox and log in `.autopilot/log.md` whether headless Blender works; if not, note the Node fallback
-
 ## 3D models (one per ticket, follow `ART_DIRECTION.md`, original and generic art only)
-- [ ] (model) Crystal cluster: 5 to 7 faceted crystals of different heights, mint and violet, one glowing core
-- [ ] (model) Floating rock island: faceted rock underside, grass top in 3 greens, a few small trees
 - [ ] (model) Generic open-wheel race car: bright body, contrasting wing and nose, visible wheels and a small cockpit detail
 - [ ] (model) Low-poly tram: 2 coupled cars, rounded roof, window row, coral and ice colors, small pantograph
 - [ ] (model) Stadium floodlight tower with a glowing lamp bank
