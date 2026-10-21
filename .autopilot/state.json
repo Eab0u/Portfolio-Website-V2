@@ -11,7 +11,7 @@
     ],
     "run_time_et": "about 22:40 nightly"
   },
-  "weekly_cap": 40,
+  "weekly_cap": 50,
   "week_start": "2026-10-19",
   "week_commits": 2,
   "plan": [
