@@ -7,7 +7,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 **Current theme: Model tooling and first models**
 
 ## Model tooling (do these before any `(model)` ticket)
-- [ ] Add a `/dev/model-preview` route that loads a GLB from `?src=` on a plain night background with a warm sun light and a fill light
+- [x] Add a `/dev/model-preview` route that loads a GLB from `?src=` on a plain night background with a warm sun light and a fill light
 - [ ] Add an `?angle=0..3` query param to `/dev/model-preview` for 4 preset camera angles
 - [ ] Add `tools/models/README.md` explaining the model workflow and how to run a generator script
 - [ ] Try installing `bpy` in the sandbox and log in `.autopilot/log.md` whether headless Blender works; if not, note the Node fallback
