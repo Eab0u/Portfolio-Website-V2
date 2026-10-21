@@ -4,6 +4,6 @@ import dynamic from "next/dynamic";
 
 const ModelPreviewScene = dynamic(() => import("./ModelPreviewScene"), { ssr: false });
 
-export default function ModelPreviewClient({ src }: { src: string }) {
-  return <ModelPreviewScene src={src} />;
+export default function ModelPreviewClient({ src, angle }: { src: string; angle: number }) {
+  return <ModelPreviewScene src={src} angle={angle} />;
 }
