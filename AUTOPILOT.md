@@ -20,15 +20,15 @@ Needs playwright: `npm i --no-save playwright` (do not commit it). `tools/shot.m
 3. Stop the server when finished. Screenshots in `.autopilot/shots/` are never committed.
 If screenshots cannot be taken, say so in the log and fall back to the code critic only, but do not approve model tickets without preview images.
 
-## Build run (planned days, random start time)
-Runs are one-time scheduled tasks created from the `plan` in `.autopilot/state.json`: 3 to 5 random weekdays per week (never weekends), 1 to 10 commits per day, start time random between 9 AM and 11 PM ET. The same instructions apply to every run.
+## Build run (nightly, with a weekly random plan)
+One recurring scheduled task starts this run every night at about 10:40 PM ET, including weekends. Most nights it should do real work only on planned days. The randomness lives here, in the weekly plan stored in `.autopilot/state.json`: 4 to 7 random days per week (weekends included), 1 to 10 commits per planned day. A long run may pass midnight. `D` always means the America/New_York date when the run STARTED, even after midnight.
 1. If `PAUSE` exists in the repo root, log "paused" in `.autopilot/log.md` and stop.
 2. `git pull origin main`. Set git author as in `CLAUDE.md`.
 3. Read `.autopilot/state.json`.
-   - Find the entry in `plan` whose `date` is today (America/New_York). If there is none, or its `status` is not `pending`, log "no plan for today" and stop. Never roll or invent a plan yourself.
-   - If the week has changed (Monday start), reset `week_commits` to 0 first.
+   - Let `M` be the Monday of the week containing `D`. If `week_start` is not `M`, roll a new plan for the week: pick `k` as a random integer from 4 to 7 (at most the number of days from `D` through Sunday), choose `k` distinct dates from `D` through that Sunday, and give each a random integer of commits from 1 to 10. Use `python3` with `random.SystemRandom()` so the choices are really random. Save `week_start = M`, `week_commits = 0`, and `plan = [{date, commits, status: "pending", made: 0}, ...]` in `state.json`, and commit it as `chore: roll weekly plan`. Never edit the plan again except to update `status` and `made`.
+   - Find the plan entry whose `date` is `D`. If there is none, or its `status` is not `pending`, log "no plan today" in one line, push the log, and stop. Do not install packages or run anything else.
    - `allowed = min(entry.commits, weekly_cap - week_commits)`. If `allowed <= 0`, log and stop.
-   - Do not START a new commit after 11:00 PM ET. If time runs out, stop and log how many were left.
+   - Do not START a new commit after 2:00 AM ET. If time runs out, stop and log how many were left.
 4. Repeat `allowed` times:
    a. Take the top unchecked ticket in `BACKLOG.md` that matches the "Current theme" line, or the top unchecked ticket if none match. Skip `(model)` tickets after the first one this run. If no unchecked tickets remain, write 6 new small tickets from `VISION.md` first (commit as `docs: refill backlog`), then continue. Mark the ticket `[~]` while working.
    b. For rendered tickets, first take a baseline shot to `.autopilot/shots/before.png`. Implement only that ticket. For `(model)` tickets, follow the Model workflow.
@@ -51,10 +51,10 @@ Runs are one-time scheduled tasks created from the `plan` in `.autopilot/state.j
 ## Weekly code review (Sunday 8 PM ET)
 Use the code critic mindset (`.autopilot/reviewers/code-critic.md`) on the whole repo, with fresh context. Look at structure, dead code, bundle size, performance of the 3D scene, accessibility, and adherence to `CLAUDE.md`. Write findings to `reviews/YYYY-MM-DD-code.md` (max 1 page). Add up to 8 small, concrete tickets to the top of `BACKLOG.md`. Do not change source code.
 
-Then plan next week. Read `VISION.md`, pick the theme (a district or interest) for the coming week, rotating through the interests and favoring unfinished districts. Update the "Current theme" line at the top of `BACKLOG.md` and write 6 to 8 original, small tickets for that theme at the top, including 1 or 2 `(model)` tickets. Make them specific and visible. Flag any filler commits from the past week in the review. Also compare this week's `plan` in `.autopilot/state.json` with what happened (check `.autopilot/log.md` and `git log`) and flag any planned day that was missed or partial at the top. If fewer than 7 days of plan remain in `state.json`, say so at the top of the review so Rahul can have more runs scheduled.
+Then plan next week. Read `VISION.md`, pick the theme (a district or interest) for the coming week, rotating through the interests and favoring unfinished districts. Update the "Current theme" line at the top of `BACKLOG.md` and write 6 to 8 original, small tickets for that theme at the top, including 1 or 2 `(model)` tickets. Make them specific and visible. Flag any filler commits from the past week in the review. Also compare this week's `plan` in `.autopilot/state.json` with what happened (check `.autopilot/log.md` and `git log`) and flag any planned day that was missed or partial at the top.
 
 ## Weekly visual review (Sunday 10 PM ET)
 Act as the artist critic (`.autopilot/reviewers/artist-critic.md`) on the whole site. Run the site locally and take screenshots (see Screenshots), including `/timeline` and any other routes. Judge against `benchmarks/BRIEF.md`, `VISION.md`, and `ART_DIRECTION.md`. Score 1 to 10 on: intro ritual, sense of a world, interaction delight, UI restraint, polish and performance, and low-poly consistency. Check that no brand logos or copied assets slipped in. Write `reviews/YYYY-MM-DD-visual.md` (max 1 page) and add up to 8 small tickets to the top of `BACKLOG.md`. Do not change source code.
 
 ## Adjusting speed
-Edit `weekly_cap` and the `plan` entries in `.autopilot/state.json` to control how fast the site grows. Changing the plan only changes commit counts, since start times come from the scheduled tasks themselves.
+Edit `weekly_cap` in `.autopilot/state.json` to cap how many commits a week can make. The days per week and commits per day are in the Build run section above and in `rules` in `state.json`.

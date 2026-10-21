@@ -1,111 +1,47 @@
 {
   "rules": {
     "days_per_week": [
-      3,
-      5
+      4,
+      7
     ],
-    "weekdays_only": true,
+    "weekends_included": true,
     "commits_per_day": [
       1,
       10
     ],
-    "start_window_et": [
-      "09:00",
-      "23:00"
-    ]
+    "run_time_et": "about 22:40 nightly"
   },
-  "weekly_cap": 50,
+  "weekly_cap": 40,
   "week_start": "2026-10-19",
   "week_commits": 2,
   "plan": [
     {
+      "date": "2026-10-21",
+      "commits": 2,
+      "status": "done",
+      "made": 2
+    },
+    {
       "date": "2026-10-22",
-      "start_et": "22:09",
-      "commits": 5,
+      "commits": 3,
       "status": "pending",
       "made": 0
     },
     {
       "date": "2026-10-23",
-      "start_et": "10:45",
-      "commits": 4,
+      "commits": 7,
       "status": "pending",
       "made": 0
     },
     {
-      "date": "2026-10-26",
-      "start_et": "12:46",
-      "commits": 6,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-10-28",
-      "start_et": "12:00",
-      "commits": 2,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-10-29",
-      "start_et": "21:10",
+      "date": "2026-10-24",
       "commits": 1,
       "status": "pending",
       "made": 0
     },
     {
-      "date": "2026-11-03",
-      "start_et": "21:42",
-      "commits": 6,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-11-04",
-      "start_et": "10:33",
-      "commits": 7,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-11-05",
-      "start_et": "09:11",
-      "commits": 5,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-11-09",
-      "start_et": "15:16",
-      "commits": 5,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-11-10",
-      "start_et": "19:41",
-      "commits": 8,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-11-11",
-      "start_et": "22:01",
-      "commits": 6,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-11-12",
-      "start_et": "09:10",
-      "commits": 7,
-      "status": "pending",
-      "made": 0
-    },
-    {
-      "date": "2026-11-13",
-      "start_et": "12:50",
-      "commits": 3,
+      "date": "2026-10-25",
+      "commits": 2,
       "status": "pending",
       "made": 0
     }
