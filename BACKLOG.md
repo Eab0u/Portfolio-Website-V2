@@ -13,7 +13,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Try installing `bpy` in the sandbox and log in `.autopilot/log.md` whether headless Blender works; if not, note the Node fallback
 
 ## First models (art must exist before small visual tickets can pass)
-- [!] (model) Crystal cluster: 5 to 7 faceted crystals of different heights, mint and violet, one glowing core (artist critic rejected 3 times 2026-10-22: colors read as teal and navy under the preview fill light, core hidden from some angles, base clashed. Retry with strict mint and violet ramps, core raised above a ring of crystals, dark night-rock base, no pebbles)
+- [ ] (model) Crystal cluster: 5 to 7 faceted crystals of different heights, mint and violet, one glowing core (retry: artist critic rejected 3 times 2026-10-22: colors read as teal and navy under the preview fill light, core hidden from some angles, base clashed. Retry with strict mint and violet ramps, core raised above a ring of crystals, dark night-rock base, no pebbles)
 - [ ] (model) Floating rock island: faceted rock underside, grass top in 3 greens, a few small trees
 
 ## Foundation (loader, settings, shared pieces)
