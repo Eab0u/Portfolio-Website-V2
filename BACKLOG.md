@@ -23,7 +23,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Pause canvas rendering when the tab is hidden
 - [x] Add a preloader overlay that shows a percent counter using drei `useProgress`
 - [x] Make the preloader end on a "Start" button that fades the overlay out
-- [ ] Add a sound opt-in step after Start: "Enter" or "Enter (no music)", saved in state only
+- [x] Add a sound opt-in step after Start: "Enter" or "Enter (no music)", saved in state only
 - [ ] Add a `SettingsContext` (quality, sound, reduced motion) with safe localStorage persistence (try/catch)
 - [ ] Add a reusable `WindowPanel` component with a path-style title bar and a close button
 - [ ] Add a settings button that opens a settings `WindowPanel`
