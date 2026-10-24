@@ -20,7 +20,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Use `content/profile.ts` (name and tagline) in the hero text instead of the hardcoded strings
 - [x] Add `src/lib/palette.ts` with color tokens: dark navy base, one mint accent, and per-theme accents (blue and garnet, racing red, sand, ice, grass)
 - [x] Add a `useReducedMotion` hook and use it to slow the hero crystal rotation
-- [ ] Pause canvas rendering when the tab is hidden
+- [x] Pause canvas rendering when the tab is hidden
 - [ ] Add a preloader overlay that shows a percent counter using drei `useProgress`
 - [ ] Make the preloader end on a "Start" button that fades the overlay out
 - [ ] Add a sound opt-in step after Start: "Enter" or "Enter (no music)", saved in state only
