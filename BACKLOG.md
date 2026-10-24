@@ -6,6 +6,11 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 **Current theme: Model tooling and first models**
 
+## Priority (do these first, in order)
+- [ ] Remove the Start button and the "Enter" / "Enter (no music)" step from `src/components/Preloader.tsx`. The overlay should fade out by itself when loading reaches 100%. No buttons, no sound prompt, sound stays off. Keep the percent counter for now. (The visitor should land straight in the world.)
+- [ ] Make the `/dev/model-preview` lights neutral so palette colors show true: warm white sun (`#fff4e0`), neutral fill (`#e8ecff`) at lower intensity, ambient up a little. The old orange sun and blue fill shifted mint toward teal and caused model rejections.
+- [ ] Replace the percent counter in the preloader with a small looping loading animation (a spinning faceted crystal made of CSS or a tiny R3F mesh, palette colors only). Keep the auto fade out.
+
 ## Model tooling (do these before any `(model)` ticket)
 - [x] Add a `/dev/model-preview` route that loads a GLB from `?src=` on a plain night background with a warm sun light and a fill light
 - [x] Add an `?angle=0..3` query param to `/dev/model-preview` for 4 preset camera angles
