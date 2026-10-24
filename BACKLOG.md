@@ -28,7 +28,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a reusable `WindowPanel` component with a path-style title bar and a close button
 - [ ] Add a settings button that opens a settings `WindowPanel`
 - [ ] Add a controls help `WindowPanel` for mouse, touch, and keyboard
-- [ ] Add a skip link and landmark roles
+- [x] Add a skip link and landmark roles
 - [ ] Add Open Graph metadata and a generated SVG favicon
 - [ ] Set canvas `dpr` from the quality setting
 
