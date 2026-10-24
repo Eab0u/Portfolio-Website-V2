@@ -30,7 +30,7 @@ One recurring scheduled task starts this run every night at about 10:40 PM ET, i
    - `allowed = min(entry.commits, weekly_cap - week_commits)`. If `allowed <= 0`, log and stop.
    - Do not START a new commit after 2:00 AM ET. If time runs out, stop and log how many were left.
 4. Repeat `allowed` times:
-   a. Take the top unchecked ticket in `BACKLOG.md` that matches the "Current theme" line, or the top unchecked ticket if none match. Skip `(model)` tickets after the first one this run. If no unchecked tickets remain, write 6 new small tickets from `VISION.md` first (commit as `docs: refill backlog`), then continue. Mark the ticket `[~]` while working.
+   a. Tickets under `## Priority` in `BACKLOG.md` come first, in order, whatever the theme. Otherwise take the top unchecked ticket in `BACKLOG.md` that matches the "Current theme" line, or the top unchecked ticket if none match. Skip `(model)` tickets after the first one this run. If no unchecked tickets remain, write 6 new small tickets from `VISION.md` first (commit as `docs: refill backlog`), then continue. Mark the ticket `[~]` while working.
    b. For rendered tickets, first take a baseline shot to `.autopilot/shots/before.png`. Implement only that ticket. For `(model)` tickets, follow the Model workflow.
    c. For `(code)` tickets, check `git diff --shortstat`. If over about 60 changed lines (excluding lockfiles and `.glb`), revert with `git checkout -- . && git clean -fd`, split the ticket into smaller tickets in `BACKLOG.md`, and continue.
    d. Run `npm run check`. On failure, try one fix. If it still fails, revert, mark the ticket `[!]` with a one-line reason, and continue.
@@ -45,7 +45,7 @@ One recurring scheduled task starts this run every night at about 10:40 PM ET, i
 1. Read `ART_DIRECTION.md`. Write a short generator script in `tools/blender/` (Blender Python, headless) or `tools/models/` (Node), building the model from named parts using only palette colors.
 2. Run it and export a Draco-compressed GLB to `public/models/`. Check the size (under 500 KB) and triangle count (within the budget in `ART_DIRECTION.md`). If headless Blender is not available, generate the geometry with Node or procedural Three.js instead. Do not block on it.
 3. Make sure `/dev/model-preview` exists (see backlog). Take 4 screenshots with `?src=/models/<file>.glb&angle=0..3`.
-4. Run the artist critic on the 4 images and the code critic on the script. Up to 2 revisions. If it still fails, mark `[!]` with the notes and move on.
+4. Run the artist critic on the 4 images and the code critic on the script. Up to 2 revisions. If it still fails, mark `[!]` with the notes and move on. A model ticket that has been rejected in two different runs stays `[!]` and is only reset by the weekly review, after the cause is fixed. If the critic's complaints are about color, check that the preview lighting is neutral before blaming the model.
 5. Commit the script and GLB together.
 
 ## Weekly code review (Sunday 8 PM ET)
