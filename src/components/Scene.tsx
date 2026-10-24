@@ -4,13 +4,16 @@ import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import type { Mesh } from "three";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 function HeroCrystal() {
   const ref = useRef<Mesh>(null);
+  const reduced = useReducedMotion();
+  const speed = reduced ? 0.15 : 1;
   useFrame((_, delta) => {
     if (!ref.current) return;
-    ref.current.rotation.y += delta * 0.3;
-    ref.current.rotation.x += delta * 0.1;
+    ref.current.rotation.y += delta * 0.3 * speed;
+    ref.current.rotation.x += delta * 0.1 * speed;
   });
   return (
     <Float speed={1.5} floatIntensity={1.2}>
