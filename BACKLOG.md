@@ -4,7 +4,23 @@ Status: `[ ]` todo, `[~]` in progress, `[x]` done, `[!]` blocked (reason after i
 Each ticket is ONE small problem (about 30 to 50 changed lines). Take the top unchecked ticket that fits the current theme. If none fit, take the top unchecked ticket. Reviewers add new tickets at the top.
 Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before planning new tickets.
 
-**Current theme: Model tooling and first models**
+**Current theme: World base, the floating archipelago**
+
+## Review 2026-10-25 (code review fixes, small, do after Priority)
+- [ ] Preloader: finish on Canvas `onCreated` instead of the 4 s timeout when no assets load (drop the fake wait)
+- [ ] Hero crystal: stop `Float` bobbing when `useReducedMotion` is true
+- [ ] Add `role="img"` and an `aria-label` describing the 3D scene on the canvas wrapper in `SceneClient`
+- [ ] Add the footer credit "Built by Claude, one commit at a time." to `src/app/page.tsx`
+- [ ] Update `VISION.md` intro ritual line: loader fades out by itself, no Start, no sound prompt
+- [ ] Guard the weekly snapshot commit in `.github/workflows/weekly-snapshot.yml` with `git diff --cached --quiet ||`
+
+## Next week theme tickets: World base, the floating archipelago
+- [ ] Add a procedural `Island` component (faceted top, tapered underside, flat shading, palette colors) and render one under the hero crystal
+- [ ] Add a sky gradient background and distance fog to `Scene`
+- [ ] Place 4 smaller islands in a loose ring around the hub, each with a different palette top color
+- [ ] Add gentle bobbing to each island with different phases (skip when reduced motion)
+- [ ] Add 300 drifting low-poly particles as one instanced tetrahedron mesh
+- [ ] (model) Floating rock island with faceted underside, three-green grass top, a few small trees (use Node procedural geometry, neutral preview lights first; if rejected twice, split into rock and tree tickets)
 
 ## Priority (do these first, in order)
 - [x] Remove the Start button and the "Enter" / "Enter (no music)" step from `src/components/Preloader.tsx`. The overlay should fade out by itself when loading reaches 100%. No buttons, no sound prompt, sound stays off. Keep the percent counter for now. (The visitor should land straight in the world.)
