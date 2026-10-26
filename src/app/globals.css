@@ -13,3 +13,29 @@ body {
   color: var(--fg);
   font-family: ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Preloader: a faceted gem of three clipped palette-tone facets, spinning in 3D. */
+:root {
+  --ice: #9be7ff;
+  --violet: #8b5cff;
+}
+.crystal-loader {
+  position: relative;
+  width: 72px;
+  height: 84px;
+  perspective: 300px;
+}
+.crystal-loader i {
+  position: absolute;
+  inset: 0;
+  animation: crystal-spin 1.6s linear infinite;
+}
+.crystal-loader i:nth-child(1) { background: var(--ice); clip-path: polygon(50% 0, 100% 30%, 50% 42%, 0 30%); }
+.crystal-loader i:nth-child(2) { background: var(--accent); clip-path: polygon(0 30%, 50% 42%, 50% 100%, 18% 100%); }
+.crystal-loader i:nth-child(3) { background: var(--violet); clip-path: polygon(50% 42%, 100% 30%, 82% 100%, 50% 100%); }
+@keyframes crystal-spin {
+  to { transform: rotateY(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crystal-loader i { animation: none; }
+}

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
 
-// Full-screen loading overlay: percent counter that fades out on its own once loading reaches 100%. Sound stays off.
+// Full-screen loading overlay: spinning crystal that fades out on its own once loading reaches 100%. Sound stays off.
 export default function Preloader() {
   const { progress, total } = useProgress();
   const [done, setDone] = useState(false);
@@ -35,7 +35,12 @@ export default function Preloader() {
         done ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
-      <p className="font-mono text-5xl tabular-nums text-[var(--accent)]">{done ? 100 : percent}%</p>
+      <div className="crystal-loader" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+      </div>
+      <span className="sr-only">Loading</span>
     </div>
   );
 }
