@@ -33,6 +33,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] (model) Floating rock island with faceted underside, three-green grass top, a few small trees (use Node procedural geometry, neutral preview lights first; if rejected twice, split into rock and tree tickets)
 
 ## Priority (do these first, in order)
+- [ ] Fix `tools/snapshot.mjs` so the weekly snapshot shows the real site, not the loader: after load, wait until the preloader overlay (`[role="status"]`) is detached (up to 20 s), then wait 2.5 s more, then take the screenshot. If the overlay is still there after 20 s, exit with an error so the Action fails instead of committing a bad image.
 - [x] Remove the Start button and the "Enter" / "Enter (no music)" step from `src/components/Preloader.tsx`. The overlay should fade out by itself when loading reaches 100%. No buttons, no sound prompt, sound stays off. Keep the percent counter for now. (The visitor should land straight in the world.)
 - [x] Make the `/dev/model-preview` lights neutral so palette colors show true: warm white sun (`#fff4e0`), neutral fill (`#e8ecff`) at lower intensity, ambient up a little. The old orange sun and blue fill shifted mint toward teal and caused model rejections.
 - [x] Replace the percent counter in the preloader with a small looping loading animation (a spinning faceted crystal made of CSS or a tiny R3F mesh, palette colors only). Keep the auto fade out.
