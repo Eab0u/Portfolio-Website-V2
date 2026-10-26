@@ -1,0 +1,13 @@
+[
+  {
+    "week": 1,
+    "date": "2026-10-26",
+    "image": "/snapshots/week-01.png",
+    "sha": "30b00ef",
+    "commits": 39,
+    "added": 1743,
+    "removed": 397,
+    "summary": "",
+    "deploymentUrl": null
+  }
+]
