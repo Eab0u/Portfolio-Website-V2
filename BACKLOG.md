@@ -85,6 +85,8 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add subtle bloom with low intensity
 - [ ] Add a vignette pass
 - [ ] Add gentle bobbing to every island with different phases
+- [ ] Add a shared `LowPolyMaterial` (flat shaded) with a soft shade ramp so faces turned from the sun get darker, original code, palette colors only
+- [ ] Add gentle wind sway to instanced grass tufts using a small vertex shader (original)
 - [ ] Add a day and night color shift tied to local time
 
 ## Navigation between districts
@@ -94,6 +96,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add swipe navigation between islands on touch
 - [ ] Add a small map panel listing islands with click-to-fly
 - [ ] Add a "back to hub" button
+- [ ] Add physics: install `@react-three/rapier` (dependency approved for this ticket) and drop 5 faceted blocks onto the hub ground as a small physics toy
 - [ ] Add a low-poly hover vehicle component (procedural)
 - [ ] Move the vehicle with WASD and arrow keys on an island (simple kinematic movement)
 - [ ] Add boost on Shift with a particle trail
@@ -190,7 +193,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 ## Using models in the scene
 - [ ] Load a finished GLB with `useGLTF` and place it on the hub island
-- [ ] Add a gltf-transform script to Draco-compress GLBs (dev script only, may need a ticket-approved dev dependency)
+- [ ] Add a `compress:models` npm script that runs glTF-Transform over `public/models/*.glb` (dev script only). Approved new devDependency for this ticket: `@gltf-transform/cli`
 
 ## Housekeeping
 - [ ] Add `.nvmrc` and an `engines` field in `package.json`
