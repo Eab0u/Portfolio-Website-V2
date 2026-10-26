@@ -38,5 +38,13 @@ Evidence note: this brief was written from page text and metadata only. Colors, 
 7. Works on touch, has clear controls, and recovers gracefully.
 8. A credits and attributions page.
 
+## Stack and technique notes (from folio-2025, a public MIT repo, studied for ideas only)
+We borrow ideas, never code, models, textures, sounds, or fonts. Everything here is rebuilt in our own way for our own stack (Next.js, React Three Fiber, WebGL).
+- **Tools worth adopting by ticket:** a rigid-body physics library (Rapier) for drivable and kickable things; glTF-Transform as a separate compression step after export; GSAP for camera moves; instancing for anything repeated.
+- **Look:** one shared material for the whole world, with a soft shade ramp so faces turned from the sun go darker, a gentle fog tint, and one sun with soft shadows that moves slowly through a day cycle.
+- **Post effects stay quiet:** bloom with a high threshold and low strength, and a cheap blur for depth. Never heavy.
+- **Richness comes from stacking small systems** (wind sway, drifting clouds, trails, day and night, weather), each in its own small file.
+- **Skipped on purpose:** WebGPU and node-based shaders. Our screenshot checks run on software WebGL, and our stack is React Three Fiber.
+
 ## How reviewers should score
 Score the site 1 to 10 on: intro ritual, sense of a world, interaction delight, UI restraint, polish and performance, and consistency of the metaphor. Compare against the shared target feel above, not against any one site.
