@@ -29,7 +29,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a sky gradient background and distance fog to `Scene`
 - [ ] Place 4 smaller islands in a loose ring around the hub, each with a different palette top color
 - [ ] Add gentle bobbing to each island with different phases (skip when reduced motion)
-- [ ] Add 300 drifting low-poly particles as one instanced tetrahedron mesh
+- [x] Add 300 drifting low-poly particles as one instanced tetrahedron mesh
 - [ ] (model) Floating rock island with faceted underside, three-green grass top, a few small trees (use Node procedural geometry, neutral preview lights first; if rejected twice, split into rock and tree tickets)
 
 ## Priority (do these first, in order)
@@ -81,7 +81,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a slow drifting cloud layer below the islands (instanced low-poly clouds)
 - [ ] Add camera pointer parallax
 - [ ] Add a slow camera dolly-in after Start
-- [ ] Add 300 drifting low-poly particles (instanced tetrahedrons)
+- [x] Add 300 drifting low-poly particles (instanced tetrahedrons)
 - [ ] Add subtle bloom with low intensity
 - [ ] Add a vignette pass
 - [ ] Add gentle bobbing to every island with different phases

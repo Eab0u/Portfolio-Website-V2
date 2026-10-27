@@ -7,6 +7,7 @@ import type { Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
 import { PALETTE } from "@/lib/palette";
+import Particles from "./Particles";
 
 function HeroCrystal() {
   const ref = useRef<Mesh>(null);
@@ -53,6 +54,7 @@ export default function Scene() {
       <directionalLight position={[3, 4, 2]} intensity={2} />
       <directionalLight position={[-4, -1, -3]} intensity={1.2} color={PALETTE.ice} />
       <CameraRig />
+      <Particles />
       <HeroCrystal />
     </Canvas>
   );
