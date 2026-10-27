@@ -38,6 +38,7 @@ export default function Scene() {
     >
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 4, 2]} intensity={2} />
+      <directionalLight position={[-4, -1, -3]} intensity={1.2} color={PALETTE.ice} />
       <HeroCrystal />
     </Canvas>
   );
