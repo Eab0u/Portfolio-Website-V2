@@ -21,7 +21,7 @@ function HeroCrystal() {
     <Float speed={1.5} floatIntensity={1.2}>
       <mesh ref={ref}>
         <icosahedronGeometry args={[1.4, 0]} />
-        <meshStandardMaterial color="#7cf0c8" flatShading metalness={0.3} roughness={0.4} />
+        <meshStandardMaterial color="#7cf0c8" flatShading metalness={0} roughness={0.6} />
       </mesh>
     </Float>
   );

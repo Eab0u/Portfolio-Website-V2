@@ -8,7 +8,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 ## Review 2026-10-26 (visual review, do after Priority)
 - [ ] Camera parallax: ease the camera toward the pointer (max about 0.6 units, skip when reduced motion), in `Scene`
-- [ ] Hero crystal: set `metalness` to 0 and `roughness` to 0.6 so the mint matches the palette instead of going muddy
+- [x] Hero crystal: set `metalness` to 0 and `roughness` to 0.6 so the mint matches the palette instead of going muddy
 - [ ] Mobile framing: scale the hero crystal and camera distance by viewport aspect so it is not cropped at 390 px wide
 - [x] Replace the flat `#0a0b10` background with a two-stop vertical sky gradient (palette colors) behind the scene
 - [ ] Add a low cool rim light so the dark crystal faces read as color, not black
