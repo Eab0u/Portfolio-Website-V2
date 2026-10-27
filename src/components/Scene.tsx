@@ -6,6 +6,7 @@ import { Float } from "@react-three/drei";
 import type { Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
+import { PALETTE } from "@/lib/palette";
 
 function HeroCrystal() {
   const ref = useRef<Mesh>(null);
@@ -29,8 +30,12 @@ function HeroCrystal() {
 export default function Scene() {
   const visible = usePageVisible();
   return (
-    <Canvas frameloop={visible ? "always" : "never"} camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 2]}>
-      <color attach="background" args={["#0a0b10"]} />
+    <Canvas
+      frameloop={visible ? "always" : "never"}
+      camera={{ position: [0, 0, 5], fov: 50 }}
+      dpr={[1, 2]}
+      style={{ background: `linear-gradient(to bottom, ${PALETTE.night} 0%, ${PALETTE.navy} 100%)` }}
+    >
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 4, 2]} intensity={2} />
       <HeroCrystal />
