@@ -19,7 +19,7 @@ function HeroCrystal() {
     ref.current.rotation.x += delta * 0.1 * speed;
   });
   return (
-    <Float speed={1.5} floatIntensity={1.2}>
+    <Float enabled={!reduced} speed={1.5} floatIntensity={1.2}>
       <mesh ref={ref}>
         <icosahedronGeometry args={[1.4, 0]} />
         <meshStandardMaterial color="#7cf0c8" flatShading metalness={0} roughness={0.6} />
