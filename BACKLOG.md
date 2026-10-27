@@ -20,7 +20,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Preloader: finish on Canvas `onCreated` instead of the 4 s timeout when no assets load (drop the fake wait)
 - [x] Hero crystal: stop `Float` bobbing when `useReducedMotion` is true
 - [x] Add `role="img"` and an `aria-label` describing the 3D scene on the canvas wrapper in `SceneClient`
-- [ ] Add the footer credit "Built by Claude, one commit at a time." to `src/app/page.tsx`
+- [x] Add the footer credit "Built by Claude, one commit at a time." to `src/app/page.tsx`
 - [ ] Update `VISION.md` intro ritual line: loader fades out by itself, no Start, no sound prompt
 - [ ] Guard the weekly snapshot commit in `.github/workflows/weekly-snapshot.yml` with `git diff --cached --quiet ||`
 

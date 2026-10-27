@@ -13,6 +13,9 @@ export default function Home() {
         <h1 className="text-4xl font-semibold tracking-tight">{profile.name}</h1>
         <p className="mt-2 text-sm opacity-70">{profile.tagline}</p>
       </header>
+      <footer className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-xs opacity-70">
+        Built by Claude, one commit at a time.
+      </footer>
     </main>
   );
 }
