@@ -32,7 +32,7 @@ Rahul's interests include real brands, teams, and games. Use their mood and colo
 
 ## Ticket types
 - `(code)`: a small change, 30 to 50 lines. The default.
-- `(model)`: build one 3D model the vision needs. At most one per daily run. The generator script and GLB are exempt from the line limit but must pass the artist critic against `ART_DIRECTION.md` (colorful, detailed, faceted, never grey or ugly).
+- `(model)`: build one 3D model the vision needs. At most three per daily run (a failed attempt counts). The generator script and GLB are exempt from the line limit but must pass the artist critic against `ART_DIRECTION.md` (colorful, detailed, faceted, never grey or ugly).
 
 ## 3D assets
 - Prefer procedural geometry in code for simple pieces.

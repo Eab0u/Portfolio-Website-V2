@@ -5,7 +5,7 @@ Scheduled runs start fresh with no memory. Read `CLAUDE.md`, `VISION.md`, `ART_D
 ## Ticket types
 - `(code)` (the default, untagged): one small change, about 30 to 50 changed lines.
 - `(model)`: build one 3D model that the vision needs. Follows the Model workflow below. Exempt from the line limit for the script and GLB, but held to `ART_DIRECTION.md`.
-A model ticket counts as one commit. Do at most ONE model ticket per daily run.
+A model ticket counts as one commit. Do at most THREE model tickets per daily run (a failed attempt counts).
 
 ## Reviewers
 Reviews are done by separate subagents with fresh context. Each gets ONLY its rubric file, the ticket text, and its inputs. Never give them your own reasoning or a prior verdict.
@@ -30,7 +30,7 @@ One recurring scheduled task starts this run every night at about 10:40 PM ET, i
    - `allowed = min(entry.commits, weekly_cap - week_commits)`. If `allowed <= 0`, log and stop.
    - Do not START a new commit after 2:00 AM ET. If time runs out, stop and log how many were left.
 4. Repeat `allowed` times:
-   a. Tickets under `## Priority` in `BACKLOG.md` come first, in order, whatever the theme. Otherwise take the top unchecked ticket in `BACKLOG.md` that matches the "Current theme" line, or the top unchecked ticket if none match. Skip `(model)` tickets after the first one this run. If no unchecked tickets remain, write 6 new small tickets from `VISION.md` first (commit as `docs: refill backlog`), then continue. Mark the ticket `[~]` while working.
+   a. Tickets under `## Priority` in `BACKLOG.md` come first, in order, whatever the theme. Otherwise take the top unchecked ticket in `BACKLOG.md` that matches the "Current theme" line, or the top unchecked ticket if none match. Skip `(model)` tickets after the third one this run. If no unchecked tickets remain, write 6 new small tickets from `VISION.md` first (commit as `docs: refill backlog`), then continue. Mark the ticket `[~]` while working.
    b. For rendered tickets, first take a baseline shot to `.autopilot/shots/before.png`. Implement only that ticket. For `(model)` tickets, follow the Model workflow.
    c. For `(code)` tickets, check `git diff --shortstat`. If over about 60 changed lines (excluding lockfiles and `.glb`), revert with `git checkout -- . && git clean -fd`, split the ticket into smaller tickets in `BACKLOG.md`, and continue.
    d. Run `npm run check`. On failure, try one fix. If it still fails, revert, mark the ticket `[!]` with a one-line reason, and continue.
