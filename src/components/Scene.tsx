@@ -27,6 +27,19 @@ function HeroCrystal() {
   );
 }
 
+// Eases the camera toward the pointer for a little parallax. Static when reduced motion is on.
+function CameraRig() {
+  const reduced = useReducedMotion();
+  useFrame((state, delta) => {
+    if (reduced) return;
+    const k = 1 - Math.exp(-delta * 3);
+    state.camera.position.x += (state.pointer.x * 0.6 - state.camera.position.x) * k;
+    state.camera.position.y += (state.pointer.y * 0.4 - state.camera.position.y) * k;
+    state.camera.lookAt(0, 0, 0);
+  });
+  return null;
+}
+
 export default function Scene() {
   const visible = usePageVisible();
   return (
@@ -39,6 +52,7 @@ export default function Scene() {
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 4, 2]} intensity={2} />
       <directionalLight position={[-4, -1, -3]} intensity={1.2} color={PALETTE.ice} />
+      <CameraRig />
       <HeroCrystal />
     </Canvas>
   );
