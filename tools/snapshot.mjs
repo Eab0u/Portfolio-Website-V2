@@ -19,7 +19,15 @@ const browser = await chromium.launch({
 });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 await page.goto("http://localhost:3000", { waitUntil: "networkidle" });
-await page.waitForTimeout(3000);
+// Wait for the preloader overlay to leave the DOM, or fail so no loader image is committed.
+try {
+  await page.waitForSelector('[role="status"]', { state: "detached", timeout: 20000 });
+} catch {
+  console.error("Preloader overlay still present after 20 s, refusing to take a snapshot.");
+  await browser.close();
+  process.exit(1);
+}
+await page.waitForTimeout(2500);
 await page.screenshot({ path: `${dir}/${name}.png` });
 await browser.close();
 
