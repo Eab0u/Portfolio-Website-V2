@@ -25,7 +25,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Guard the weekly snapshot commit in `.github/workflows/weekly-snapshot.yml` with `git diff --cached --quiet ||`
 
 ## Next week theme tickets: World base, the floating archipelago
-- [ ] Add a procedural `Island` component (faceted top, tapered underside, flat shading, palette colors) and render one under the hero crystal
+- [!] Add a procedural `Island` component (faceted top, tapered underside, flat shading, palette colors) and render one under the hero crystal (2026-10-26: artist critic rejected twice, scores about 6/5/3/6/4/4. Notes: island tip collides with the title text so reframe camera and group; top reads pale mint, use grass with 3 value steps and close the rim; underside near-black violet, lift to lit violet with a blue-dark shadow side; coral tip detached, make it a continuous inverted pyramid; add secondary props like sand rocks and small crystals. Retry with all of that in one pass, maybe as a (model) ticket)
 - [ ] Add a sky gradient background and distance fog to `Scene`
 - [ ] Place 4 smaller islands in a loose ring around the hub, each with a different palette top color
 - [ ] Add gentle bobbing to each island with different phases (skip when reduced motion)
