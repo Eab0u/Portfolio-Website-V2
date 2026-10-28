@@ -13,7 +13,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Replace the flat `#0a0b10` background with a two-stop vertical sky gradient (palette colors) behind the scene
 - [x] Add a low cool rim light so the dark crystal faces read as color, not black
 - [x] Add a minimal `src/app/icon.svg` favicon (original faceted gem) to remove the console 404
-- [ ] Add a stub `/timeline` page (title, one line, back link) so the route stops 404ing
+- [x] Add a stub `/timeline` page (title, one line, back link) so the route stops 404ing
 - [ ] Add a stub `/credits` page listing the stack and stating that all art is original
 
 ## Review 2026-10-25 (code review fixes, small, do after Priority)
