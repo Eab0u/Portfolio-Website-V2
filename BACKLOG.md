@@ -12,7 +12,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Mobile framing: scale the hero crystal and camera distance by viewport aspect so it is not cropped at 390 px wide
 - [x] Replace the flat `#0a0b10` background with a two-stop vertical sky gradient (palette colors) behind the scene
 - [x] Add a low cool rim light so the dark crystal faces read as color, not black
-- [ ] Add a minimal `src/app/icon.svg` favicon (original faceted gem) to remove the console 404
+- [x] Add a minimal `src/app/icon.svg` favicon (original faceted gem) to remove the console 404
 - [ ] Add a stub `/timeline` page (title, one line, back link) so the route stops 404ing
 - [ ] Add a stub `/credits` page listing the stack and stating that all art is original
 
