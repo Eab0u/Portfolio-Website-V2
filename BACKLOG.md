@@ -28,14 +28,17 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Guard the weekly snapshot commit in `.github/workflows/weekly-snapshot.yml` with `git diff --cached --quiet ||`
 
 ## Next week theme tickets: World base, the floating archipelago
-- [ ] (model) Add a procedural `Island` component (faceted top, tapered underside, flat shading, palette colors) and render one under the hero crystal (2026-10-26: artist critic rejected twice, scores about 6/5/3/6/4/4. Notes: island tip collides with the title text so reframe camera and group; top reads pale mint, use grass with 3 value steps and close the rim; underside near-black violet, lift to lit violet with a blue-dark shadow side; coral tip detached, make it a continuous inverted pyramid; add secondary props like sand rocks and small crystals. Retry with all of that in one pass)
 - [x] Add a sky gradient background and distance fog to `Scene`
-- [ ] Place 4 smaller islands in a loose ring around the hub, each with a different palette top color
-- [ ] Add gentle bobbing to each island with different phases (skip when reduced motion)
+- [ ] Place 4 smaller islands in a loose ring around the hub, each with a different palette top color (Needs: Island model)
+- [ ] Add gentle bobbing to each island with different phases (skip when reduced motion) (Needs: Island model)
 - [x] Add 300 drifting low-poly particles as one instanced tetrahedron mesh
-- [ ] (model) Floating rock island with faceted underside, three-green grass top, a few small trees (use Node procedural geometry, neutral preview lights first; if rejected twice, split into rock and tree tickets)
 
 ## Priority (do these first, in order)
+- [ ] Preloader timing: keep the overlay up for at least 2.4 s so the gem is actually seen (it now flashes for about half a second once the canvas is ready). Draw the gem in facet by facet over the first 1.2 s, then breathe. Reduced motion: show it static for 0.8 s.
+- [ ] Preloader exit: right now the gem fades over the finished scene and looks like a small gem floating inside the big crystal. Fade the gem out first (0.35 s), then fade the dark overlay away (0.9 s), and ease the camera in slightly during the fade.
+- [ ] (model) Add a procedural `Island` component (faceted top, tapered underside, flat shading, palette colors) and render one under the hero crystal (2026-10-26: artist critic rejected twice, scores about 6/5/3/6/4/4. Notes: island tip collides with the title text so reframe camera and group; top reads pale mint, use grass with 3 value steps and close the rim; underside near-black violet, lift to lit violet with a blue-dark shadow side; coral tip detached, make it a continuous inverted pyramid; add secondary props like sand rocks and small crystals. Retry with all of that in one pass; trees come from the tree set ticket, leave a clear spot for them; use Node procedural geometry; if rejected after 5 revisions, split into rock and top tickets)
+- [ ] (model) Crystal cluster (2026-10-23 retry rejected twice more: core read as flat off-white, base a single flat blue slab with no tiers or veins, mint drifted teal and mauve tint on some angles, detail only primary scale. Needs a bright mint-to-ice gradient core with an inner shell, 2 to 3 chamfered rock tiers with a glowing vein, satellite shards fused to big crystals, and a bloom pass in the preview): 5 to 7 faceted crystals of different heights, mint and violet, one glowing core (retry: artist critic rejected 3 times 2026-10-22: colors read as teal and navy under the preview fill light, core hidden from some angles, base clashed. Retry with strict mint and violet ramps, core raised above a ring of crystals, dark night-rock base, no pebbles)
+- [ ] (model) Pine and palm tree set in 3 sizes
 - [x] Redesign the preloader mark in `src/components/Preloader.tsx` (the current three CSS slivers look unfinished). Use one faceted gem drawn as inline SVG: an octahedron-style shape with 6 to 8 triangle facets in mint, violet, and ice from `src/lib/palette.ts`, a soft glow beneath, a slow breathing scale, and a facet-by-facet shimmer that runs around the gem. No text, no counter. On finish, the gem scales up slightly while the overlay fades. Respect `prefers-reduced-motion` (static gem). Keep it centered and sharp on mobile.
 - [x] Fix `tools/snapshot.mjs` so the weekly snapshot shows the real site, not the loader: after load, wait until the preloader overlay (`[role="status"]`) is detached (up to 20 s), then wait 2.5 s more, then take the screenshot. If the overlay is still there after 20 s, exit with an error so the Action fails instead of committing a bad image.
 - [x] Remove the Start button and the "Enter" / "Enter (no music)" step from `src/components/Preloader.tsx`. The overlay should fade out by itself when loading reaches 100%. No buttons, no sound prompt, sound stays off. Keep the percent counter for now. (The visitor should land straight in the world.)
@@ -49,8 +52,6 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Try installing `bpy` in the sandbox and log in `.autopilot/log.md` whether headless Blender works; if not, note the Node fallback
 
 ## First models (art must exist before small visual tickets can pass)
-- [ ] (model) Crystal cluster (2026-10-23 retry rejected twice more: core read as flat off-white, base a single flat blue slab with no tiers or veins, mint drifted teal and mauve tint on some angles, detail only primary scale. Needs a bright mint-to-ice gradient core with an inner shell, 2 to 3 chamfered rock tiers with a glowing vein, satellite shards fused to big crystals, and a bloom pass in the preview): 5 to 7 faceted crystals of different heights, mint and violet, one glowing core (retry: artist critic rejected 3 times 2026-10-22: colors read as teal and navy under the preview fill light, core hidden from some angles, base clashed. Retry with strict mint and violet ramps, core raised above a ring of crystals, dark night-rock base, no pebbles)
-- [ ] (model) Floating rock island: faceted rock underside, grass top in 3 greens, a few small trees
 
 ## Foundation (loader, settings, shared pieces)
 - [x] Use `content/profile.ts` (name and tagline) in the hero text instead of the hardcoded strings
@@ -62,8 +63,8 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a sound opt-in step after Start: "Enter" or "Enter (no music)", saved in state only
 - [ ] Add a `SettingsContext` (quality, sound, reduced motion) with safe localStorage persistence (try/catch)
 - [ ] Add a reusable `WindowPanel` component with a path-style title bar and a close button
-- [ ] Add a settings button that opens a settings `WindowPanel`
-- [ ] Add a controls help `WindowPanel` for mouse, touch, and keyboard
+- [ ] Add a settings button that opens a settings `WindowPanel` (Needs: WindowPanel)
+- [ ] Add a controls help `WindowPanel` for mouse, touch, and keyboard (Needs: WindowPanel)
 - [x] Add a skip link and landmark roles
 - [x] Add Open Graph metadata and a generated SVG favicon
 - [ ] Set canvas `dpr` from the quality setting
@@ -76,29 +77,25 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] (model) Street-food stall: striped awning, counter, lanterns, steaming pot
 - [ ] (model) Tire stack and barrier set (generic, no sponsor marks)
 - [ ] (model) Ancient arch ruin with glowing glyph lines (generic sci-fi, no game symbols)
-- [ ] (model) Pine and palm tree set in 3 sizes
 
 ## World base
-- [ ] Add a procedural `Island` component: faceted top, tapered underside, flat shading
-- [ ] Place a central hub island and 4 smaller islands in a loose ring
-- [ ] Add a sky gradient background and distance fog
+- [x] Add a sky gradient background and distance fog (done: sky gradient and fog shipped)
 - [ ] Add a slow drifting cloud layer below the islands (instanced low-poly clouds)
-- [ ] Add camera pointer parallax
-- [ ] Add a slow camera dolly-in after Start
+- [x] Add camera pointer parallax (done: pointer parallax shipped)
+- [ ] Add a slow camera dolly-in after the loader fades out
 - [x] Add 300 drifting low-poly particles (instanced tetrahedrons)
 - [ ] Add subtle bloom with low intensity
 - [ ] Add a vignette pass
-- [ ] Add gentle bobbing to every island with different phases
 - [ ] Add a shared `LowPolyMaterial` (flat shaded) with a soft shade ramp so faces turned from the sun get darker, original code, palette colors only
-- [ ] Add gentle wind sway to instanced grass tufts using a small vertex shader (original)
+- [ ] Add gentle wind sway to instanced grass tufts using a small vertex shader (original) (Needs: an island with instanced grass tufts)
 - [ ] Add a day and night color shift tied to local time
 
 ## Navigation between districts
-- [ ] Add island name labels using drei `Html`
-- [ ] Focus the camera on an island when its label is clicked (GSAP tween)
-- [ ] Add keyboard navigation between islands (left and right arrows)
-- [ ] Add swipe navigation between islands on touch
-- [ ] Add a small map panel listing islands with click-to-fly
+- [ ] Add island name labels using drei `Html` (Needs: island ring)
+- [ ] Focus the camera on an island when its label is clicked (GSAP tween) (Needs: island ring)
+- [ ] Add keyboard navigation between islands (left and right arrows) (Needs: island ring)
+- [ ] Add swipe navigation between islands on touch (Needs: island ring)
+- [ ] Add a small map panel listing islands with click-to-fly (Needs: island ring)
 - [ ] Add a "back to hub" button
 - [ ] Add physics: install `@react-three/rapier` (dependency approved for this ticket) and drop 5 faceted blocks onto the hub ground as a small physics toy
 - [ ] Add a low-poly hover vehicle component (procedural)
@@ -109,20 +106,20 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a "stuck? respawn" button
 
 ## Portfolio content windows
-- [ ] Add an About `WindowPanel` showing the bio, skills, and interests from `content/profile.ts`
+- [ ] Add an About `WindowPanel` showing the bio, skills, and interests from `content/profile.ts` (Needs: WindowPanel)
 - [ ] Add an Experience section to the About window from `content/experience.ts`
 - [ ] Show experience entries on the `/timeline` route as a career strip above the snapshots
-- [ ] Add a Projects `WindowPanel` listing project cards from `content/projects.ts` (hide link buttons when a link is null)
+- [ ] Add a Projects `WindowPanel` listing project cards from `content/projects.ts` (hide link buttons when a link is null) (Needs: WindowPanel)
 - [ ] Add a project detail view inside the Projects window
-- [ ] Add a Contact `WindowPanel` with email and social links
+- [ ] Add a Contact `WindowPanel` with email and social links (Needs: WindowPanel)
 - [ ] Add a Tools list (React, Three.js, TypeScript, AI agents) to About
 - [ ] Add an "Adept Systems" highlight card to About
-- [ ] Add a Credits `WindowPanel` with an attributions section
-- [ ] Add a footer line: "Built by Claude, one commit at a time"
+- [ ] Add a Credits `WindowPanel` with an attributions section (Needs: WindowPanel)
+- [x] Add a footer line: "Built by Claude, one commit at a time" (done: footer credit shipped)
 - [ ] Add a `404` page with a broken low-poly crystal
 
 ## Timeline and snapshots
-- [ ] Add a `/timeline` route with a placeholder list
+- [x] Add a `/timeline` route with a placeholder list (done: stub shipped)
 - [ ] Add a snapshot entry type and a loader for `public/snapshots/index.json`
 - [ ] Render snapshot entries as cards on `/timeline`
 - [ ] Add an empty state for weeks with no snapshot yet
@@ -179,7 +176,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add 7 hidden easter eggs, one per district, and a "secrets found" counter in settings
 - [ ] Add a cursor follower dot on desktop only
 - [ ] Add hover glow on interactive 3D objects
-- [ ] Add a one-time intro animation where the hub island assembles from shards
+- [ ] Add a one-time intro animation where the hub island assembles from shards (Needs: Island model; replaces the preloader gem handoff)
 - [ ] Add a text scramble effect on the hero title
 - [ ] Add a subtle chromatic aberration pass
 - [ ] Add idle camera sway that stops on interaction
@@ -196,7 +193,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a Vitest setup with one test for the content files
 
 ## Using models in the scene
-- [ ] Load a finished GLB with `useGLTF` and place it on the hub island
+- [ ] Load a finished GLB with `useGLTF` and place it on the hub island (Needs: a passed model and the Island)
 - [ ] Add a `compress:models` npm script that runs glTF-Transform over `public/models/*.glb` (dev script only). Approved new devDependency for this ticket: `@gltf-transform/cli`
 
 ## Housekeeping
