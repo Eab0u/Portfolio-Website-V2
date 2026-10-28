@@ -17,7 +17,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a stub `/credits` page listing the stack and stating that all art is original
 
 ## Review 2026-10-27 (from code critic)
-- [ ] Weekly snapshot workflow: guard `git tag week-NN` so a re-run with no changes does not fail on an existing tag
+- [x] Weekly snapshot workflow: guard `git tag week-NN` so a re-run with no changes does not fail on an existing tag
 
 ## Review 2026-10-25 (code review fixes, small, do after Priority)
 - [x] Preloader: finish on Canvas `onCreated` instead of the 4 s timeout when no assets load (drop the fake wait)

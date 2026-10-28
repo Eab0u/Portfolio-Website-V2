@@ -36,5 +36,6 @@ jobs:
           WEEK=$(node -p "require('./public/snapshots/index.json').slice(-1)[0].week")
           git add public/snapshots
           git diff --cached --quiet || git commit -m "chore: weekly snapshot (week ${WEEK})" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
-          git tag "week-$(printf '%02d' "$WEEK")"
+          TAG="week-$(printf '%02d' "$WEEK")"
+          git rev-parse -q --verify "refs/tags/$TAG" >/dev/null || git tag "$TAG"
           git push origin main --tags
