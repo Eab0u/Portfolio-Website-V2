@@ -65,7 +65,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a settings button that opens a settings `WindowPanel`
 - [ ] Add a controls help `WindowPanel` for mouse, touch, and keyboard
 - [x] Add a skip link and landmark roles
-- [ ] Add Open Graph metadata and a generated SVG favicon
+- [x] Add Open Graph metadata and a generated SVG favicon
 - [ ] Set canvas `dpr` from the quality setting
 
 ## 3D models (one per ticket, follow `ART_DIRECTION.md`, original and generic art only)

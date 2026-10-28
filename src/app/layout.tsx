@@ -4,6 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Rahul Manchanda-Izquierdo",
   description: "A portfolio that builds itself, one small commit at a time.",
+  openGraph: {
+    title: "Rahul Manchanda-Izquierdo",
+    description: "A portfolio that builds itself, one small commit at a time.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
