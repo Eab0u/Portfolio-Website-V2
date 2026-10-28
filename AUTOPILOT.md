@@ -53,6 +53,8 @@ Use the code critic mindset (`.autopilot/reviewers/code-critic.md`) on the whole
 
 Then plan next week. Read `VISION.md`, pick the theme (a district or interest) for the coming week, rotating through the interests and favoring unfinished districts. Update the "Current theme" line at the top of `BACKLOG.md` and write 6 to 8 original, small tickets for that theme at the top, including 1 or 2 `(model)` tickets. Make them specific and visible. Flag any filler commits from the past week in the review. Also compare this week's `plan` in `.autopilot/state.json` with what happened (check `.autopilot/log.md` and `git log`) and flag any planned day that was missed or partial at the top.
 
+Then tidy the backlog: (1) merge duplicate tickets and drop stale or already-done ones; (2) move every `[x]` ticket out of `BACKLOG.md` into `BACKLOG-DONE.md` (create it if missing, append under a dated heading, keep the section name beside each ticket); (3) keep fewer than 300 open tickets. If a new ticket would pass that, merge or drop an old one first. Do not touch tickets under `## Priority` that are still open.
+
 ## Weekly visual review (Sunday 10 PM ET)
 Act as the artist critic (`.autopilot/reviewers/artist-critic.md`) on the whole site. Run the site locally and take screenshots (see Screenshots), including `/timeline` and any other routes. Judge against `benchmarks/BRIEF.md`, `VISION.md`, and `ART_DIRECTION.md`. Score 1 to 10 on: intro ritual, sense of a world, interaction delight, UI restraint, polish and performance, and low-poly consistency. Check that no brand logos or copied assets slipped in. Write `reviews/YYYY-MM-DD-visual.md` (max 1 page) and add up to 8 small tickets to the top of `BACKLOG.md`. Do not change source code.
 
