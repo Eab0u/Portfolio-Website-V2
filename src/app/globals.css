@@ -14,28 +14,12 @@ body {
   font-family: ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Preloader: a faceted gem of three clipped palette-tone facets, spinning in 3D. */
-:root {
-  --ice: #9be7ff;
-  --violet: #8b5cff;
-}
-.crystal-loader {
-  position: relative;
-  width: 72px;
-  height: 84px;
-  perspective: 300px;
-}
-.crystal-loader i {
-  position: absolute;
-  inset: 0;
-  animation: crystal-spin 1.6s linear infinite;
-}
-.crystal-loader i:nth-child(1) { background: var(--ice); clip-path: polygon(50% 0, 100% 30%, 50% 42%, 0 30%); }
-.crystal-loader i:nth-child(2) { background: var(--accent); clip-path: polygon(0 30%, 50% 42%, 50% 100%, 18% 100%); }
-.crystal-loader i:nth-child(3) { background: var(--violet); clip-path: polygon(50% 42%, 100% 30%, 82% 100%, 50% 100%); }
-@keyframes crystal-spin {
-  to { transform: rotateY(360deg); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .crystal-loader i { animation: none; }
-}
+/* Preloader gem: slow breathing, a facet shimmer that circles it, and a small grow on exit. */
+.gem { position: relative; width: 84px; height: 90px; transition: transform 0.7s ease-out; }
+.gem-leave { transform: scale(1.15); }
+.gem-body { position: relative; width: 100%; height: 100%; animation: gem-breathe 3s ease-in-out infinite; }
+.gem-facet { animation: gem-shimmer 1.2s ease-in-out infinite; }
+.gem-glow { position: absolute; left: -20%; right: -20%; bottom: -14%; height: 30%; border-radius: 50%; background: radial-gradient(closest-side, #7cf0c866, transparent); }
+@keyframes gem-breathe { 50% { transform: scale(1.06); } }
+@keyframes gem-shimmer { 40% { filter: brightness(1.45); } }
+@media (prefers-reduced-motion: reduce) { .gem-body, .gem-facet { animation: none; } .gem { transition: none; } }

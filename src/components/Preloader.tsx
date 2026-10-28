@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
+import PreloaderGem from "./PreloaderGem";
 
-// Full-screen loading overlay: spinning crystal that fades out on its own once loading reaches 100%. Sound stays off.
+// Full-screen loading overlay: faceted gem that fades out on its own once loading reaches 100%. Sound stays off.
 export default function Preloader() {
   const { progress, total } = useProgress();
   const [done, setDone] = useState(false);
@@ -35,11 +36,7 @@ export default function Preloader() {
         done ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
-      <div className="crystal-loader" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-      </div>
+      <PreloaderGem leaving={done} />
       <span className="sr-only">Loading</span>
     </div>
   );
