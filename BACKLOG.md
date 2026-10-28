@@ -16,13 +16,16 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a stub `/timeline` page (title, one line, back link) so the route stops 404ing
 - [x] Add a stub `/credits` page listing the stack and stating that all art is original
 
+## Review 2026-10-27 (from code critic)
+- [ ] Weekly snapshot workflow: guard `git tag week-NN` so a re-run with no changes does not fail on an existing tag
+
 ## Review 2026-10-25 (code review fixes, small, do after Priority)
 - [x] Preloader: finish on Canvas `onCreated` instead of the 4 s timeout when no assets load (drop the fake wait)
 - [x] Hero crystal: stop `Float` bobbing when `useReducedMotion` is true
 - [x] Add `role="img"` and an `aria-label` describing the 3D scene on the canvas wrapper in `SceneClient`
 - [x] Add the footer credit "Built by Claude, one commit at a time." to `src/app/page.tsx`
 - [ ] Update `VISION.md` intro ritual line: loader fades out by itself, no Start, no sound prompt
-- [ ] Guard the weekly snapshot commit in `.github/workflows/weekly-snapshot.yml` with `git diff --cached --quiet ||`
+- [x] Guard the weekly snapshot commit in `.github/workflows/weekly-snapshot.yml` with `git diff --cached --quiet ||`
 
 ## Next week theme tickets: World base, the floating archipelago
 - [ ] (model) Add a procedural `Island` component (faceted top, tapered underside, flat shading, palette colors) and render one under the hero crystal (2026-10-26: artist critic rejected twice, scores about 6/5/3/6/4/4. Notes: island tip collides with the title text so reframe camera and group; top reads pale mint, use grass with 3 value steps and close the rim; underside near-black violet, lift to lit violet with a blue-dark shadow side; coral tip detached, make it a continuous inverted pyramid; add secondary props like sand rocks and small crystals. Retry with all of that in one pass)
