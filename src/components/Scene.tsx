@@ -7,6 +7,7 @@ import type { Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
 import { PALETTE } from "@/lib/palette";
+import { markSceneReady } from "@/lib/sceneReady";
 import Particles from "./Particles";
 
 function HeroCrystal() {
@@ -48,6 +49,7 @@ export default function Scene() {
       frameloop={visible ? "always" : "never"}
       camera={{ position: [0, 0, 5], fov: 50 }}
       dpr={[1, 2]}
+      onCreated={markSceneReady}
       style={{ background: `linear-gradient(to bottom, ${PALETTE.night} 0%, ${PALETTE.navy} 100%)` }}
     >
       <fog attach="fog" args={[PALETTE.navy, 7, 16]} />

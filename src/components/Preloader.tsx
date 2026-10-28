@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
+import { useSceneReady } from "@/lib/sceneReady";
 import PreloaderGem from "./PreloaderGem";
 
 // Full-screen loading overlay: faceted gem that fades out on its own once loading reaches 100%. Sound stays off.
@@ -10,9 +11,10 @@ export default function Preloader() {
   const [done, setDone] = useState(false);
   const [gone, setGone] = useState(false);
   const percent = Math.round(progress);
-  const loaded = total > 0 && percent >= 100;
+  const ready = useSceneReady();
+  const loaded = total > 0 ? percent >= 100 : ready;
 
-  // Latch completion so the overlay never reappears; time out if no loader ever registers.
+  // Latch completion so the overlay never reappears; finish on the Canvas being ready when no assets load, and time out if neither happens.
   useEffect(() => {
     const t = setTimeout(() => setDone(true), loaded ? 0 : 4000);
     return () => clearTimeout(t);
