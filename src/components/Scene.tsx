@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import type { Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -10,8 +10,15 @@ import { PALETTE } from "@/lib/palette";
 import { markSceneReady } from "@/lib/sceneReady";
 import Particles from "./Particles";
 
+// Narrow (portrait) viewports get a smaller crystal and a farther camera so nothing is cropped.
+function useFit() {
+  const { width, height } = useThree((s) => s.size);
+  return Math.min(1, (width / height) * 1.3);
+}
+
 function HeroCrystal() {
   const ref = useRef<Mesh>(null);
+  const fit = useFit();
   const reduced = useReducedMotion();
   const speed = reduced ? 0.15 : 1;
   useFrame((_, delta) => {
@@ -21,7 +28,7 @@ function HeroCrystal() {
   });
   return (
     <Float enabled={!reduced} speed={1.5} floatIntensity={1.2}>
-      <mesh ref={ref}>
+      <mesh ref={ref} scale={fit}>
         <icosahedronGeometry args={[1.4, 0]} />
         <meshStandardMaterial color="#7cf0c8" flatShading metalness={0} roughness={0.6} />
       </mesh>
@@ -32,7 +39,9 @@ function HeroCrystal() {
 // Eases the camera toward the pointer for a little parallax. Static when reduced motion is on.
 function CameraRig() {
   const reduced = useReducedMotion();
+  const fit = useFit();
   useFrame((state, delta) => {
+    state.camera.position.z = 5 + (1 - fit) * 2;
     if (reduced) return;
     const k = 1 - Math.exp(-delta * 3);
     state.camera.position.x += (state.pointer.x * 0.6 - state.camera.position.x) * k;
