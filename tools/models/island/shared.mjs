@@ -1,36 +1,15 @@
-// Shared island helpers: seeded randomness, sun direction, triangle soups with per-face
-// sun shading, the island outline and height field, jittered rings, and ring bridging.
-import * as THREE from "three";
+// Island-only helpers: seeded phases, the island outline and height field, jittered rings, and ring
+// bridging. Randomness, vectors and the triangle soup come from tools/models/lib/.
 import { UP } from "./palette.mjs";
+import { setSeed, rnd, rr } from "../lib/rng.mjs";
+import { V, SUN, nrm, Soup } from "../lib/soup.mjs";
+export { rnd, rr, V, SUN, nrm, Soup };
 
-let seed = 20261028;
-export const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
-export const rr = (a, b) => a + (b - a) * rnd();
-export const V = (x, y, z) => new THREE.Vector3(x, y, z);
-export const SUN = V(4, 6, 3).normalize();
+setSeed(20261028);
 export const PH = [rr(0, 6.28), rr(0, 6.28), rr(0, 6.28), rr(0, 6.28)];
-export const nrm = (a, b, c) => V().subVectors(b, a).cross(V().subVectors(c, a)).normalize();
-
-// Triangle soup with per-face colors; flips any face whose normal points inward.
-export class Soup {
-  pos = []; col = []; tris = 0;
-  tri(a, b, c, color, out) {
-    if (out && nrm(a, b, c).dot(out) < 0) [b, c] = [c, b];
-    for (const p of [a, b, c]) { this.pos.push(p.x, p.y, p.z); this.col.push(color.r, color.g, color.b); }
-    this.tris++;
-  }
-  // Same-hue value step chosen by the facet's angle to the sun; upward ledges get the set's highlight.
-  lit(a, b, c, set, out) {
-    let n = nrm(a, b, c);
-    if (out && n.dot(out) < 0) n = n.negate();
-    // Downward faces are judged by their sideways lean only, so the underside keeps a lit side.
-    const h = Math.hypot(n.x, n.z) || 1, d = n.y < 0 ? (n.x * SUN.x + n.z * SUN.z) / h : n.dot(SUN), up = UP.get(set);
-    this.tri(a, b, c, up && n.y > 0.35 ? up : set[d > 0.2 ? 0 : d > -0.35 ? 1 : 2], out);
-  }
-}
-export const main = new Soup();
-export const glow = new Soup();
-export const lamp = new Soup();
+export const main = new Soup(UP);
+export const glow = new Soup(UP);
+export const lamp = new Soup(UP);
 
 // Island outline and surface height. The mound sits on the back edge, away from the center.
 export const N = 40;

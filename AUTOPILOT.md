@@ -48,7 +48,7 @@ Builder and critic loop (models only; `(code)` tickets stay on Sonnet):
 - **On REJECT:** resume the same Opus builder with SendMessage and paste the critic's decision, scores, and fixes in full. If it cannot be resumed, start a new Opus builder with the notes. Then run a fresh critic again. Up to 5 critic passes in total. Log the scores of every pass.
 - **Opus unavailable or erroring:** fall back to Sonnet and say so in the log.
 - **Preview server:** start `npm run dev -- -p 3100` in the background once per run and let the builder use it. Before `npm run check`, stop it, run `git checkout -- next-env.d.ts`, and delete `AGENTS.md` (the dev server creates both).
-- **Files:** every generator file must be under 200 lines, so split the script into `tools/models/<name>/*.mjs` modules with a short entry file. Re-run it and confirm the GLB hash is identical after any split.
+- **Files:** every generator file must be under 200 lines, so split the script into `tools/models/<name>/*.mjs` modules with a short entry file. Import the shared helpers from `tools/models/lib/` (rng, palette, soup, export) instead of copying them; add new generic helpers there. Re-run it and confirm the GLB hash is identical after any split.
 - **Commit** only after the artist critic and the code critic both APPROVE and `npm run check` passes.
 
 1. Read `ART_DIRECTION.md`. Write a short generator script in `tools/blender/` (Blender Python, headless) or `tools/models/` (Node), building the model from named parts using only palette colors.
