@@ -66,7 +66,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a reusable `WindowPanel` component with a path-style title bar and a close button
 - [x] Add a settings button that opens a settings `WindowPanel` (Needs: WindowPanel)
 - [x] Add a controls help `WindowPanel` for mouse, touch, and keyboard (Needs: WindowPanel)
-- [ ] Fix `WindowPanel` focus restore when switching panels (restore to the opener only if focus is still inside the panel or on body)
+- [x] Fix `WindowPanel` focus restore when switching panels (restore to the opener only if focus is still inside the panel or on body)
 - [x] Open only one `WindowPanel` at a time: lift the open window id into shared state so opening help closes settings and the reverse
 - [x] Add a skip link and landmark roles
 - [x] Add Open Graph metadata and a generated SVG favicon

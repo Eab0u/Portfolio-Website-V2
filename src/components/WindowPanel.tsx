@@ -10,11 +10,17 @@ interface Props {
 
 export default function WindowPanel({ path, onClose, children }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const opener = document.activeElement as HTMLElement | null;
     closeRef.current?.focus();
-    return () => opener?.focus?.();
+    const panel = panelRef.current;
+    return () => {
+      // Skip the restore when another control already took focus (switching panels).
+      const a = document.activeElement;
+      if (!a || a === document.body || panel?.contains(a)) opener?.focus?.();
+    };
   }, []);
 
   useEffect(() => {
@@ -27,6 +33,7 @@ export default function WindowPanel({ path, onClose, children }: Props) {
 
   return (
     <section
+      ref={panelRef}
       role="dialog"
       aria-label={path}
       className="window-pop fixed right-4 top-16 z-40 w-[min(92vw,26rem)] overflow-hidden rounded-xl border border-[#8b5cff]/40 bg-[#1a1f3a]/75 text-[var(--fg)] shadow-[0_12px_40px_#2f1f8a66,inset_0_1px_0_#f4f1ea40] backdrop-blur-xl"
