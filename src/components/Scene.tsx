@@ -7,7 +7,7 @@ import type { Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
 import { PALETTE } from "@/lib/palette";
-import { markSceneReady } from "@/lib/sceneReady";
+import { markSceneReady, reveal } from "@/lib/sceneReady";
 import Particles from "./Particles";
 
 // Narrow (portrait) viewports get a smaller crystal and a farther camera so nothing is cropped.
@@ -41,7 +41,10 @@ function CameraRig() {
   const reduced = useReducedMotion();
   const fit = useFit();
   useFrame((state, delta) => {
-    state.camera.position.z = 5 + (1 - fit) * 2;
+    // Starts 0.8 back and glides in over 1.3 s once the preloader begins to leave.
+    const t = reveal.start < 0 ? 0 : Math.min(1, (performance.now() - reveal.start) / 1300);
+    const intro = reduced ? 0 : 0.8 * (1 - t) ** 3;
+    state.camera.position.z = 5 + (1 - fit) * 2 + intro;
     if (reduced) return;
     const k = 1 - Math.exp(-delta * 3);
     state.camera.position.x += (state.pointer.x * 0.6 - state.camera.position.x) * k;

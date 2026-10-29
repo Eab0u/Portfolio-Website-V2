@@ -19,3 +19,10 @@ export function useSceneReady() {
     () => false,
   );
 }
+
+// Set when the preloader starts leaving; the camera eases in from here. Read per frame, so not reactive.
+export const reveal = { start: -1 };
+
+export function markRevealing() {
+  if (reveal.start < 0) reveal.start = performance.now();
+}

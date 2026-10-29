@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { useSceneReady } from "@/lib/sceneReady";
+import { markRevealing, useSceneReady } from "@/lib/sceneReady";
 import PreloaderGem from "./PreloaderGem";
 
 // Full-screen loading overlay: faceted gem that fades out on its own once loading reaches 100%. Sound stays off.
@@ -30,10 +30,14 @@ export default function Preloader() {
     return () => clearTimeout(t);
   }, [loaded, waited]);
 
+  useEffect(() => {
+    if (done) markRevealing();
+  }, [done]);
+
   // Fallback removal in case the opacity transition never fires (reduced motion, hidden tab).
   useEffect(() => {
     if (!done) return;
-    const t = setTimeout(() => setGone(true), 1200);
+    const t = setTimeout(() => setGone(true), 1500);
     return () => clearTimeout(t);
   }, [done]);
 
@@ -44,8 +48,8 @@ export default function Preloader() {
       onTransitionEnd={(e) => {
         if (done && e.target === e.currentTarget && e.propertyName === "opacity") setGone(true);
       }}
-      className={`absolute inset-0 z-10 flex items-center justify-center bg-[var(--bg)] transition-opacity duration-700 ${
-        done ? "pointer-events-none opacity-0" : "opacity-100"
+      className={`absolute inset-0 z-10 flex items-center justify-center bg-[var(--bg)] transition-opacity duration-[900ms] ${
+        done ? "pointer-events-none opacity-0 delay-[350ms]" : "opacity-100"
       }`}
     >
       <PreloaderGem leaving={done} />
