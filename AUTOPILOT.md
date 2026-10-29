@@ -42,6 +42,7 @@ One recurring scheduled task starts this run every night at about 10:40 PM ET, i
 6. Stop immediately on any rate-limit or usage error. Log it and mark the entry `partial`. Do not try to catch up on another day.
 
 ## Model workflow (for `(model)` tickets)
+Builder model: do the building in a subagent on Opus (Agent tool with `model: "opus"`). Give it the ticket, `ART_DIRECTION.md`, the palette, and every earlier critic note on that ticket. It writes the generator, renders the previews, does the self-check, and makes the revisions. The critics stay on Sonnet and judge by the same bar as before (every score 7 or higher, average 7.5 or higher). If the Opus subagent errors or is unavailable, fall back to Sonnet and say so in the log.
 1. Read `ART_DIRECTION.md`. Write a short generator script in `tools/blender/` (Blender Python, headless) or `tools/models/` (Node), building the model from named parts using only palette colors.
 2. Run it and export a Draco-compressed GLB to `public/models/`. Check the size (under 500 KB) and triangle count (within the budget in `ART_DIRECTION.md`). If headless Blender is not available, generate the geometry with Node or procedural Three.js instead. Do not block on it.
 3. Make sure `/dev/model-preview` exists (see backlog). Take 4 screenshots with `?src=/models/<file>.glb&angle=0..3`.
