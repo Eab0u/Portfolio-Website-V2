@@ -6,6 +6,7 @@ import { Float } from "@react-three/drei";
 import type { Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
+import { useSettings } from "@/context/SettingsContext";
 import { PALETTE } from "@/lib/palette";
 import { markSceneReady, reveal } from "@/lib/sceneReady";
 import Particles from "./Particles";
@@ -56,11 +57,12 @@ function CameraRig() {
 
 export default function Scene() {
   const visible = usePageVisible();
+  const { quality } = useSettings();
   return (
     <Canvas
       frameloop={visible ? "always" : "never"}
       camera={{ position: [0, 0, 5], fov: 50 }}
-      dpr={[1, 2]}
+      dpr={quality === "low" ? 1 : [1, 2]}
       onCreated={markSceneReady}
       style={{ background: `linear-gradient(to bottom, ${PALETTE.night} 0%, ${PALETTE.navy} 100%)` }}
     >

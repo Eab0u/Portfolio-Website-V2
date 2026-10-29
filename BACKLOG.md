@@ -70,7 +70,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Open only one `WindowPanel` at a time: lift the open window id into shared state so opening help closes settings and the reverse
 - [x] Add a skip link and landmark roles
 - [x] Add Open Graph metadata and a generated SVG favicon
-- [ ] Set canvas `dpr` from the quality setting
+- [x] Set canvas `dpr` from the quality setting
 
 ## 3D models (one per ticket, follow `ART_DIRECTION.md`, original and generic art only)
 - [ ] (model) Generic open-wheel race car: bright body, contrasting wing and nose, visible wheels and a small cockpit detail
