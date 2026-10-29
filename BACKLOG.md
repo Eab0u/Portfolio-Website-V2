@@ -65,7 +65,8 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a user override for reduced motion in `SettingsContext` (null means follow OS; persist only when the visitor changes it) and start `reducedMotion` as true until synced
 - [x] Add a reusable `WindowPanel` component with a path-style title bar and a close button
 - [x] Add a settings button that opens a settings `WindowPanel` (Needs: WindowPanel)
-- [ ] Add a controls help `WindowPanel` for mouse, touch, and keyboard (Needs: WindowPanel)
+- [x] Add a controls help `WindowPanel` for mouse, touch, and keyboard (Needs: WindowPanel)
+- [ ] Open only one `WindowPanel` at a time: lift the open window id into shared state so opening help closes settings and the reverse
 - [x] Add a skip link and landmark roles
 - [x] Add Open Graph metadata and a generated SVG favicon
 - [ ] Set canvas `dpr` from the quality setting
