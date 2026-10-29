@@ -29,16 +29,20 @@ export default function WindowPanel({ path, onClose, children }: Props) {
     <section
       role="dialog"
       aria-label={path}
-      className="fixed left-1/2 top-1/2 z-40 w-[min(92vw,28rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border border-white/15 bg-[#1a1f3a]/90 text-[var(--fg)] shadow-2xl backdrop-blur"
+      className="window-pop fixed right-4 top-16 z-40 w-[min(92vw,26rem)] overflow-hidden rounded-xl border border-[#8b5cff]/40 bg-[#1a1f3a]/75 text-[var(--fg)] shadow-[0_12px_40px_#2f1f8a66,inset_0_1px_0_#f4f1ea40] backdrop-blur-xl"
     >
       <header className="flex items-center justify-between border-b border-white/10 bg-black/30 px-3 py-2 font-mono text-xs">
-        <span className="truncate text-[var(--accent)]">{path}</span>
+        <span className="flex min-w-0 items-center gap-1.5 text-[var(--accent)]">
+          <i aria-hidden className="size-2 shrink-0 rounded-full bg-[#ffd23f]" />
+          <i aria-hidden className="size-2 shrink-0 rounded-full bg-[#3ddc84]" />
+          <span className="truncate">{path}</span>
+        </span>
         <button
           ref={closeRef}
           type="button"
           onClick={onClose}
           aria-label="Close window"
-          className="rounded px-2 py-0.5 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+          className="flex size-7 items-center justify-center rounded-full bg-[#ff6b57]/20 text-[#ff6b57] hover:bg-[#ff6b57]/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
         >
           x
         </button>
