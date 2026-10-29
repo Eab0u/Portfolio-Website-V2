@@ -64,7 +64,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a `SettingsContext` (quality, sound, reduced motion) with safe localStorage persistence (try/catch)
 - [ ] Add a user override for reduced motion in `SettingsContext` (null means follow OS; persist only when the visitor changes it) and start `reducedMotion` as true until synced
 - [x] Add a reusable `WindowPanel` component with a path-style title bar and a close button
-- [ ] Add a settings button that opens a settings `WindowPanel` (Needs: WindowPanel)
+- [x] Add a settings button that opens a settings `WindowPanel` (Needs: WindowPanel)
 - [ ] Add a controls help `WindowPanel` for mouse, touch, and keyboard (Needs: WindowPanel)
 - [x] Add a skip link and landmark roles
 - [x] Add Open Graph metadata and a generated SVG favicon
