@@ -2,6 +2,8 @@
 
 A 3D portfolio that builds itself. A scheduled Claude agent makes a few small commits each day, a second agent reviews every one, and two reviewers audit the code and visuals each week.
 
+**Live site:** https://portfolio-website-v2-woad.vercel.app
+
 ## Stack
 Next.js, TypeScript, Tailwind, React Three Fiber, drei, postprocessing, GSAP, Lenis. Hosted on Vercel.
 
