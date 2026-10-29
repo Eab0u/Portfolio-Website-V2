@@ -1,6 +1,6 @@
 import { PALETTE } from "@/lib/palette";
 
-// Six-facet gem: ice crown, mint and violet pavilion. Facets shimmer in turn, clockwise.
+// Six-facet gem: ice crown, mint and violet pavilion. Facets draw in one by one over 1.2 s, then shimmer in turn.
 const FACETS: [string, string][] = [
   ["8,38 36,38 50,6", PALETTE.ice],
   ["36,38 64,38 50,6", PALETTE.mint],
@@ -16,7 +16,7 @@ export default function PreloaderGem({ leaving }: { leaving: boolean }) {
       <div className="gem-glow" />
       <svg viewBox="0 0 100 106" className="gem-body">
         {FACETS.map(([points, fill], i) => (
-          <polygon key={i} points={points} fill={fill} className="gem-facet" style={{ animationDelay: `${i * 0.2}s` }} />
+          <polygon key={i} points={points} fill={fill} className="gem-facet" style={{ animationDelay: `${i * 0.16}s` }} />
         ))}
       </svg>
     </div>

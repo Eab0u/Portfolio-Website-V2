@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useSceneReady } from "@/lib/sceneReady";
 import PreloaderGem from "./PreloaderGem";
 
@@ -13,12 +14,21 @@ export default function Preloader() {
   const percent = Math.round(progress);
   const ready = useSceneReady();
   const loaded = total > 0 ? percent >= 100 : ready;
+  const reduced = useReducedMotion();
+  const [waited, setWaited] = useState(false);
+
+  // Keep the gem up long enough to be seen: 2.4 s, or 0.8 s when motion is reduced.
+  useEffect(() => {
+    const t = setTimeout(() => setWaited(true), reduced ? 800 : 2400);
+    return () => clearTimeout(t);
+  }, [reduced]);
 
   // Latch completion so the overlay never reappears; finish on the Canvas being ready when no assets load, and time out if neither happens.
   useEffect(() => {
+    if (!waited) return;
     const t = setTimeout(() => setDone(true), loaded ? 0 : 4000);
     return () => clearTimeout(t);
-  }, [loaded]);
+  }, [loaded, waited]);
 
   // Fallback removal in case the opacity transition never fires (reduced motion, hidden tab).
   useEffect(() => {
