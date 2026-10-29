@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { usePanel } from "@/context/PanelContext";
 import WindowPanel from "./WindowPanel";
 
 const CONTROLS = [
@@ -10,14 +10,13 @@ const CONTROLS = [
 ];
 
 export default function HelpButton() {
-  const [open, setOpen] = useState(false);
-  const close = useCallback(() => setOpen(false), []);
+  const { open, show, close } = usePanel("help");
 
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={show}
         aria-haspopup="dialog"
         className="absolute right-32 top-4 z-30 rounded-full border border-[var(--accent)] bg-black/30 px-3 py-1.5 font-mono text-xs text-[var(--accent)] shadow-[0_0_14px_#7cf0c844] backdrop-blur transition hover:-translate-y-px hover:bg-[var(--accent)]/15 motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
       >

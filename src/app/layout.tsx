@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PanelProvider } from "@/context/PanelContext";
 import { SettingsProvider } from "@/context/SettingsContext";
 
 export const metadata: Metadata = {
@@ -22,7 +23,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <SettingsProvider>{children}</SettingsProvider>
+        <SettingsProvider>
+          <PanelProvider>{children}</PanelProvider>
+        </SettingsProvider>
       </body>
     </html>
   );
