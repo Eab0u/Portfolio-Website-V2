@@ -29,7 +29,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 ## Next week theme tickets: World base, the floating archipelago
 - [x] Add a sky gradient background and distance fog to `Scene`
-- [ ] Place 4 smaller islands in a loose ring around the hub, each with a different palette top color (Needs: Island model, now done)
+- [x] Place 4 smaller islands in a loose ring around the hub, each with a different palette top color (Needs: Island model, now done)
 - [ ] Add gentle bobbing to each island with different phases (skip when reduced motion) (Needs: Island model, now done)
 - [x] Add 300 drifting low-poly particles as one instanced tetrahedron mesh
 

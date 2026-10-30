@@ -9,6 +9,7 @@ import { usePageVisible } from "@/hooks/usePageVisible";
 import { useSettings } from "@/context/SettingsContext";
 import { PALETTE } from "@/lib/palette";
 import { markSceneReady, reveal } from "@/lib/sceneReady";
+import IslandRing from "./IslandRing";
 import Particles from "./Particles";
 
 // Narrow (portrait) viewports get a smaller crystal and a farther camera so nothing is cropped.
@@ -90,6 +91,7 @@ export default function Scene() {
         <HeroCrystal />
         <Suspense fallback={null}>
           <Island />
+          <IslandRing />
         </Suspense>
       </group>
     </Canvas>
