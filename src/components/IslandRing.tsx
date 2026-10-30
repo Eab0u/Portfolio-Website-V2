@@ -1,8 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { Color, Mesh } from "three";
+import { Color, type Group, Mesh } from "three";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
 
 // Four small islands in a loose ring behind the hub. Each one swaps its green top for another palette color.
@@ -13,7 +15,9 @@ const ISLANDS = [
   { top: PALETTE.violet, scale: 0.18 },
 ] as const;
 
-function SmallIsland({ top, scale, position }: { top: string; scale: number; position: [number, number, number] }) {
+function SmallIsland({ top, scale, position, phase }: { top: string; scale: number; position: [number, number, number]; phase: number }) {
+  const ref = useRef<Group>(null);
+  const reduced = useReducedMotion();
   const { scene } = useGLTF("/models/island.glb");
   const copy = useMemo(() => {
     const c = scene.clone(true);
@@ -31,7 +35,14 @@ function SmallIsland({ top, scale, position }: { top: string; scale: number; pos
     });
     return c;
   }, [scene, top]);
-  return <primitive object={copy} position={position} scale={scale} />;
+  useFrame((state) => {
+    if (ref.current) ref.current.position.y = position[1] + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.5 + phase) * 0.12);
+  });
+  return (
+    <group ref={ref} position={position}>
+      <primitive object={copy} scale={scale} />
+    </group>
+  );
 }
 
 export default function IslandRing() {
@@ -39,7 +50,7 @@ export default function IslandRing() {
     <group>
       {ISLANDS.map(({ top, scale }, i) => {
         const a = (i / ISLANDS.length) * Math.PI * 2 + 0.9;
-        return <SmallIsland key={top} top={top} scale={scale} position={[Math.cos(a) * 4.6, Math.sin(a) * 1.8 - 0.6, -2 - 1.5 * Math.sin(a + i)]} />;
+        return <SmallIsland key={top} top={top} scale={scale} phase={i * 1.7} position={[Math.cos(a) * 4.6, Math.sin(a) * 1.8 - 0.6, -2 - 1.5 * Math.sin(a + i)]} />;
       })}
     </group>
   );
