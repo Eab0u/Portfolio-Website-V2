@@ -3,6 +3,7 @@
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float, useGLTF } from "@react-three/drei";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import type { Group, Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
@@ -94,6 +95,11 @@ export default function Scene() {
           <IslandRing />
         </Suspense>
       </group>
+      {quality !== "low" && (
+        <EffectComposer multisampling={0}>
+          <Bloom intensity={0.35} luminanceThreshold={0.85} luminanceSmoothing={0.2} mipmapBlur />
+        </EffectComposer>
+      )}
     </Canvas>
   );
 }
