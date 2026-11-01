@@ -89,7 +89,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a slow camera dolly-in after the loader fades out
 - [x] Add 300 drifting low-poly particles (instanced tetrahedrons)
 - [x] Add subtle bloom with low intensity
-- [ ] Add a vignette pass
+- [x] Add a vignette pass
 - [ ] Add a shared `LowPolyMaterial` (flat shaded) with a soft shade ramp so faces turned from the sun get darker, original code, palette colors only
 - [ ] Add gentle wind sway to instanced grass tufts using a small vertex shader (original) (Needs: an island with instanced grass tufts)
 - [ ] Add a day and night color shift tied to local time
