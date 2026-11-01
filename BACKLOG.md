@@ -191,7 +191,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Dispose of geometries and materials on unmount in scene components
 - [ ] Memoize shared geometries and materials
 - [ ] Add a simple error boundary around the canvas with a text fallback
-- [ ] Add a `noscript` fallback with links
+- [x] Add a `noscript` fallback with links
 - [ ] Add a Lighthouse CI config with performance budgets
 - [ ] Add alt text and aria labels to all non-decorative elements
 - [ ] Add a Vitest setup with one test for the content files
