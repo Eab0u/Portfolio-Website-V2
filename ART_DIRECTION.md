@@ -33,7 +33,7 @@ A model that has only a primary shape is unfinished.
 
 ## Triangle and size budget
 - Small props: 300 to 2,000 triangles. Hero pieces (car, stadium, hub): 2,000 to 12,000. Hard max 20,000.
-- GLB under 500 KB, Draco compressed. Prefer instancing for repeated parts.
+- GLB under 1 MB (Draco when the encoder is available; uncompressed is fine until then). Keep the models loaded at first paint under 4 MB in total and lazy-load the rest. Prefer instancing for repeated parts.
 
 ## Hard rejects
 Grey default material, a single primitive with one color, muddy or low-contrast palette, z-fighting, visible gaps or inside-out faces, noisy random detail with no structure, smooth-shaded blobs, text or logos, anything that resembles a real brand, team crest, character, or vehicle.

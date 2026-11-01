@@ -36,7 +36,7 @@ Rahul's interests include real brands, teams, and games. Use their mood and colo
 
 ## 3D assets
 - Prefer procedural geometry in code for simple pieces.
-- For models, write a deterministic generator script (Blender Python in `tools/blender/`, or Node in `tools/models/`), run it headless, and export a Draco-compressed GLB to `public/models/`. Keep each GLB under 500 KB and under 20k triangles.
+- For models, write a deterministic generator script (Blender Python in `tools/blender/`, or Node in `tools/models/`), run it headless, and export a Draco-compressed GLB to `public/models/`. Keep each GLB under 1 MB and under 20k triangles.
 - If headless Blender is unavailable in the sandbox, fall back to Node or procedural Three.js geometry. Do not block on it.
 - Never use real-brand shapes or logos (see Brands and IP).
 
