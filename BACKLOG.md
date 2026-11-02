@@ -6,6 +6,16 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 **Current theme: Volleyball district, the sand island (week of 2026-11-02)**
 
+## Review 2026-11-02 (visual review, do after Priority)
+- [ ] Sky glow: add a warm low horizon band to the sky gradient (`PALETTE.coral` to `PALETTE.violet` at about 25 percent opacity near the bottom) so the islands sit in light, not a void
+- [ ] Mobile framing: when the viewport aspect is under 0.7, pull the camera back or shrink the island ring radius so no island is cropped at 390 px wide
+- [ ] Island hover: on pointer over an island, lift it about 0.15 units with a lerp and set `cursor: pointer`; no effect when reduced motion (use `onPointerOver` and `onPointerOut` in `IslandRing`)
+- [ ] Particle colors: give the drifting shards three palette tints (ice, violet, coral) via per-instance color, keeping the same count
+- [ ] Sub-pages: reuse the home sky gradient as the background of `/timeline` and `/credits` so they feel part of the world
+- [ ] Title wrap: add `text-wrap: balance` to the hero name and use a non-breaking hyphen so mobile does not split `Manchanda-Izquierdo` mid-name
+- [ ] Intro beat: after the preloader fades, ease the camera from slightly closer and lower to its rest position over about 1.5 s with GSAP (skip when reduced motion)
+- [ ] Depth fade: tint the farthest islands toward `PALETTE.navy` (about 20 percent) using the existing tint helper, so the ring has atmospheric depth
+
 ## Week of 2026-11-02 theme: Volleyball district, the sand island
 - [ ] Refactor only: move the island tint code from `IslandRing.tsx` into `src/lib/tintIsland.ts` (`tintIsland(scene, color)` returns the cloned, recolored scene). No behavior change
 - [ ] Add a `VolleyballIsland` component: island.glb tinted `PALETTE.sand`, scale 0.42, front right of the hub (about [3.2, -1.4, 0.5]), own bobbing phase, still when reduced motion; render it in `Scene` inside the existing `Suspense` (Needs: tintIsland)
