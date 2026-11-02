@@ -19,7 +19,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 ## Week of 2026-11-02 theme: Volleyball district, the sand island
 - [x] Refactor only: move the island tint code from `IslandRing.tsx` into `src/lib/tintIsland.ts` (`tintIsland(scene, color)` returns the cloned, recolored scene). No behavior change
 - [x] Add a `VolleyballIsland` component: island.glb tinted `PALETTE.sand`, scale 0.42, front right of the hub (about [3.2, -1.4, 0.5]), own bobbing phase, still when reduced motion; render it in `Scene` inside the existing `Suspense` (Needs: tintIsland)
-- [ ] Put `palm.glb` on the volleyball island: `useGLTF` clone, scale so the crown clears the hub crystal, sit it on the deck, share the island bob (Needs: VolleyballIsland)
+- [x] Put `palm.glb` on the volleyball island: `useGLTF` clone, scale so the crown clears the hub crystal, sit it on the deck, share the island bob (Needs: VolleyballIsland)
 - [ ] (model) Volleyball net (`volleyball-net.glb`): two tall posts with sun-colored caps, a taut net drawn as a lattice of thin bars (reads as mesh, not a solid plane), offWhite top tape and coral side tapes, small sand footings. Original and generic. One subject per file
 - [ ] (model) Referee high chair (`referee-chair.glb`): ladder, seat, rail, and a striped coral and ice umbrella, sand footing. Generic, no marks
 - [ ] Add a procedural low-poly volleyball component: icosahedron detail 1 with 3 panel colors (offWhite, sun, blue from `PALETTE`) via vertex colors, gentle idle hover above the island deck (Needs: VolleyballIsland)
