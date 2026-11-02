@@ -4,7 +4,26 @@ Status: `[ ]` todo, `[~]` in progress, `[x]` done, `[!]` blocked (reason after i
 Each ticket is ONE small problem (about 30 to 50 changed lines). Take the top unchecked ticket that fits the current theme. If none fit, take the top unchecked ticket. Reviewers add new tickets at the top.
 Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before planning new tickets.
 
-**Current theme: World base, the floating archipelago**
+**Current theme: Volleyball district, the sand island (week of 2026-11-02)**
+
+## Week of 2026-11-02 theme: Volleyball district, the sand island
+- [ ] Refactor only: move the island tint code from `IslandRing.tsx` into `src/lib/tintIsland.ts` (`tintIsland(scene, color)` returns the cloned, recolored scene). No behavior change
+- [ ] Add a `VolleyballIsland` component: island.glb tinted `PALETTE.sand`, scale 0.42, front right of the hub (about [3.2, -1.4, 0.5]), own bobbing phase, still when reduced motion; render it in `Scene` inside the existing `Suspense` (Needs: tintIsland)
+- [ ] Put `palm.glb` on the volleyball island: `useGLTF` clone, scale so the crown clears the hub crystal, sit it on the deck, share the island bob (Needs: VolleyballIsland)
+- [ ] (model) Volleyball net (`volleyball-net.glb`): two tall posts with sun-colored caps, a taut net drawn as a lattice of thin bars (reads as mesh, not a solid plane), offWhite top tape and coral side tapes, small sand footings. Original and generic. One subject per file
+- [ ] (model) Referee high chair (`referee-chair.glb`): ladder, seat, rail, and a striped coral and ice umbrella, sand footing. Generic, no marks
+- [ ] Add a procedural low-poly volleyball component: icosahedron detail 1 with 3 panel colors (offWhite, sun, blue from `PALETTE`) via vertex colors, gentle idle hover above the island deck (Needs: VolleyballIsland)
+- [ ] Cloud puff: one cloud made of 3 to 5 clustered flat-shaded icosahedron puffs with a flat base, offWhite, ice and violet value steps (not grey-teal). Split from the rejected cloud-layer ticket
+- [ ] Cloud placement: instance 6 clouds below the islands, spread evenly, keep the band behind the title clear, dim far clouds toward `PALETTE.navy`, slow drift, still when reduced motion (Needs: cloud puff)
+
+## Review 2026-11-01 (code review fixes, small, do after Priority)
+- [ ] Hero crystal: replace the icosahedron with `/models/crystals.glb` (`useGLTF`, keep the rotation, `Float` and mobile `fit` scale, hide the mesh behind `Suspense`). Do not edit the generator
+- [ ] Wrap the `Suspense` block in `Scene` with a small error boundary (class component in its own file) that renders nothing on a failed model load, so the crystal and particles survive
+- [ ] `IslandRing`: dispose the cloned island geometries in an effect cleanup, and add `useGLTF.preload("/models/island.glb")` at module scope
+- [ ] Use `h-dvh` instead of `h-screen` on the home `main` so mobile browser bars do not crop the scene or the title
+- [ ] Move hard-coded hex colors in `WindowPanel`, `SettingsButton`, `HelpButton` and the hero crystal into `:root` CSS variables or `PALETTE` (values must match the palette)
+- [ ] Update the `SceneClient` aria-label to describe the islands, crystal and drifting shards as they exist now
+- [ ] In `.github/workflows/weekly-snapshot.yml` run `git pull --rebase origin main` before `git push origin main --tags`
 
 ## Review 2026-10-26 (visual review, do after Priority)
 - [x] Camera parallax: ease the camera toward the pointer (max about 0.6 units, skip when reduced motion), in `Scene`
@@ -85,7 +104,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 ## World base
 - [x] Add a sky gradient background and distance fog (done: sky gradient and fog shipped)
-- [!] Add a slow drifting cloud layer below the islands (instanced low-poly clouds) (2026-10-31: artist critic rejected twice. Notes: single squashed icosahedrons read as boulders, need 3 to 5 clustered puffs per cloud with flat base; use off-white, ice, violet value steps not grey-teal; keep the band behind the title clear; spread evenly; dim far clouds toward the night base. Split into a cloud-puff geometry ticket and a placement ticket)
+- [!] Add a slow drifting cloud layer below the islands (instanced low-poly clouds) (2026-11-01: split into the cloud puff and cloud placement tickets at the top, do those instead. 2026-10-31: artist critic rejected twice. Notes: single squashed icosahedrons read as boulders, need 3 to 5 clustered puffs per cloud with flat base; use off-white, ice, violet value steps not grey-teal; keep the band behind the title clear; spread evenly; dim far clouds toward the night base. Split into a cloud-puff geometry ticket and a placement ticket)
 - [x] Add camera pointer parallax (done: pointer parallax shipped)
 - [ ] Add a slow camera dolly-in after the loader fades out
 - [x] Add 300 drifting low-poly particles (instanced tetrahedrons)
