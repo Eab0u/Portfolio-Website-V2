@@ -12,6 +12,7 @@ import { PALETTE } from "@/lib/palette";
 import { markSceneReady, reveal } from "@/lib/sceneReady";
 import IslandRing from "./IslandRing";
 import Particles from "./Particles";
+import VolleyballIsland from "./VolleyballIsland";
 
 // Narrow (portrait) viewports get a smaller crystal and a farther camera so nothing is cropped.
 function useFit() {
@@ -93,6 +94,7 @@ export default function Scene() {
         <Suspense fallback={null}>
           <Island />
           <IslandRing />
+          <VolleyballIsland />
         </Suspense>
       </group>
       {quality !== "low" && (
