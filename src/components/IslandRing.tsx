@@ -3,9 +3,10 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { Color, type Group, Mesh } from "three";
+import type { Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
+import { tintIsland } from "@/lib/tintIsland";
 
 // Four small islands in a loose ring behind the hub. Each one swaps its green top for another palette color.
 const ISLANDS = [
@@ -19,22 +20,7 @@ function SmallIsland({ top, scale, position, phase }: { top: string; scale: numb
   const ref = useRef<Group>(null);
   const reduced = useReducedMotion();
   const { scene } = useGLTF("/models/island.glb");
-  const copy = useMemo(() => {
-    const c = scene.clone(true);
-    const tint = new Color(top);
-    c.traverse((o) => {
-      const m = o as Mesh;
-      const col = m.isMesh && m.geometry.getAttribute("color");
-      if (!col) return;
-      m.geometry = m.geometry.clone();
-      const attr = m.geometry.getAttribute("color");
-      for (let i = 0; i < attr.count; i++) {
-        const g = attr.getY(i);
-        if (g > attr.getX(i) * 1.15 && g > attr.getZ(i) * 1.15) attr.setXYZ(i, tint.r * g * 1.2, tint.g * g * 1.2, tint.b * g * 1.2);
-      }
-    });
-    return c;
-  }, [scene, top]);
+  const copy = useMemo(() => tintIsland(scene, top), [scene, top]);
   useFrame((state) => {
     if (ref.current) ref.current.position.y = position[1] + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.5 + phase) * 0.12);
   });
