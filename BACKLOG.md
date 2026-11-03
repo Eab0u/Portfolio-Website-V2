@@ -21,7 +21,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a `VolleyballIsland` component: island.glb tinted `PALETTE.sand`, scale 0.42, front right of the hub (about [3.2, -1.4, 0.5]), own bobbing phase, still when reduced motion; render it in `Scene` inside the existing `Suspense` (Needs: tintIsland)
 - [x] Put `palm.glb` on the volleyball island: `useGLTF` clone, scale so the crown clears the hub crystal, sit it on the deck, share the island bob (Needs: VolleyballIsland)
 - [x] (model) Volleyball net (`volleyball-net.glb`): two tall posts with sun-colored caps, a taut net drawn as a lattice of thin bars (reads as mesh, not a solid plane), offWhite top tape and coral side tapes, small sand footings. Original and generic. One subject per file
-- [ ] (model) Referee high chair (`referee-chair.glb`): ladder, seat, rail, and a striped coral and ice umbrella, sand footing. Generic, no marks
+- [x] (model) Referee high chair (`referee-chair.glb`): ladder, seat, rail, and a striped coral and ice umbrella, sand footing. Generic, no marks
 - [ ] Add a procedural low-poly volleyball component: icosahedron detail 1 with 3 panel colors (offWhite, sun, blue from `PALETTE`) via vertex colors, gentle idle hover above the island deck (Needs: VolleyballIsland)
 - [ ] Cloud puff: one cloud made of 3 to 5 clustered flat-shaded icosahedron puffs with a flat base, offWhite, ice and violet value steps (not grey-teal). Split from the rejected cloud-layer ticket
 - [ ] Cloud placement: instance 6 clouds below the islands, spread evenly, keep the band behind the title clear, dim far clouds toward `PALETTE.navy`, slow drift, still when reduced motion (Needs: cloud puff)
