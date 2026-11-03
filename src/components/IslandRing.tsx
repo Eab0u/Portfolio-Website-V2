@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import { useCursor, useGLTF } from "@react-three/drei";
 import type { Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
@@ -21,11 +21,25 @@ function SmallIsland({ top, scale, position, phase }: { top: string; scale: numb
   const reduced = useReducedMotion();
   const { scene } = useGLTF("/models/island.glb");
   const copy = useMemo(() => tintIsland(scene, top), [scene, top]);
-  useFrame((state) => {
-    if (ref.current) ref.current.position.y = position[1] + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.5 + phase) * 0.12);
+  const [hovered, setHovered] = useState(false);
+  const lift = useRef(0);
+  const active = hovered && !reduced;
+  useCursor(active);
+  useFrame((state, delta) => {
+    // Hover lifts the island about 0.15 units with an eased lerp (no lift when reduced motion).
+    lift.current += ((active ? 0.15 : 0) - lift.current) * (1 - Math.exp(-delta * 8));
+    if (ref.current) ref.current.position.y = position[1] + lift.current + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.5 + phase) * 0.12);
   });
   return (
-    <group ref={ref} position={position}>
+    <group
+      ref={ref}
+      position={position}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+      }}
+      onPointerOut={() => setHovered(false)}
+    >
       <primitive object={copy} scale={scale} />
     </group>
   );
