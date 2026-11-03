@@ -7,6 +7,7 @@ import { Color, type Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
 import { tintIsland } from "@/lib/tintIsland";
+import Volleyball from "./Volleyball";
 
 // Sand lightened toward off-white so the beach reads brighter than the small sand island.
 const BEACH = `#${new Color(PALETTE.sand).lerp(new Color(PALETTE.offWhite), 0.55).getHexString()}`;
@@ -27,6 +28,7 @@ export default function VolleyballIsland() {
     <group ref={ref} position={BASE}>
       <primitive object={copy} scale={0.2} rotation={[0, 3.6, 0.08]} />
       <primitive object={palmCopy} scale={0.2} position={[0, 0.07, 0]} />
+      <Volleyball position={[-0.45, 0.36, 0.16]} />
     </group>
   );
 }
