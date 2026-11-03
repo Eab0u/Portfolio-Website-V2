@@ -21,7 +21,7 @@ Needs playwright: `npm i --no-save playwright` (do not commit it). `tools/shot.m
 If screenshots cannot be taken, say so in the log and fall back to the code critic only, but do not approve model tickets without preview images.
 
 ## Build run (nightly, with a weekly random plan)
-One recurring scheduled task starts this run every night at about 10:40 PM ET, including weekends. Most nights it should do real work only on planned days. The randomness lives here, in the weekly plan stored in `.autopilot/state.json`: 4 to 7 random days per week (weekends included), 1 to 10 commits per planned day. A long run may pass midnight. `D` always means the America/New_York date when the run STARTED, even after midnight.
+One recurring scheduled task starts this run every night at about 9:28 PM ET, including weekends. Most nights it should do real work only on planned days. The randomness lives here, in the weekly plan stored in `.autopilot/state.json`: 4 to 7 random days per week (weekends included), 1 to 10 commits per planned day. A long run may pass midnight. `D` always means the America/New_York date when the run STARTED, even after midnight.
 1. If `PAUSE` exists in the repo root, stop. Write nothing, commit nothing, push nothing.
 2. `git pull origin main`. Set git author as in `CLAUDE.md`.
 3. Read `.autopilot/state.json`.
@@ -61,14 +61,14 @@ Builder and critic loop (models only; `(code)` tickets stay on Sonnet):
 4. Self-check first: open the 4 preview images yourself and compare them with `ART_DIRECTION.md`. Fix obvious problems (colors off the palette, hidden or clipped parts, flat or empty areas, a plain base, detail at only one scale) and re-render. Repeat up to 4 times, then hand the 4 images to the artist critic and the script to the code critic (see the loop above). Up to 5 critic passes. If it still fails, mark `[!]` with the notes and move on. A model ticket that has been rejected in two different runs stays `[!]` and is only reset by the weekly review, after the cause is fixed. If the critic's complaints are about color, check that the preview lighting is neutral before blaming the model.
 5. Commit the script and GLB together.
 
-## Weekly code review (Sunday 8 PM ET)
+## Weekly code review (Sunday 7:34 PM ET)
 Use the code critic mindset (`.autopilot/reviewers/code-critic.md`) on the whole repo, with fresh context. Look at structure, dead code, bundle size, performance of the 3D scene, accessibility, and adherence to `CLAUDE.md`. Write findings to `reviews/YYYY-MM-DD-code.md` (max 1 page). Add up to 8 small, concrete tickets to the top of `BACKLOG.md`. Do not change source code.
 
 Then plan next week. Read `VISION.md`, pick the theme (a district or interest) for the coming week, rotating through the interests and favoring unfinished districts. Update the "Current theme" line at the top of `BACKLOG.md` and write 6 to 8 original, small tickets for that theme at the top, including 1 or 2 `(model)` tickets. Make them specific and visible. Flag any filler commits from the past week in the review. Also compare this week's `plan` in `.autopilot/state.json` with what happened (check `.autopilot/log.md` and `git log`) and flag any planned day that was missed or partial at the top.
 
 Then tidy the backlog: (1) merge duplicate tickets and drop stale or already-done ones; (2) move every `[x]` ticket out of `BACKLOG.md` into `BACKLOG-DONE.md` (create it if missing, append under a dated heading, keep the section name beside each ticket); (3) keep fewer than 300 open tickets. If a new ticket would pass that, merge or drop an old one first. Do not touch tickets under `## Priority` that are still open.
 
-## Weekly visual review (Sunday 10 PM ET)
+## Weekly visual review (Sunday 8:32 PM ET)
 Act as the artist critic (`.autopilot/reviewers/artist-critic.md`) on the whole site. Run the site locally and take screenshots (see Screenshots), including `/timeline` and any other routes. Judge against `benchmarks/BRIEF.md`, `VISION.md`, and `ART_DIRECTION.md`. Score 1 to 10 on: intro ritual, sense of a world, interaction delight, UI restraint, polish and performance, and low-poly consistency. Check that no brand logos or copied assets slipped in. Write `reviews/YYYY-MM-DD-visual.md` (max 1 page) and add up to 8 small tickets to the top of `BACKLOG.md`. Do not change source code.
 
 ## Adjusting speed
