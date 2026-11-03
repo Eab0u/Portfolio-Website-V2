@@ -20,7 +20,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Refactor only: move the island tint code from `IslandRing.tsx` into `src/lib/tintIsland.ts` (`tintIsland(scene, color)` returns the cloned, recolored scene). No behavior change
 - [x] Add a `VolleyballIsland` component: island.glb tinted `PALETTE.sand`, scale 0.42, front right of the hub (about [3.2, -1.4, 0.5]), own bobbing phase, still when reduced motion; render it in `Scene` inside the existing `Suspense` (Needs: tintIsland)
 - [x] Put `palm.glb` on the volleyball island: `useGLTF` clone, scale so the crown clears the hub crystal, sit it on the deck, share the island bob (Needs: VolleyballIsland)
-- [ ] (model) Volleyball net (`volleyball-net.glb`): two tall posts with sun-colored caps, a taut net drawn as a lattice of thin bars (reads as mesh, not a solid plane), offWhite top tape and coral side tapes, small sand footings. Original and generic. One subject per file
+- [x] (model) Volleyball net (`volleyball-net.glb`): two tall posts with sun-colored caps, a taut net drawn as a lattice of thin bars (reads as mesh, not a solid plane), offWhite top tape and coral side tapes, small sand footings. Original and generic. One subject per file
 - [ ] (model) Referee high chair (`referee-chair.glb`): ladder, seat, rail, and a striped coral and ice umbrella, sand footing. Generic, no marks
 - [ ] Add a procedural low-poly volleyball component: icosahedron detail 1 with 3 panel colors (offWhite, sun, blue from `PALETTE`) via vertex colors, gentle idle hover above the island deck (Needs: VolleyballIsland)
 - [ ] Cloud puff: one cloud made of 3 to 5 clustered flat-shaded icosahedron puffs with a flat base, offWhite, ice and violet value steps (not grey-teal). Split from the rejected cloud-layer ticket
@@ -107,7 +107,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] (model) Generic open-wheel race car: bright body, contrasting wing and nose, visible wheels and a small cockpit detail
 - [ ] (model) Low-poly tram: 2 coupled cars, rounded roof, window row, coral and ice colors, small pantograph
 - [ ] (model) Stadium floodlight tower with a glowing lamp bank
-- [ ] (model) Volleyball net with posts, referee stand, and a ball
+- [x] (model) Volleyball net with posts, referee stand, and a ball
 - [ ] (model) Street-food stall: striped awning, counter, lanterns, steaming pot
 - [ ] (model) Tire stack and barrier set (generic, no sponsor marks)
 - [ ] (model) Ancient arch ruin with glowing glyph lines (generic sci-fi, no game symbols)
