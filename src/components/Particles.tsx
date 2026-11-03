@@ -2,12 +2,13 @@
 
 import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Object3D, type InstancedMesh } from "three";
+import { Color, Object3D, type InstancedMesh } from "three";
 import { PALETTE } from "@/lib/palette";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const COUNT = 300;
 const SPAN = 14;
+const TINTS = [PALETTE.ice, PALETTE.violet, PALETTE.coral].map((c) => new Color(c));
 
 // Deterministic pseudo-random in [0, 1).
 function rand(i: number, salt: number) {
@@ -15,7 +16,7 @@ function rand(i: number, salt: number) {
   return x - Math.floor(x);
 }
 
-// 300 drifting tetrahedra in one instanced draw call. Static when reduced motion is on.
+// 300 drifting tetrahedra, tinted ice, violet and coral, in one instanced draw call. Static when reduced motion is on.
 export default function Particles() {
   const ref = useRef<InstancedMesh>(null);
   const reduced = useReducedMotion();
@@ -41,6 +42,13 @@ export default function Particles() {
     mesh.instanceMatrix.needsUpdate = true;
   }, [dummy, seeds]);
 
+  // Each shard gets one of three palette tints (ice, violet, coral), fixed per instance.
+  useLayoutEffect(() => {
+    const mesh = ref.current;
+    if (!mesh) return;
+    for (let i = 0; i < COUNT; i++) mesh.setColorAt(i, TINTS[Math.floor(rand(i, 6) * 3)]);
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+  }, []);
   useLayoutEffect(() => place(0), [place, reduced]);
   useFrame((state) => {
     if (!reduced) place(state.clock.elapsedTime);
@@ -49,7 +57,7 @@ export default function Particles() {
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, COUNT]} frustumCulled={false}>
       <tetrahedronGeometry args={[1, 0]} />
-      <meshStandardMaterial color={PALETTE.ice} flatShading emissive={PALETTE.ice} emissiveIntensity={0.25} />
+      <meshStandardMaterial color="#ffffff" flatShading emissive={PALETTE.offWhite} emissiveIntensity={0.3} />
     </instancedMesh>
   );
 }
