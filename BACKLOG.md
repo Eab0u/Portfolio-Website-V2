@@ -23,7 +23,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] (model) Volleyball net (`volleyball-net.glb`): two tall posts with sun-colored caps, a taut net drawn as a lattice of thin bars (reads as mesh, not a solid plane), offWhite top tape and coral side tapes, small sand footings. Original and generic. One subject per file
 - [x] (model) Referee high chair (`referee-chair.glb`): ladder, seat, rail, and a striped coral and ice umbrella, sand footing. Generic, no marks
 - [x] Add a procedural low-poly volleyball component: icosahedron detail 1 with 3 panel colors (offWhite, sun, blue from `PALETTE`) via vertex colors, gentle idle hover above the island deck (Needs: VolleyballIsland)
-- [ ] Cloud puff: one cloud made of 3 to 5 clustered flat-shaded icosahedron puffs with a flat base, offWhite, ice and violet value steps (not grey-teal). Split from the rejected cloud-layer ticket
+- [x] Cloud puff: one cloud made of 3 to 5 clustered flat-shaded icosahedron puffs with a flat base, offWhite, ice and violet value steps (not grey-teal). Split from the rejected cloud-layer ticket
 - [ ] Cloud placement: instance 6 clouds below the islands, spread evenly, keep the band behind the title clear, dim far clouds toward `PALETTE.navy`, slow drift, still when reduced motion (Needs: cloud puff)
 
 ## Review 2026-11-01 (code review fixes, small, do after Priority)

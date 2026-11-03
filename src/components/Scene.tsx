@@ -10,6 +10,7 @@ import { usePageVisible } from "@/hooks/usePageVisible";
 import { useSettings } from "@/context/SettingsContext";
 import { PALETTE } from "@/lib/palette";
 import { markSceneReady, reveal } from "@/lib/sceneReady";
+import Cloud from "./Cloud";
 import IslandRing from "./IslandRing";
 import Particles from "./Particles";
 import VolleyballIsland from "./VolleyballIsland";
@@ -95,6 +96,7 @@ export default function Scene() {
           <Island />
           <IslandRing />
           <VolleyballIsland />
+          <Cloud position={[-2.9, -3.7, -0.5]} scale={0.8} />
         </Suspense>
       </group>
       {quality !== "low" && (
