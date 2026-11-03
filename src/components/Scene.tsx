@@ -9,14 +9,12 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
 import { useSettings } from "@/context/SettingsContext";
 import { PALETTE } from "@/lib/palette";
+import { SKY } from "@/lib/sky";
 import { markSceneReady, reveal } from "@/lib/sceneReady";
 import CloudLayer from "./CloudLayer";
 import IslandRing from "./IslandRing";
 import Particles from "./Particles";
 import VolleyballIsland from "./VolleyballIsland";
-
-// Warm coral to violet glow at the horizon (about 25 percent, hex alpha 40) over the night to navy sky.
-const SKY = `linear-gradient(to top, ${PALETTE.coral}40 0%, ${PALETTE.violet}40 22%, transparent 48%), linear-gradient(to bottom, ${PALETTE.night} 0%, ${PALETTE.navy} 100%)`;
 
 // Narrow (portrait) viewports get a smaller crystal and a farther camera so nothing is cropped.
 function useFit() {
