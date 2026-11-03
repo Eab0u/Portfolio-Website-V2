@@ -15,6 +15,9 @@ import IslandRing from "./IslandRing";
 import Particles from "./Particles";
 import VolleyballIsland from "./VolleyballIsland";
 
+// Warm coral to violet glow at the horizon (about 25 percent, hex alpha 40) over the night to navy sky.
+const SKY = `linear-gradient(to top, ${PALETTE.coral}40 0%, ${PALETTE.violet}40 22%, transparent 48%), linear-gradient(to bottom, ${PALETTE.night} 0%, ${PALETTE.navy} 100%)`;
+
 // Narrow (portrait) viewports get a smaller crystal and a farther camera so nothing is cropped.
 function useFit() {
   const { width, height } = useThree((s) => s.size);
@@ -82,7 +85,7 @@ export default function Scene() {
       camera={{ position: [0, 0, 7.5], fov: 50 }}
       dpr={quality === "low" ? 1 : [1, 2]}
       onCreated={markSceneReady}
-      style={{ background: `linear-gradient(to bottom, ${PALETTE.night} 0%, ${PALETTE.navy} 100%)` }}
+      style={{ background: SKY }}
     >
       <fog attach="fog" args={[PALETTE.navy, 7, 16]} />
       <ambientLight intensity={0.5} />

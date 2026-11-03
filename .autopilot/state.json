@@ -13,13 +13,13 @@
   },
   "weekly_cap": 50,
   "week_start": "2026-11-02",
-  "week_commits": 5,
+  "week_commits": 6,
   "plan": [
     {
       "date": "2026-11-02",
       "commits": 10,
       "status": "pending",
-      "made": 5
+      "made": 6
     },
     {
       "date": "2026-11-03",
