@@ -14,15 +14,15 @@ const PUFFS: [number, number, number][] = [
 ];
 
 // One cloud: clustered flat-shaded puffs on a flat base, in off-white, ice and violet value steps.
-export default function Cloud({ position = [0, 0, 0], scale = 1 }: { position?: [number, number, number]; scale?: number }) {
+export default function Cloud({ position = [0, 0, 0], scale = 1, dim = 0 }: { position?: [number, number, number]; scale?: number; dim?: number }) {
   const mats = useMemo(
     () =>
       [
         new Color(PALETTE.offWhite).lerp(new Color(PALETTE.sand), 0.12),
         new Color(PALETTE.ice).lerp(new Color(PALETTE.offWhite), 0.3),
         new Color(PALETTE.violet).lerp(new Color(PALETTE.ice), 0.4),
-      ].map((c, i) => new MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: [0.45, 0.25, 0.2][i], flatShading: true, roughness: 0.9 })),
-    [],
+      ].map((c) => c.lerp(new Color(PALETTE.navy).lerp(new Color(PALETTE.violet), 0.5), dim)).map((c, i) => new MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: [0.45, 0.25, 0.2][i], flatShading: true, roughness: 0.9 })),
+    [dim],
   );
   useEffect(() => () => mats.forEach((m) => m.dispose()), [mats]);
   return (
