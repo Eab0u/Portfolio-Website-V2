@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useRef } from "react";
+import { Suspense, useRef, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float, useGLTF } from "@react-three/drei";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
@@ -22,6 +22,16 @@ const SKY = `linear-gradient(to top, ${PALETTE.coral}40 0%, ${PALETTE.violet}40 
 function useFit() {
   const { width, height } = useThree((s) => s.size);
   return Math.min(1, (width / height) * 1.3);
+}
+
+// Portrait screens (aspect under 0.7) pull the satellite islands toward the hub so none is cropped. The scale falls
+// with the aspect to the power 2.5 (the view narrows and the islands also sit nearer the camera), never below 0.32.
+const NARROW_ASPECT = 0.7;
+const MIN_SATELLITE_SCALE = 0.32;
+function Satellites({ children }: { children: ReactNode }) {
+  const { width, height } = useThree((s) => s.size);
+  const k = Math.min(1, Math.max(MIN_SATELLITE_SCALE, (width / height / NARROW_ASPECT) ** 2.5));
+  return <group scale={k}>{children}</group>;
 }
 
 function HeroCrystal() {
@@ -97,8 +107,10 @@ export default function Scene() {
         <HeroCrystal />
         <Suspense fallback={null}>
           <Island />
-          <IslandRing />
-          <VolleyballIsland />
+          <Satellites>
+            <IslandRing />
+            <VolleyballIsland />
+          </Satellites>
           <CloudLayer />
         </Suspense>
       </group>

@@ -8,7 +8,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 ## Review 2026-11-02 (visual review, do after Priority)
 - [x] Sky glow: add a warm low horizon band to the sky gradient (`PALETTE.coral` to `PALETTE.violet` at about 25 percent opacity near the bottom) so the islands sit in light, not a void
-- [ ] Mobile framing: when the viewport aspect is under 0.7, pull the camera back or shrink the island ring radius so no island is cropped at 390 px wide
+- [x] Mobile framing: when the viewport aspect is under 0.7, pull the camera back or shrink the island ring radius so no island is cropped at 390 px wide
 - [ ] Island hover: on pointer over an island, lift it about 0.15 units with a lerp and set `cursor: pointer`; no effect when reduced motion (use `onPointerOver` and `onPointerOut` in `IslandRing`)
 - [ ] Particle colors: give the drifting shards three palette tints (ice, violet, coral) via per-instance color, keeping the same count
 - [ ] Sub-pages: reuse the home sky gradient as the background of `/timeline` and `/credits` so they feel part of the world
