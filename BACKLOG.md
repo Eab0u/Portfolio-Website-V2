@@ -12,7 +12,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Island hover: on pointer over an island, lift it about 0.15 units with a lerp and set `cursor: pointer`; no effect when reduced motion (use `onPointerOver` and `onPointerOut` in `IslandRing`)
 - [x] Particle colors: give the drifting shards three palette tints (ice, violet, coral) via per-instance color, keeping the same count
 - [x] Sub-pages: reuse the home sky gradient as the background of `/timeline` and `/credits` so they feel part of the world
-- [ ] Title wrap: add `text-wrap: balance` to the hero name and use a non-breaking hyphen so mobile does not split `Manchanda-Izquierdo` mid-name
+- [x] Title wrap: add `text-wrap: balance` to the hero name and use a non-breaking hyphen so mobile does not split `Manchanda-Izquierdo` mid-name
 - [ ] Intro beat: after the preloader fades, ease the camera from slightly closer and lower to its rest position over about 1.5 s with GSAP (skip when reduced motion)
 - [ ] Depth fade: tint the farthest islands toward `PALETTE.navy` (about 20 percent) using the existing tint helper, so the ring has atmospheric depth
 

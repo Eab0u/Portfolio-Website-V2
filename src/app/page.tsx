@@ -14,7 +14,7 @@ export default function Home() {
       <HelpButton />
       <SettingsButton />
       <header className="pointer-events-none absolute inset-x-0 bottom-12 text-center">
-        <h1 className="text-4xl font-semibold tracking-tight">{profile.name}</h1>
+        <h1 className="px-4 text-4xl font-semibold tracking-tight text-balance">{profile.name.replace("-", "\u2011")}</h1>
         <p className="mt-2 text-sm opacity-70">{profile.tagline}</p>
       </header>
       <footer className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-xs opacity-70">
