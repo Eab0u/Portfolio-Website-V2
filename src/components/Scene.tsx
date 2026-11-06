@@ -2,6 +2,7 @@
 
 import { Suspense, useRef, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import gsap from "gsap";
 import { Float, useGLTF } from "@react-three/drei";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import type { Group, Mesh } from "three";
@@ -69,16 +70,23 @@ function Island() {
 function CameraRig() {
   const reduced = useReducedMotion();
   const fit = useFit();
+  // 1 = start pose (a little closer and lower), 0 = rest pose. GSAP eases it over 1.5 s once the preloader leaves.
+  const intro = useRef({ v: reduced ? 0 : 1, started: false });
   useFrame((state, delta) => {
-    // Starts 0.8 back and glides in over 1.3 s once the preloader begins to leave.
-    const t = reveal.start < 0 ? 0 : Math.min(1, (performance.now() - reveal.start) / 1300);
-    const intro = reduced ? 0 : 0.8 * (1 - t) ** 3;
-    state.camera.position.z = 7.5 + (1 - fit) * 3 + intro;
-    state.camera.lookAt(0, -0.6, 0);
-    if (reduced) return;
+    const i = intro.current;
+    if (!i.started && reveal.start >= 0) {
+      i.started = true;
+      if (!reduced) gsap.to(i, { v: 0, duration: 1.5, ease: "power3.out" });
+    }
+    const v = reduced ? 0 : i.v;
+    state.camera.position.z = 7.5 + (1 - fit) * 3 - 1.2 * v;
+    if (reduced) {
+      state.camera.lookAt(0, -0.6, 0);
+      return;
+    }
     const k = 1 - Math.exp(-delta * 3);
     state.camera.position.x += (state.pointer.x * 0.6 - state.camera.position.x) * k;
-    state.camera.position.y += (state.pointer.y * 0.4 - state.camera.position.y) * k;
+    state.camera.position.y += (state.pointer.y * 0.4 - 0.6 * v - state.camera.position.y) * k;
     state.camera.lookAt(0, -0.6, 0);
   });
   return null;
