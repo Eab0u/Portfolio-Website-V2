@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { Float, useGLTF } from "@react-three/drei";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
-import type { Group, Mesh } from "three";
+import type { Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
 import { useSettings } from "@/context/SettingsContext";
@@ -34,21 +34,17 @@ function Satellites({ children }: { children: ReactNode }) {
 }
 
 function HeroCrystal() {
-  const ref = useRef<Mesh>(null);
+  const ref = useRef<Group>(null);
   const fit = useFit();
   const reduced = useReducedMotion();
-  const speed = reduced ? 0.15 : 1;
+  const { scene } = useGLTF("/models/crystals.glb");
   useFrame((_, delta) => {
-    if (!ref.current) return;
-    ref.current.rotation.y += delta * 0.3 * speed;
-    ref.current.rotation.x += delta * 0.1 * speed;
+    // Spins on the vertical axis only, so the rock base stays underneath.
+    if (ref.current) ref.current.rotation.y += delta * 0.3 * (reduced ? 0.15 : 1);
   });
   return (
-    <Float enabled={!reduced} speed={1.5} floatIntensity={1.2} position={[0, 0.5, 0]}>
-      <mesh ref={ref} scale={fit * 0.65}>
-        <icosahedronGeometry args={[1.4, 0]} />
-        <meshStandardMaterial color="#7cf0c8" flatShading metalness={0} roughness={0.6} />
-      </mesh>
+    <Float enabled={!reduced} speed={1.5} floatIntensity={1.2} position={[0, 0.1, 0]}>
+      <primitive ref={ref} object={scene} scale={fit * 0.85} />
     </Float>
   );
 }
@@ -110,8 +106,8 @@ export default function Scene() {
       <CameraRig />
       <Particles />
       <group position={[0, 0.6, 0]}>
-        <HeroCrystal />
         <Suspense fallback={null}>
+          <HeroCrystal />
           <Island />
           <Satellites>
             <IslandRing />
