@@ -26,11 +26,14 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Cloud puff: one cloud made of 3 to 5 clustered flat-shaded icosahedron puffs with a flat base, offWhite, ice and violet value steps (not grey-teal). Split from the rejected cloud-layer ticket
 - [x] Cloud placement: instance 6 clouds below the islands, spread evenly, keep the band behind the title clear, dim far clouds toward `PALETTE.navy`, slow drift, still when reduced motion (Needs: cloud puff)
 
+## Review 2026-11-05 (follow-ups from reviewers)
+- [ ] Use `h-dvh` instead of `h-screen` on `/timeline` and `/credits` (and add `pb-6` to the home footer credit so it clears mobile bars)
+
 ## Review 2026-11-01 (code review fixes, small, do after Priority)
 - [x] Hero crystal: replace the icosahedron with `/models/crystals.glb` (`useGLTF`, keep the rotation, `Float` and mobile `fit` scale, hide the mesh behind `Suspense`). Do not edit the generator
 - [x] Wrap the `Suspense` block in `Scene` with a small error boundary (class component in its own file) that renders nothing on a failed model load, so the crystal and particles survive
 - [x] `IslandRing`: dispose the cloned island geometries in an effect cleanup, and add `useGLTF.preload("/models/island.glb")` at module scope
-- [ ] Use `h-dvh` instead of `h-screen` on the home `main` so mobile browser bars do not crop the scene or the title
+- [x] Use `h-dvh` instead of `h-screen` on the home `main` so mobile browser bars do not crop the scene or the title
 - [ ] Move hard-coded hex colors in `WindowPanel`, `SettingsButton`, `HelpButton` and the hero crystal into `:root` CSS variables or `PALETTE` (values must match the palette)
 - [ ] Update the `SceneClient` aria-label to describe the islands, crystal and drifting shards as they exist now
 - [ ] In `.github/workflows/weekly-snapshot.yml` run `git pull --rebase origin main` before `git push origin main --tags`

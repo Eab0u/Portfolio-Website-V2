@@ -6,7 +6,7 @@ import { profile } from "../../content/profile";
 
 export default function Home() {
   return (
-    <main id="main" className="relative h-screen w-full overflow-hidden">
+    <main id="main" className="relative h-dvh w-full overflow-hidden">
       <div className="absolute inset-0">
         <SceneClient />
       </div>
