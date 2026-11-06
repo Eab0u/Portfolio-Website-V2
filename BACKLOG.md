@@ -34,7 +34,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Wrap the `Suspense` block in `Scene` with a small error boundary (class component in its own file) that renders nothing on a failed model load, so the crystal and particles survive
 - [x] `IslandRing`: dispose the cloned island geometries in an effect cleanup, and add `useGLTF.preload("/models/island.glb")` at module scope
 - [x] Use `h-dvh` instead of `h-screen` on the home `main` so mobile browser bars do not crop the scene or the title
-- [ ] Move hard-coded hex colors in `WindowPanel`, `SettingsButton`, `HelpButton` and the hero crystal into `:root` CSS variables or `PALETTE` (values must match the palette)
+- [x] Move hard-coded hex colors in `WindowPanel`, `SettingsButton`, `HelpButton` and the hero crystal into `:root` CSS variables or `PALETTE` (values must match the palette)
 - [ ] Update the `SceneClient` aria-label to describe the islands, crystal and drifting shards as they exist now
 - [ ] In `.github/workflows/weekly-snapshot.yml` run `git pull --rebase origin main` before `git push origin main --tags`
 

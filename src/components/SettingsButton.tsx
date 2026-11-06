@@ -28,7 +28,7 @@ export default function SettingsButton() {
             <select
               value={quality}
               onChange={(e) => update({ quality: e.target.value === "low" ? "low" : "high" })}
-              className="rounded-full border border-[var(--accent)] bg-[#1a1f3a] px-3 py-1 text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+              className="rounded-full border border-[var(--accent)] bg-[var(--navy)] px-3 py-1 text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
             >
               <option value="high">High</option>
               <option value="low">Low</option>

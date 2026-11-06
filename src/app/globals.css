@@ -4,6 +4,12 @@
   --bg: #0a0b10;
   --fg: #e8ebf5;
   --accent: #7cf0c8;
+  /* Palette tokens (match src/lib/palette.ts) */
+  --navy: #1a1f3a;
+  --violet: #8b5cff;
+  --sun: #ffd23f;
+  --grass: #3ddc84;
+  --coral: #ff6b57;
 }
 
 html,
