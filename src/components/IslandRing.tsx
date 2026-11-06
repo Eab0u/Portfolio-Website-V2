@@ -16,11 +16,14 @@ const ISLANDS = [
   { top: PALETTE.violet, scale: 0.18 },
 ] as const;
 
+const FAR_Z = -3;
+
 function SmallIsland({ top, scale, position, phase }: { top: string; scale: number; position: [number, number, number]; phase: number }) {
+  const fade = position[2] < FAR_Z ? 0.35 : 0; // the farthest islands sink toward navy for depth
   const ref = useRef<Group>(null);
   const reduced = useReducedMotion();
   const { scene } = useGLTF("/models/island.glb");
-  const copy = useMemo(() => tintIsland(scene, top), [scene, top]);
+  const copy = useMemo(() => tintIsland(scene, top, fade), [scene, top, fade]);
   const [hovered, setHovered] = useState(false);
   const lift = useRef(0);
   const active = hovered && !reduced;

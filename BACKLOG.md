@@ -14,7 +14,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Sub-pages: reuse the home sky gradient as the background of `/timeline` and `/credits` so they feel part of the world
 - [x] Title wrap: add `text-wrap: balance` to the hero name and use a non-breaking hyphen so mobile does not split `Manchanda-Izquierdo` mid-name
 - [x] Intro beat: after the preloader fades, ease the camera from slightly closer and lower to its rest position over about 1.5 s with GSAP (skip when reduced motion)
-- [ ] Depth fade: tint the farthest islands toward `PALETTE.navy` (about 20 percent) using the existing tint helper, so the ring has atmospheric depth
+- [x] Depth fade: tint the farthest islands toward `PALETTE.navy` (about 20 percent) using the existing tint helper, so the ring has atmospheric depth
 
 ## Week of 2026-11-02 theme: Volleyball district, the sand island
 - [x] Refactor only: move the island tint code from `IslandRing.tsx` into `src/lib/tintIsland.ts` (`tintIsland(scene, color)` returns the cloned, recolored scene). No behavior change
