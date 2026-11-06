@@ -13,6 +13,7 @@ import { PALETTE } from "@/lib/palette";
 import { SKY } from "@/lib/sky";
 import { markSceneReady, reveal } from "@/lib/sceneReady";
 import CloudLayer from "./CloudLayer";
+import ModelErrorBoundary from "./ModelErrorBoundary";
 import IslandRing from "./IslandRing";
 import Particles from "./Particles";
 import VolleyballIsland from "./VolleyballIsland";
@@ -106,6 +107,7 @@ export default function Scene() {
       <CameraRig />
       <Particles />
       <group position={[0, 0.6, 0]}>
+        <ModelErrorBoundary>
         <Suspense fallback={null}>
           <HeroCrystal />
           <Island />
@@ -115,6 +117,7 @@ export default function Scene() {
           </Satellites>
           <CloudLayer />
         </Suspense>
+        </ModelErrorBoundary>
       </group>
       {quality !== "low" && (
         <EffectComposer multisampling={0}>

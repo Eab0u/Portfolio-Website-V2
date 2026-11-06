@@ -28,7 +28,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 ## Review 2026-11-01 (code review fixes, small, do after Priority)
 - [x] Hero crystal: replace the icosahedron with `/models/crystals.glb` (`useGLTF`, keep the rotation, `Float` and mobile `fit` scale, hide the mesh behind `Suspense`). Do not edit the generator
-- [ ] Wrap the `Suspense` block in `Scene` with a small error boundary (class component in its own file) that renders nothing on a failed model load, so the crystal and particles survive
+- [x] Wrap the `Suspense` block in `Scene` with a small error boundary (class component in its own file) that renders nothing on a failed model load, so the crystal and particles survive
 - [ ] `IslandRing`: dispose the cloned island geometries in an effect cleanup, and add `useGLTF.preload("/models/island.glb")` at module scope
 - [ ] Use `h-dvh` instead of `h-screen` on the home `main` so mobile browser bars do not crop the scene or the title
 - [ ] Move hard-coded hex colors in `WindowPanel`, `SettingsButton`, `HelpButton` and the hero crystal into `:root` CSS variables or `PALETTE` (values must match the palette)
