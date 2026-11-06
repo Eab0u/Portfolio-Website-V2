@@ -36,7 +36,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Use `h-dvh` instead of `h-screen` on the home `main` so mobile browser bars do not crop the scene or the title
 - [x] Move hard-coded hex colors in `WindowPanel`, `SettingsButton`, `HelpButton` and the hero crystal into `:root` CSS variables or `PALETTE` (values must match the palette)
 - [x] Update the `SceneClient` aria-label to describe the islands, crystal and drifting shards as they exist now
-- [ ] In `.github/workflows/weekly-snapshot.yml` run `git pull --rebase origin main` before `git push origin main --tags`
+- [x] In `.github/workflows/weekly-snapshot.yml` run `git pull --rebase origin main` before `git push origin main --tags`
 
 ## Review 2026-10-26 (visual review, do after Priority)
 - [x] Camera parallax: ease the camera toward the pointer (max about 0.6 units, skip when reduced motion), in `Scene`
