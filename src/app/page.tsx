@@ -17,7 +17,7 @@ export default function Home() {
         <h1 className="px-4 text-4xl font-semibold tracking-tight text-balance">{profile.name.replace("-", "\u2011")}</h1>
         <p className="mt-2 text-sm opacity-70">{profile.tagline}</p>
       </header>
-      <footer className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-xs opacity-70">
+      <footer className="pointer-events-none absolute inset-x-0 bottom-6 text-center text-xs opacity-70">
         Built by Claude, one commit at a time.
       </footer>
       <noscript>

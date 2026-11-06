@@ -7,7 +7,7 @@ const STACK = ["Next.js", "Three.js", "React Three Fiber", "drei", "GSAP", "Leni
 
 export default function Credits() {
   return (
-    <main id="main" style={{ background: SKY }} className="flex h-screen flex-col items-center justify-center gap-4 px-6 text-center">
+    <main id="main" style={{ background: SKY }} className="flex h-dvh flex-col items-center justify-center gap-4 px-6 text-center">
       <h1 className="text-3xl font-semibold tracking-tight">Credits</h1>
       <p className="text-sm opacity-70">Built with {STACK.join(", ")}.</p>
       <p className="text-sm opacity-70">All art in this world is original and generic. No logos or borrowed models.</p>

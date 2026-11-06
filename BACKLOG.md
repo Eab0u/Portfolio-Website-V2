@@ -27,7 +27,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Cloud placement: instance 6 clouds below the islands, spread evenly, keep the band behind the title clear, dim far clouds toward `PALETTE.navy`, slow drift, still when reduced motion (Needs: cloud puff)
 
 ## Review 2026-11-05 (follow-ups from reviewers)
-- [ ] Use `h-dvh` instead of `h-screen` on `/timeline` and `/credits` (and add `pb-6` to the home footer credit so it clears mobile bars)
+- [x] Use `h-dvh` instead of `h-screen` on `/timeline` and `/credits` (and add `pb-6` to the home footer credit so it clears mobile bars)
 
 ## Review 2026-11-01 (code review fixes, small, do after Priority)
 - [x] Hero crystal: replace the icosahedron with `/models/crystals.glb` (`useGLTF`, keep the rotation, `Float` and mobile `fit` scale, hide the mesh behind `Suspense`). Do not edit the generator
