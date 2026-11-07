@@ -96,7 +96,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Make the preloader end on a "Start" button that fades the overlay out
 - [x] Add a sound opt-in step after Start: "Enter" or "Enter (no music)", saved in state only
 - [x] Add a `SettingsContext` (quality, sound, reduced motion) with safe localStorage persistence (try/catch)
-- [ ] Add a user override for reduced motion in `SettingsContext` (null means follow OS; persist only when the visitor changes it) and start `reducedMotion` as true until synced
+- [x] Add a user override for reduced motion in `SettingsContext` (null means follow OS; persist only when the visitor changes it) and start `reducedMotion` as true until synced
 - [x] Add a reusable `WindowPanel` component with a path-style title bar and a close button
 - [x] Add a settings button that opens a settings `WindowPanel` (Needs: WindowPanel)
 - [x] Add a controls help `WindowPanel` for mouse, touch, and keyboard (Needs: WindowPanel)
