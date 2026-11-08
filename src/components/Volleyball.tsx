@@ -29,14 +29,26 @@ function makeBall() {
   return geo;
 }
 
-// Hovers gently and spins slowly. Still when reduced motion is on.
+const SERVE_SECONDS = 1.8;
+
+// Hovers gently and spins slowly. Click to serve: it arcs over the net and returns. Still when reduced motion is on.
 export default function Volleyball({ position, size = 0.13 }: { position: [number, number, number]; size?: number }) {
   const ref = useRef<Mesh>(null);
   const reduced = useReducedMotion();
+  const serve = useRef(-1);
   const geometry = useMemo(() => makeBall(), []);
   useEffect(() => () => geometry.dispose(), [geometry]);
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (!ref.current) return;
+    if (serve.current >= 0) {
+      serve.current += delta;
+      const p = Math.min(serve.current / SERVE_SECONDS, 1);
+      const arc = Math.sin(p * Math.PI);
+      ref.current.position.set(position[0] + 0.9 * arc, position[1] + 0.45 * arc, position[2]);
+      ref.current.rotation.y = p * Math.PI * 6;
+      if (p >= 1) serve.current = -1;
+      return;
+    }
     if (reduced) {
       ref.current.position.y = position[1];
       return;
@@ -46,7 +58,17 @@ export default function Volleyball({ position, size = 0.13 }: { position: [numbe
     ref.current.rotation.y = t * 0.5;
   });
   return (
-    <mesh ref={ref} geometry={geometry} position={position} scale={size}>
+    <mesh
+      ref={ref}
+      geometry={geometry}
+      position={position}
+      scale={size}
+      onPointerDown={() => {
+        if (!reduced && serve.current < 0) serve.current = 0;
+      }}
+      onPointerOver={() => !reduced && (document.body.style.cursor = "pointer")}
+      onPointerOut={() => (document.body.style.cursor = "")}
+    >
       <meshStandardMaterial vertexColors flatShading roughness={0.55} emissive={PALETTE.sun} emissiveIntensity={0.05} />
     </mesh>
   );
