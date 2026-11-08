@@ -189,7 +189,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a ball serve animation on click
 - [ ] Add a spike toy: timed click for a power meter
 - [ ] Add a gentle sand ripple shader under the ball landing spot
-- [ ] Add a rally counter
+- [x] Add a rally counter
 
 ## Sci-fi ruins district (mood only)
 - [ ] Add floating faceted ruins with arches

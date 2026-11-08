@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
 import { Color, Float32BufferAttribute, IcosahedronGeometry, Vector3, type Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
@@ -36,6 +37,7 @@ export default function Volleyball({ position, size = 0.13 }: { position: [numbe
   const ref = useRef<Mesh>(null);
   const reduced = useReducedMotion();
   const serve = useRef(-1);
+  const [serves, setServes] = useState(0);
   const geometry = useMemo(() => makeBall(), []);
   useEffect(() => () => geometry.dispose(), [geometry]);
   useFrame((state, delta) => {
@@ -58,18 +60,32 @@ export default function Volleyball({ position, size = 0.13 }: { position: [numbe
     ref.current.rotation.y = t * 0.5;
   });
   return (
-    <mesh
-      ref={ref}
-      geometry={geometry}
-      position={position}
-      scale={size}
-      onPointerDown={() => {
-        if (!reduced && serve.current < 0) serve.current = 0;
-      }}
-      onPointerOver={() => !reduced && (document.body.style.cursor = "pointer")}
-      onPointerOut={() => (document.body.style.cursor = "")}
-    >
-      <meshStandardMaterial vertexColors flatShading roughness={0.55} emissive={PALETTE.sun} emissiveIntensity={0.05} />
-    </mesh>
+    <>
+      <mesh
+        ref={ref}
+        geometry={geometry}
+        position={position}
+        scale={size}
+        onPointerDown={() => {
+          if (reduced || serve.current >= 0) return;
+          serve.current = 0;
+          setServes((n) => n + 1);
+        }}
+        onPointerOver={() => !reduced && (document.body.style.cursor = "pointer")}
+        onPointerOut={() => (document.body.style.cursor = "")}
+      >
+        <meshStandardMaterial vertexColors flatShading roughness={0.55} emissive={PALETTE.sun} emissiveIntensity={0.05} />
+      </mesh>
+      {serves > 0 && (
+        <Html position={[position[0], position[1] - 0.26, position[2]]} center style={{ pointerEvents: "none", userSelect: "none" }}>
+          <div
+            className="whitespace-nowrap rounded-full border px-2.5 py-0.5 text-[13px] font-semibold tracking-wide"
+            style={{ background: `${PALETTE.navy}d9`, borderColor: PALETTE.mint, color: PALETTE.offWhite }}
+          >
+            serves: <span style={{ color: PALETTE.sun }}>{serves}</span>
+          </div>
+        </Html>
+      )}
+    </>
   );
 }
