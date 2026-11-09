@@ -4,7 +4,24 @@ Status: `[ ]` todo, `[~]` in progress, `[x]` done, `[!]` blocked (reason after i
 Each ticket is ONE small problem (about 30 to 50 changed lines). Take the top unchecked ticket that fits the current theme. If none fit, take the top unchecked ticket. Reviewers add new tickets at the top.
 Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before planning new tickets.
 
-**Current theme: Volleyball district, the sand island (week of 2026-11-02)**
+**Current theme: Racing district, a generic circuit island (week of 2026-11-09)**
+
+## Review 2026-11-08 (code review fixes, small, do after Priority)
+- [ ] Split the single `ModelErrorBoundary` in `Scene`: give `VolleyballIsland` and `CloudLayer` each their own boundary plus `Suspense`, so one failed GLB no longer hides the crystal, hub island and ring
+- [ ] Fix: `VolleyballIsland` leaks its tinted island clone. Move the dispose effect from `SmallIsland` into `src/hooks/useTintedIsland.ts` (`scene, color, fade` returns the copy) and use it in both components
+- [ ] Add `useGLTF.preload` at module scope for `/models/crystals.glb`, `/models/palm.glb` and `/models/volleyball-net.glb` (next to the existing island preload)
+- [ ] Volleyball: replace the manual `document.body.style.cursor` with drei `useCursor`, and under reduced motion let a click do a short 0.3 s hop with no spin instead of ignoring it
+- [ ] Clouds: merge each `Cloud` into one mesh with vertex colors and one shared material (36 draw calls down to 6, keep the look and the `dim` tint)
+- [ ] Update the `VISION.md` intro ritual line (loader fades out by itself, no Start, no sound prompt). This ticket explicitly allows editing `VISION.md`, that one line only
+
+## Week of 2026-11-09 theme: Racing district, a generic circuit island
+- [ ] Add a `RacingIsland` component: island.glb tinted `PALETTE.ice`, scale 0.2, front left of the hub (about [-3.9, -1.5, 0.4]), own bob phase, still when reduced motion; render it inside the `Satellites` group in `Scene`
+- [ ] Add a procedural oval track on the racing island: a flat low-poly ring (`TorusGeometry` or extruded shape, 12 segments) in dark slate with an offWhite dashed center line from instanced thin boxes (Needs: RacingIsland)
+- [ ] (model) Generic open-wheel race car (`race-car.glb`): ONE car, bright coral body, contrasting sun wing and nose, four visible wheels, small cockpit and helmet bump. No livery, numbers or marks. Original shapes only
+- [ ] Put `race-car.glb` on the track and loop it around the oval at a steady pace, tilting into the bends; park it still when reduced motion (Needs: race-car model, track)
+- [ ] (model) Tire stack and barrier set (`tire-stack.glb`): ONE stack of 4 tires in blue and offWhite bands, plus a short run of barrier blocks. Generic, no sponsor marks
+- [ ] Place two tire stacks (clone the GLB) on the outer track edge, sharing the island bob (Needs: tire-stack model, RacingIsland)
+- [ ] Lap timer: click the car to start a lap, show a pill badge with `Html` (same style as the serve badge) with the current lap time and the best lap in React state (Needs: car loop)
 
 ## Review 2026-11-02 (visual review, do after Priority)
 - [x] Sky glow: add a warm low horizon band to the sky gradient (`PALETTE.coral` to `PALETTE.violet` at about 25 percent opacity near the bottom) so the islands sit in light, not a void
