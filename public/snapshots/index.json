@@ -20,5 +20,16 @@
     "removed": 397,
     "summary": "",
     "deploymentUrl": null
+  },
+  {
+    "week": 4,
+    "date": "2026-11-09",
+    "image": "/snapshots/week-04.png",
+    "sha": "96ea712",
+    "commits": 31,
+    "added": 1384,
+    "removed": 212,
+    "summary": "",
+    "deploymentUrl": null
   }
 ]
