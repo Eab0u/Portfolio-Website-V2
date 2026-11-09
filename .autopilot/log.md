@@ -25,3 +25,12 @@ Newest entries at the bottom.
 - 2026-11-05 (run started 21:29 ET): planned 10, commits made 10 (camera intro beat; far-island depth fade after 1 artist revision; hero crystal uses crystals.glb; model error boundary; island geometry dispose and preload after 1 code revision; h-dvh on home; palette CSS variables; scene aria-label; snapshot workflow rebase after 1 code revision; h-dvh on sub-pages and footer lift). No (model) tickets attempted. Skipped: none. Deploy check: commit 2 success, others not polled to completion. No rate-limit stop. Note: the first commit carries a different Co-Authored-By trailer from the harness.
 - 2026-11-06 (run started 21:28 ET): planned 1, commits made 1 (feat: reduced motion override in SettingsContext, null follows the OS, starts true until synced; code critic APPROVE with two minor notes; no artist critic, nothing rendered). No (model) tickets attempted. Skipped: the VISION.md edit ticket (off limits this run). No rate-limit stop. Deploy check below.
 - 2026-11-07 (run started 21:28 ET): planned 3, commits made 3 (volleyball net placed on the sand island after 1 artist revision for crowding the palm; click the ball to serve it over the net, code critic APPROVE, serve verified by frame logs since the static scene is unchanged; rally counter badge after 1 artist revision for style, both critics APPROVE). No (model) tickets attempted. Skipped: the VISION.md edit ticket (off limits). Deploy check: net commit success, others not polled to completion. No rate-limit stop. Note: the first push was rejected because HEAD was detached, fixed by pushing HEAD:main.
+
+## 2026-11-08 (planned 3, made 3)
+- feat: ice racing island front left of the hub. Reviewers approved first pass.
+- Oval track ticket marked [!]: artist critic rejected 4 passes (flat ring hovers or hides on the hilly island top, edge-on at hero camera). Reverted, nothing committed.
+- (model) race-car: Opus builder, 5 critic passes all REJECT, avg 7.33/7.33/7.5/7.33/7.5. Marked [!], files not committed.
+- (model) tire-stack: Opus builder, 5 critic passes all REJECT, avg 6.7/7.3/7.0/7.1/7.0. Marked [!], files not committed.
+- style: brighter preloader gem with glow, rim light, slow spin. Approved by both critics.
+- feat: referee chair on the volleyball island. Approved by both critics.
+- Deploy: first commit ad8fed6 reported success. Later commits checked below. No rate-limit stops.
