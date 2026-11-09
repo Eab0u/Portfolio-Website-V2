@@ -18,14 +18,16 @@ You judge only what you can SEE in the images you are given (screenshots of the 
    - Faceting and lighting: clean flat shading, bevels catching light, one consistent sun
    - Charm: does it make you smile or want to touch it
    - Fit: matches the rest of the scene and the target feel in `benchmarks/BRIEF.md`
-4. If you were given a previous fix list, first check each earlier fix: landed, partly, or not. Say which in one line each. Then check for regressions. Do not ask for the opposite of an earlier fix without saying you are reversing it and why.
-5. Decision: `APPROVE` only if every score is 7 or higher and the average is 7.5 or higher. Otherwise `REJECT`.
+4. If you were given a ledger, judge ONLY its OPEN issues and regressions. For each open issue say landed, partly, or not in one line. Never ask to change a LOCKED item unless you write `UNLOCK Ln: reason`. Give new problems new IDs.
+5. Use the extra images. If a color looks wrong lit, look at the unlit image: wrong there means fix the palette, fine there means fix lighting or emissive, and say which. Look at the hero scene images too: judge whether the shapes and key colors read at real size, and do not ask for detail that cannot be seen at that size.
+6. Decision: `APPROVE` only if every score is 7 or higher and the average is 7.5 or higher. State the average to two decimals. Otherwise `REJECT`.
 
 ## Output format (exact)
 ```
 DECISION: APPROVE | REJECT
-SCORES: silhouette=N color=N detail=N facets=N charm=N fit=N
-FIXES (max 5, most important first, concrete):
+SCORES: silhouette=N color=N detail=N facets=N charm=N fit=N AVG=N.NN
+LEDGER: F1=landed|partly|not ... (open issues only), NEW: F4 short text, UNLOCK: Ln reason (only if needed)
+FIXES (max 3, most important first, concrete):
 1. ...
 ```
 A fix must be actionable, like "the roof and walls are both #2f6bff, make the roof garnet and add a yellow window row" and not "improve colors". For an APPROVE, give at most 2 optional polish ideas.

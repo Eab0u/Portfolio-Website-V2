@@ -6,12 +6,13 @@ Each 3D model in `public/models/` is built by a deterministic script in this fol
 1. Read `ART_DIRECTION.md` first. Use only palette colors, flat shading, and the three detail scales (primary, secondary, tertiary).
 2. Write `tools/models/<name>.mjs`. Build the model from named parts, one function per part. No randomness unless it uses a fixed seed.
 3. Run it from the repo root: `node tools/models/<name>.mjs`. It writes `public/models/<name>.glb`.
-4. Check the budget: GLB under 500 KB (Draco compressed) and under 20k triangles. Small props should stay between 300 and 2,000 triangles.
+4. Check the budget: GLB under 1 MB (Draco when available) and under 20k triangles. Small props should stay between 300 and 2,000 triangles.
 5. Preview it: run `npm run dev` and open `/dev/model-preview?src=/models/<name>.glb&angle=0` (angles 0 to 3).
-6. Take screenshots with `node tools/shot.mjs <url> <out.png>` (first run `npm i --no-save playwright`, see the header of `tools/shot.mjs`) and send them to the artist critic.
+6. Run `node tools/model-check.mjs <name> roundN` (preview server on port 3100). It renders lit and unlit images and prints numbers you must fix before a critic sees the model: frame size, shadow saturation, grey share, hue drift from lighting, pink shift, shadow to light value. Unlit preview: add `&unlit=1` to the preview URL.
+7. Take screenshots with `node tools/shot.mjs <url> <out.png>` (first run `npm i --no-save playwright`, see the header of `tools/shot.mjs`) and send them to the artist critic.
 
 ## Shared helpers (`tools/models/lib/`)
-Every generator imports these instead of copying them: `rng.mjs` (seeded random numbers), `palette.mjs` (palette tokens and color helpers), `soup.mjs` (triangle soup with sun-shaded faces, one consistent sun), and `export.mjs` (Node GLB export). Put anything generic that a second model could use here, and keep model-specific parts in `tools/models/<name>/`. See `tools/models/island/` for an example.
+Every generator imports these instead of copying them: `rng.mjs` (seeded random numbers), `palette.mjs` (palette tokens and color helpers), `soup.mjs` (triangle soup with sun-shaded faces, one consistent sun), `shade.mjs` (`ramp(hex)` returns light, mid and shadow colors with hue-shifted, saturated shadows; never hand-pick shadow hexes), `rings.mjs` (band and fan), and `export.mjs` (Node GLB export). Put anything generic that a second model could use here, and keep model-specific parts in `tools/models/<name>/`. See `tools/models/island/` for an example.
 
 ## Rules
 - Original, generic art only. No logos, crests, wordmarks, or lookalikes of real brands, characters, or vehicles.
