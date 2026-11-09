@@ -7,7 +7,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 **Current theme: Racing district, a generic circuit island (week of 2026-11-09)**
 
 ## Review 2026-11-09 (visual review, do after Priority)
-- [ ] Preloader gem: raise its brightness (emissive mint, offWhite rim light) so it is clearly visible on the dark page from the first frame, and add a slow spin
+- [x] Preloader gem: raise its brightness (emissive mint, offWhite rim light) so it is clearly visible on the dark page from the first frame, and add a slow spin
 - [ ] Place `referee-chair.glb` on the volleyball island beside the net (`useGLTF` clone, scale to the deck, share the island bob)
 - [ ] Hub island hover: lift about 0.15 units and show a soft ice rim glow when the pointer is over the hub or crystal island; none under reduced motion
 - [ ] Crystal click: a click on the hero crystal island gives a short squash and a burst of 8 shards using the existing particle colors; reduced motion shows a color flash only
@@ -26,10 +26,10 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 ## Week of 2026-11-09 theme: Racing district, a generic circuit island
 - [x] Add a `RacingIsland` component: island.glb tinted `PALETTE.ice`, scale 0.2, front left of the hub (about [-3.9, -1.5, 0.4]), own bob phase, still when reduced motion; render it inside the `Satellites` group in `Scene`
-- [ ] Add a procedural oval track on the racing island: a flat low-poly ring (`TorusGeometry` or extruded shape, 12 segments) in dark slate with an offWhite dashed center line from instanced thin boxes (Needs: RacingIsland)
-- [ ] (model) Generic open-wheel race car (`race-car.glb`): ONE car, bright coral body, contrasting sun wing and nose, four visible wheels, small cockpit and helmet bump. No livery, numbers or marks. Original shapes only
+- [!] (2026-11-08: artist critic rejected 4 passes, scores about 4/6/4/5 avg; flat ring hovers or hides against the hilly island top and reads edge-on at hero camera. Retry with the track as a baked part of a dedicated flat racing island model or a taller camera angle) Add a procedural oval track on the racing island: a flat low-poly ring (`TorusGeometry` or extruded shape, 12 segments) in dark slate with an offWhite dashed center line from instanced thin boxes (Needs: RacingIsland)
+- [!] (2026-11-08: Opus builder, 5 critic passes all REJECT, avg scores 7.33/7.33/7.5/7.33/7.5. Best was round 6 and round 8, no hard rejects. Remaining notes: far-side garnet endplates go mauve in shade, orange band at coral to yellow nose seam, flat navy inlets and arches, muddy violet diffuser; retry with those four fixed, generator copies live in .autopilot/shots/race-car/round8/) (model) Generic open-wheel race car (`race-car.glb`): ONE car, bright coral body, contrasting sun wing and nose, four visible wheels, small cockpit and helmet bump. No livery, numbers or marks. Original shapes only
 - [ ] Put `race-car.glb` on the track and loop it around the oval at a steady pace, tilting into the bends; park it still when reduced motion (Needs: race-car model, track)
-- [ ] (model) Tire stack and barrier set (`tire-stack.glb`): ONE stack of 4 tires in blue and offWhite bands, plus a short run of barrier blocks. Generic, no sponsor marks
+- [!] (2026-11-08: Opus builder, 5 critic passes all REJECT, avg 6.7/7.3/7.0/7.1/7.0, best round 7. Notes: shaded barrier faces drift rose or violet instead of coral, barrier run reads as one slab, thin white slivers at tire tread edges, cream treads grey-blue in shade, grey-teal top strip; retry with the barrier as a separate simpler model; generator copies in .autopilot/shots/tire-stack/round7/ and round11/) (model) Tire stack and barrier set (`tire-stack.glb`): ONE stack of 4 tires in blue and offWhite bands, plus a short run of barrier blocks. Generic, no sponsor marks
 - [ ] Place two tire stacks (clone the GLB) on the outer track edge, sharing the island bob (Needs: tire-stack model, RacingIsland)
 - [ ] Lap timer: click the car to start a lap, show a pill badge with `Html` (same style as the serve badge) with the current lap time and the best lap in React state (Needs: car loop)
 
