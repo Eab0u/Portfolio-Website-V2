@@ -16,6 +16,7 @@ import CloudLayer from "./CloudLayer";
 import ModelErrorBoundary from "./ModelErrorBoundary";
 import IslandRing from "./IslandRing";
 import Particles from "./Particles";
+import RacingIsland from "./RacingIsland";
 import VolleyballIsland from "./VolleyballIsland";
 
 // Narrow (portrait) viewports get a smaller crystal and a farther camera so nothing is cropped.
@@ -114,6 +115,7 @@ export default function Scene() {
           <Satellites>
             <IslandRing />
             <VolleyballIsland />
+            <RacingIsland />
           </Satellites>
           <CloudLayer />
         </Suspense>

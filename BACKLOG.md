@@ -25,7 +25,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Update the `VISION.md` intro ritual line (loader fades out by itself, no Start, no sound prompt). This ticket explicitly allows editing `VISION.md`, that one line only
 
 ## Week of 2026-11-09 theme: Racing district, a generic circuit island
-- [ ] Add a `RacingIsland` component: island.glb tinted `PALETTE.ice`, scale 0.2, front left of the hub (about [-3.9, -1.5, 0.4]), own bob phase, still when reduced motion; render it inside the `Satellites` group in `Scene`
+- [x] Add a `RacingIsland` component: island.glb tinted `PALETTE.ice`, scale 0.2, front left of the hub (about [-3.9, -1.5, 0.4]), own bob phase, still when reduced motion; render it inside the `Satellites` group in `Scene`
 - [ ] Add a procedural oval track on the racing island: a flat low-poly ring (`TorusGeometry` or extruded shape, 12 segments) in dark slate with an offWhite dashed center line from instanced thin boxes (Needs: RacingIsland)
 - [ ] (model) Generic open-wheel race car (`race-car.glb`): ONE car, bright coral body, contrasting sun wing and nose, four visible wheels, small cockpit and helmet bump. No livery, numbers or marks. Original shapes only
 - [ ] Put `race-car.glb` on the track and loop it around the oval at a steady pace, tilting into the bends; park it still when reduced motion (Needs: race-car model, track)
