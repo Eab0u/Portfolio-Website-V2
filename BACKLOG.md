@@ -14,7 +14,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Timeline and credits: add 6 slow floating `Particles`-style shards (CSS-only triangles) behind the text so the sub-pages move
 - [ ] Clouds: shift the two bottom-right clouds so none sits behind the volleyball island at 1280 wide, and keep the title band clear
 - [ ] Small islands: tint the two plain brown islands with `PALETTE.mint` and `PALETTE.coral` via `tintIsland` so the ring has more color variety
-- [ ] Sun: add one low-poly sun disc (icosahedron detail 1, `PALETTE.sun`, unlit) near the horizon band behind the ring, slow pulse, still under reduced motion
+- [x] Sun: add one low-poly sun disc (icosahedron detail 1, `PALETTE.sun`, unlit) near the horizon band behind the ring, slow pulse, still under reduced motion
 
 ## Review 2026-11-08 (code review fixes, small, do after Priority)
 - [ ] Split the single `ModelErrorBoundary` in `Scene`: give `VolleyballIsland` and `CloudLayer` each their own boundary plus `Suspense`, so one failed GLB no longer hides the crystal, hub island and ring
