@@ -59,6 +59,7 @@ const analyze = ([litB64, unlitB64]) => {
     const n = Math.floor(px.length * 0.3);
     const shade = px.slice(0, n), light = px.slice(-n);
     const mean = (a, f) => a.reduce((t, p) => t + f(p), 0) / Math.max(1, a.length);
+    const colorful = px.filter((p) => p.u.s > 0.25);
     const drift = mean(shade.filter((p) => p.l.s > 0.15 && p.u.s > 0.15), (p) => dh(p.l.h, p.u.h));
     const pinkShift = shade.filter((p) => p.l.h >= 290 && p.l.h <= 350 && !(p.u.h >= 290 && p.u.h <= 350)).length / Math.max(1, shade.length);
     return {
@@ -68,10 +69,15 @@ const analyze = ([litB64, unlitB64]) => {
       drift,
       pinkShift,
       ratio: mean(shade, (p) => p.l.v) / Math.max(0.01, mean(light, (p) => p.l.v)),
+      // Share of the whole model that is lit grey: low saturation at mid value (off-white parts that shading turned dull).
+      greyMid: px.filter((p) => p.l.s < 0.15 && p.l.v > 0.3 && p.l.v < 0.85).length / Math.max(1, px.length),
+      // How much of the albedo's color survives lighting, over pixels that are colorful unlit.
+      satKeep: mean(colorful, (p) => p.l.s) / Math.max(0.01, mean(colorful, (p) => p.u.s)),
     };
   });
 };
 
+const SATKEEP = 0.8;
 const fails = [];
 for (let a = 0; a < 4; a++) {
   const lit = await shoot(a, false);
@@ -83,9 +89,11 @@ for (let a = 0; a < 4; a++) {
   if (r.greyShare > 0.13) flags.push("over 13% of shadow pixels are grey");
   if (r.drift > 16) flags.push("lighting shifts shadow hue by over 16 degrees: check emissive and fill light, not the palette");
   if (r.pinkShift > 0.12) flags.push("lighting turns over 12% of shadow pixels pink or mauve");
+  if (r.satKeep < SATKEEP) flags.push("lighting washes out the albedo: colorful surfaces keep under " + (SATKEEP * 100) + "% of their saturation");
+  if (r.greyMid > 0.1) flags.push("over 10% of the model is lit grey (low saturation mid-tones): give pale parts a cream, mint or ice tint, not neutral off-white");
   if (r.ratio < 0.22) flags.push("shadows are too dark against the light side");
   if (r.ratio > 0.85) flags.push("shadow and light sides are nearly the same value (flat)");
-  console.log(`angle ${a}: frame ${(r.area * 100).toFixed(0)}%  shadowSat ${r.shadeSat.toFixed(2)}  grey ${(r.greyShare * 100).toFixed(0)}%  hueDrift ${r.drift.toFixed(0)}deg  pinkShift ${(r.pinkShift * 100).toFixed(0)}%  shadow/light ${r.ratio.toFixed(2)}`);
+  console.log(`angle ${a}: frame ${(r.area * 100).toFixed(0)}%  shadowSat ${r.shadeSat.toFixed(2)}  grey ${(r.greyShare * 100).toFixed(0)}%  hueDrift ${r.drift.toFixed(0)}deg  pinkShift ${(r.pinkShift * 100).toFixed(0)}%  shadow/light ${r.ratio.toFixed(2)}  satKept ${(r.satKeep * 100).toFixed(0)}%  greyMid ${(r.greyMid * 100).toFixed(0)}%`);
   flags.forEach((f) => { console.log(`  FAIL: ${f}`); fails.push(`angle ${a}: ${f}`); });
 }
 await browser.close();
