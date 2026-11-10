@@ -11,9 +11,9 @@ const CLOUDS: [number, number, number, number, number][] = [
   [-4.6, -3.6, 0.2, 0.62, 0],
   [-2.9, -3.9, -1.5, 0.62, 1.7],
   [3.0, -3.8, -1.2, 0.62, 3.1],
-  [4.7, -3.5, 0.3, 0.68, 4.4],
+  [4.9, -3.6, 0.3, 0.68, 4.4],
   [-7.2, -2.5, -3, 0.6, 5.2],
-  [7.2, -2.5, -3, 0.6, 2.3],
+  [7.6, -3.0, -3, 0.6, 2.3],
 ];
 
 function DriftingCloud({ x, y, z, scale, phase }: { x: number; y: number; z: number; scale: number; phase: number }) {
