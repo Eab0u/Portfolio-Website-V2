@@ -19,3 +19,10 @@ Every generator imports these instead of copying them: `rng.mjs` (seeded random 
 - Commit the script and the GLB together, in one commit.
 - If headless Blender is not available, use Node or procedural Three.js geometry instead. Do not block on it.
 - Scripts that need a new dev dependency must have a ticket that allows it.
+
+## Lighting (read before you color anything)
+The preview and the real scene share one set of lights, including a cool ice fill from behind and below. It strips red and adds blue on back and downward faces, so these colors dull or shift once lit: sand and peach (go olive or brown), violet (goes indigo), ice and cyan (go denim), garnet (goes near black), and off-white (goes grey). Neutral off-white has no color to hold, so use cream, mint or ice tints for pale parts.
+Fix it in the material, never by changing the lights:
+1. Put the affected color set in its own mesh (see `palm.mjs`: Foam, Trunk, Fronds and Coconuts each have a soft `emissive` tint, intensity 0.1 to 0.5, chosen to counter the fill, e.g. coral on the wood trunk).
+2. Pre-compensate the albedo: nudge the hue away from what the fill adds (toward cyan or mint for ice, toward coral for sand), and keep the shade step light enough to stay saturated.
+3. Check with `node tools/model-check.mjs <name> roundN`: the per-surface table prints each big surface as `unlit -> lit`, along with `satKept` (color surviving the light) and `greyMid` (lit grey mid-tones). A surface that is fine unlit but shifted lit is a lighting problem, so apply 1 and 2.
