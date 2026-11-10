@@ -12,44 +12,32 @@
     "run_time_et": "about 22:40 nightly"
   },
   "weekly_cap": 50,
-  "week_start": "2026-11-02",
-  "week_commits": 28,
+  "week_start": "2026-11-09",
+  "week_commits": 1,
   "plan": [
     {
-      "date": "2026-11-02",
-      "commits": 10,
-      "status": "done",
-      "made": 10
-    },
-    {
-      "date": "2026-11-03",
-      "commits": 1,
-      "status": "done",
+      "date": "2026-11-09",
+      "commits": 4,
+      "status": "pending",
       "made": 1
     },
     {
-      "date": "2026-11-05",
-      "commits": 10,
-      "status": "done",
-      "made": 10
+      "date": "2026-11-10",
+      "commits": 5,
+      "status": "pending",
+      "made": 0
     },
     {
-      "date": "2026-11-06",
-      "commits": 1,
-      "status": "done",
-      "made": 1
+      "date": "2026-11-12",
+      "commits": 9,
+      "status": "pending",
+      "made": 0
     },
     {
-      "date": "2026-11-07",
-      "commits": 3,
-      "status": "done",
-      "made": 3
-    },
-    {
-      "date": "2026-11-08",
-      "commits": 3,
-      "status": "done",
-      "made": 3
+      "date": "2026-11-14",
+      "commits": 9,
+      "status": "pending",
+      "made": 0
     }
   ]
 }

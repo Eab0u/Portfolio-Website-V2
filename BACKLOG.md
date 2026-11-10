@@ -9,7 +9,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 ## Review 2026-11-09 (visual review, do after Priority)
 - [x] Preloader gem: raise its brightness (emissive mint, offWhite rim light) so it is clearly visible on the dark page from the first frame, and add a slow spin
 - [x] Place `referee-chair.glb` on the volleyball island beside the net (`useGLTF` clone, scale to the deck, share the island bob)
-- [ ] Hub island hover: lift about 0.15 units and show a soft ice rim glow when the pointer is over the hub or crystal island; none under reduced motion
+- [x] Hub island hover: lift about 0.15 units and show a soft ice rim glow when the pointer is over the hub or crystal island; none under reduced motion
 - [ ] Crystal click: a click on the hero crystal island gives a short squash and a burst of 8 shards using the existing particle colors; reduced motion shows a color flash only
 - [ ] Timeline and credits: add 6 slow floating `Particles`-style shards (CSS-only triangles) behind the text so the sub-pages move
 - [ ] Clouds: shift the two bottom-right clouds so none sits behind the volleyball island at 1280 wide, and keep the title band clear
