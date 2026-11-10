@@ -1,7 +1,8 @@
 // Usage: node tools/model-check.mjs <name> <label> [port]
 // Renders public/models/<name>.glb lit and unlit from all 4 angles into .autopilot/shots/<name>/,
-// then prints numbers the builder can fail on BEFORE the critic sees the model:
-// frame size, shadow saturation, grey share, hue drift caused by lighting, shadow to light value.
+// then prints numbers the builder can fail on BEFORE the critic sees the model: frame size,
+// shadow saturation, grey share, hue drift caused by lighting, shadow to light value, satKept
+// (color surviving the light), greyMid (lit grey mid-tones) and a per-surface unlit -> lit table.
 // Needs a dev server (npm run dev -- -p 3100) and playwright (npm i --no-save playwright).
 import { chromium } from "playwright";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
@@ -47,14 +48,30 @@ const analyze = ([litB64, unlitB64]) => {
   const dh = (a, b) => Math.min(Math.abs(a - b), 360 - Math.abs(a - b));
   return Promise.all([load(litB64), load(unlitB64)]).then(([L, U]) => {
     const px = [];
+    const all = []; // every model pixel, near-black included, for the per-surface table
     for (let i = 0; i < U.length; i += 4) {
       if (Math.abs(U[i] - 10) + Math.abs(U[i + 1] - 11) + Math.abs(U[i + 2] - 16) < 14) continue;
       const l = hsv(L[i], L[i + 1], L[i + 2]);
-      if (l.v < 0.18) continue; // saturation is noise on near-black pixels
       const u = hsv(U[i], U[i + 1], U[i + 2]);
-      px.push({ l, u });
+      const p = { l, u, lc: [L[i], L[i + 1], L[i + 2]], uc: [U[i], U[i + 1], U[i + 2]] };
+      all.push(p);
+      if (l.v >= 0.18) px.push(p); // saturation is noise on near-black pixels, so the other metrics skip them
     }
     const total = U.length / 4;
+    // Per-surface table: group model pixels by unlit color (8 levels per channel) and average lit versus unlit.
+    const groups = new Map();
+    for (const p of all) {
+      const k = p.uc.map((v) => v >> 5).join(",");
+      const g = groups.get(k) || { n: 0, u: [0, 0, 0], l: [0, 0, 0] };
+      g.n++;
+      for (let c = 0; c < 3; c++) { g.u[c] += p.uc[c]; g.l[c] += p.lc[c]; }
+      groups.set(k, g);
+    }
+    const surfaces = [...groups.values()]
+      .filter((g) => g.n / all.length >= 0.04)
+      .sort((a, b) => b.n - a.n)
+      .slice(0, 7)
+      .map((g) => ({ share: g.n / all.length, unlit: g.u.map((v) => v / g.n), lit: g.l.map((v) => v / g.n) }));
     px.sort((a, b) => a.l.v - b.l.v);
     const n = Math.floor(px.length * 0.3);
     const shade = px.slice(0, n), light = px.slice(-n);
@@ -63,6 +80,7 @@ const analyze = ([litB64, unlitB64]) => {
     const drift = mean(shade.filter((p) => p.l.s > 0.15 && p.u.s > 0.15), (p) => dh(p.l.h, p.u.h));
     const pinkShift = shade.filter((p) => p.l.h >= 290 && p.l.h <= 350 && !(p.u.h >= 290 && p.u.h <= 350)).length / Math.max(1, shade.length);
     return {
+      surfaces,
       area: px.length / total,
       shadeSat: mean(shade, (p) => p.l.s),
       greyShare: shade.filter((p) => p.l.s < 0.2).length / Math.max(1, shade.length),
@@ -94,6 +112,25 @@ for (let a = 0; a < 4; a++) {
   if (r.ratio < 0.22) flags.push("shadows are too dark against the light side");
   if (r.ratio > 0.85) flags.push("shadow and light sides are nearly the same value (flat)");
   console.log(`angle ${a}: frame ${(r.area * 100).toFixed(0)}%  shadowSat ${r.shadeSat.toFixed(2)}  grey ${(r.greyShare * 100).toFixed(0)}%  hueDrift ${r.drift.toFixed(0)}deg  pinkShift ${(r.pinkShift * 100).toFixed(0)}%  shadow/light ${r.ratio.toFixed(2)}  satKept ${(r.satKeep * 100).toFixed(0)}%  greyMid ${(r.greyMid * 100).toFixed(0)}%`);
+  // Per-surface: a big surface whose color changes a lot once lit is a LIGHTING problem, fix it in the material (see README, Lighting).
+  const hex = (c) => "#" + c.map((v) => Math.round(v).toString(16).padStart(2, "0")).join("");
+  const hv = (c) => {
+    const [r, g, b] = c.map((v) => v / 255);
+    const mx = Math.max(r, g, b), d = mx - Math.min(r, g, b);
+    let h = 0;
+    if (d) h = mx === r ? ((g - b) / d + 6) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    return { h: h * 60, s: mx ? d / mx : 0, v: mx };
+  };
+  for (const sf of r.surfaces) {
+    const u = hv(sf.unlit), l = hv(sf.lit);
+    const dh = Math.min(Math.abs(u.h - l.h), 360 - Math.abs(u.h - l.h));
+    const bad = [];
+    if (u.s > 0.25 && dh > 24) bad.push(`hue moves ${dh.toFixed(0)} degrees`);
+    if (u.s > 0.25 && l.s < u.s * 0.55) bad.push("loses almost half its saturation");
+    if (u.v > 0.4 && l.v < u.v * 0.42) bad.push("goes near black lit");
+    console.log(`    surface ${(sf.share * 100).toFixed(0)}%  unlit ${hex(sf.unlit)} -> lit ${hex(sf.lit)}${bad.length ? "  <-- " + bad.join(", ") : ""}`);
+    if (bad.length) flags.push(`surface ${hex(sf.unlit)} (${(sf.share * 100).toFixed(0)}% of the model) ${bad.join(", ")}`);
+  }
   flags.forEach((f) => { console.log(`  FAIL: ${f}`); fails.push(`angle ${a}: ${f}`); });
 }
 await browser.close();
