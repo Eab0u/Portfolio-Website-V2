@@ -43,3 +43,11 @@ Newest entries at the bottom.
 - feat: clouds shifted off the volleyball island (code critic rejected once for scope, revised to move both clouds, then approved).
 - No (model) tickets attempted. Racing tickets skipped (all blocked on [!] models). Crystal click ticket not taken (too large for one commit, left in backlog).
 - Note: a stale next-server from a baseline shot briefly caused a false broken-render report from the artist critic; fixed by restarting the server. No rate-limit stop.
+
+## 2026-11-10 (run started 21:33 ET, planned 5, made 5)
+- perf: preload crystal, palm and net models (code critic approved).
+- fix: separate error boundary and Suspense for volleyball island and clouds (code critic approved).
+- fix: shared useTintedIsland hook frees tinted island clones, also applied to RacingIsland (code critic approved).
+- fix: volleyball uses useCursor, brief 0.3 s hop under reduced motion (code critic approved).
+- style: sand small island tinted mint (code and artist critics approved first pass).
+- No (model) tickets attempted. Skipped: crystal click (too large), cloud merge (needs emissive baked into vertex colors, too large for one commit), racing tickets (blocked on [!] models), VISION.md edit (off limits). Deploy status not polled to completion. No rate-limit stop.

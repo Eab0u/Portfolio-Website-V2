@@ -12,7 +12,7 @@ import { useTintedIsland } from "@/hooks/useTintedIsland";
 const ISLANDS = [
   { top: PALETTE.coral, scale: 0.3 },
   { top: PALETTE.ice, scale: 0.2 },
-  { top: PALETTE.sand, scale: 0.26 },
+  { top: PALETTE.mint, scale: 0.26 },
   { top: PALETTE.violet, scale: 0.18 },
 ] as const;
 
