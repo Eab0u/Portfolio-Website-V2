@@ -36,6 +36,8 @@ function Satellites({ children }: { children: ReactNode }) {
   return <group scale={k}>{children}</group>;
 }
 
+useGLTF.preload("/models/crystals.glb");
+
 function HeroCrystal() {
   const ref = useRef<Group>(null);
   const fit = useFit();

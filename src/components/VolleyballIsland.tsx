@@ -11,6 +11,10 @@ import Volleyball from "./Volleyball";
 
 // Sand lightened toward off-white so the beach reads brighter than the small sand island.
 const BEACH = `#${new Color(PALETTE.sand).lerp(new Color(PALETTE.offWhite), 0.55).getHexString()}`;
+
+useGLTF.preload("/models/palm.glb");
+useGLTF.preload("/models/volleyball-net.glb");
+
 const BASE: [number, number, number] = [3.9, -1.5, 0.4];
 
 // The sand island for the volleyball district, front right of the hub, with a palm, a net and a referee chair on its deck (shares the bob). Bobs on its own phase, still when reduced motion is on.
