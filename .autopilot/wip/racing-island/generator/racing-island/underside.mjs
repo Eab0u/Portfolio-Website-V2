@@ -2,7 +2,7 @@
 // band, a sand stone lip, violet strata with ice-lit ledges, a three-point coral tip, and fused
 // stalactites. Rings follow the island's own outline (ANG and rimR in shared.mjs).
 import { SNOW, SNOW2, CLIFF, ICE, STONE, VHI, VIOLET, TIP, SPIKE } from "./palette.mjs";
-import { main, ring, bridge, rimR, rimPt, rr, V, N } from "./shared.mjs";
+import { main, ember, ring, bridge, rimR, rimPt, rr, V, N } from "./shared.mjs";
 
 // [y, radius fraction, points, band, jitter key]. Outward steps make ice-lit ledges.
 const PROFILE = [
@@ -17,15 +17,23 @@ export function buildUnderside(rim) {
   bridge(rim, bevel, SNOW);
   let prev = bevel.map((p, i) => V(p.x * 0.995, -0.14 - [0.12, 0.02, 0.07, 0.03][i % 4], p.z * 0.995));
   bridge(bevel, prev, SNOW2);
-  const rings = PROFILE.map(([y, s, n, set, key]) => { const r = ring(key, s, y, n); bridge(prev, r, set); prev = r; return r; });
+  const rings = PROFILE.map(([y, s, n, set, key]) => {
+    const r = ring(key, s, y, n);
+    // Tall violet ribbons get a crease: a mid ring pushed out, alternating depth (no rng, so other parts keep their stream).
+    if ((set === VHI || set === VIOLET) && prev[0].y - y > 0.3) {
+      const st = prev.length / n, mid = r.map((q, i) => V().addVectors(q, prev[i * st]).multiplyScalar(0.5).multiply(V(1.07 - (i % 3) * 0.025, 1, 1.07 - (i % 3) * 0.025)).setY((q.y + prev[i * st].y) / 2 + (i % 2 ? 0.04 : -0.03)));
+      bridge(prev, mid, set); bridge(mid, r, set);
+    } else bridge(prev, r, set);
+    prev = r; return r;
+  });
   const tips = [[-3.55, 0.5], [-3.15, 2.6], [-3.3, 4.6]].map(([y, a]) => V(Math.cos(a) * 0.14, y, Math.sin(a) * 0.14));
   const out = (p) => V(p.x, -0.5, p.z), cut = [0, 3, 5, 8];
   for (let s = 0; s < 3; s++) {
-    for (let i = cut[s]; i < cut[s + 1]; i++) main.lit(prev[i], prev[(i + 1) % 8], tips[s], TIP, out(prev[i]));
+    for (let i = cut[s]; i < cut[s + 1]; i++) ember.lit(prev[i], prev[(i + 1) % 8], tips[s], TIP, out(prev[i]));
     const b = prev[cut[s + 1] % 8];
-    main.lit(b, tips[s], tips[(s + 1) % 3], TIP, out(b));
+    ember.lit(b, tips[s], tips[(s + 1) % 3], TIP, out(b));
   }
-  main.lit(tips[0], tips[1], tips[2], TIP, V(0, -1, 0));
+  ember.lit(tips[0], tips[1], tips[2], TIP, V(0, -1, 0));
   return rings;
 }
 
@@ -52,8 +60,8 @@ export function buildSpikes() {
     const out = (p) => V(p.x - c.x, -0.2, p.z - c.z);
     for (let i = 0; i < 6; i++) {
       const j = (i + 1) % 6;
-      main.lit(top[i], top[j], mid[j], SPIKE, out(top[i])); main.lit(top[i], mid[j], mid[i], SPIKE, out(top[i]));
-      main.lit(mid[i], mid[j], tip, SPIKE, out(mid[i]));
+      ember.lit(top[i], top[j], mid[j], SPIKE, out(top[i])); ember.lit(top[i], mid[j], mid[i], SPIKE, out(top[i]));
+      ember.lit(mid[i], mid[j], tip, SPIKE, out(mid[i]));
     }
   });
 }

@@ -4,7 +4,7 @@ import { setSeed, rnd, rr } from "../lib/rng.mjs";
 import { V, Soup } from "../lib/soup.mjs";
 import { band, fan } from "../lib/rings.mjs";
 import { extrude, rect, circle } from "../lib/extrude.mjs";
-import { HI } from "./palette.mjs";
+import { C, P, HI, CLIFF, SNOW2, STONE, VHI, VIOLET, GARNET, STAND } from "./palette.mjs";
 export { rnd, rr, V, band, fan, extrude, rect, circle };
 
 setSeed(20261109);
@@ -13,6 +13,33 @@ export const main = new Soup(HI);
 export const paint = new Soup();
 export const lamp = new Soup();
 export const glow = new Soup();
+export const ember = new Soup(); // coral spikes and tip, with a faint coral glow so their shade side stays coral
+// Underside bands in their own meshes, each with a soft same-hue glow: the scene's ice fill light would
+// otherwise turn the ice wall denim, the strata indigo and the sand brown on the faces it reaches.
+export const wall = new Soup(), strata = new Soup(HI), stone = new Soup(HI);
+// Garnet trim and the grandstand walls get the same treatment (garnet goes near-black, sand goes tan).
+export const accent = new Soup(), stand = new Soup();
+const ROUTE = new Map([[CLIFF, wall], [SNOW2, wall], [STONE, stone], [VHI, strata], [VIOLET, strata], [GARNET, accent], [STAND, stand]]);
+const mainLit = main.lit.bind(main);
+main.lit = (a, b, c, set, out) => (ROUTE.get(set) ?? { lit: mainLit }).lit(a, b, c, set, out);
+// Facet play: the glow evens out shading on the glowing bands, so faces step light / mid / dark in a
+// fixed scrambled order. Pairs share a value so quads stay whole. Variants keep upward-ledge highlights.
+function facetPlay(soup, lightFn, darkFn) {
+  const base = soup.lit.bind(soup), VAR = new Map();
+  let k = 0;
+  soup.lit = (a, b, c, set, out) => {
+    if (!VAR.has(set)) {
+      const v = [set, set.map(lightFn), set.map(darkFn)];
+      if (soup.highlights.has(set)) v.forEach((s) => soup.highlights.set(s, soup.highlights.get(set)));
+      VAR.set(set, v);
+    }
+    base(a, b, c, VAR.get(set)[[0, 2, 1, 2, 0, 1, 2][(k++ >> 1) % 7]], out);
+  };
+}
+// Ice wall: light steps toward bright ice, dark steps lean violet so they never read cold steel.
+facetPlay(wall, (x) => x.clone().lerp(C(P.ice), 0.5).lerp(C(P.white), 0.1), (x) => x.clone().lerp(C(P.violet), 0.14).multiplyScalar(0.72));
+// Violet strata: same-hue value steps.
+facetPlay(strata, (x) => x.clone().lerp(C(P.white), 0.14), (x) => x.clone().multiplyScalar(0.74));
 export const UP = V(0, 1, 0);
 
 // Track: a stadium oval (straights of 2L along x, end radius R), centerline shifted DZ toward +z so
@@ -57,7 +84,7 @@ export const radialOut = (p) => V(p.x, -0.3, p.z);
 // Bridge ring a to ring b (a.length a multiple of b.length) with lit faces.
 export function bridge(a, b, set, outFn = radialOut) {
   const step = a.length / b.length;
-  const face = (p, q, r) => main.lit(p, q, r, set, outFn(V().addVectors(p, q).add(r).divideScalar(3)));
+  const soup = ROUTE.get(set) ?? main, face = (p, q, r) => soup.lit(p, q, r, set, outFn(V().addVectors(p, q).add(r).divideScalar(3)));
   for (let j = 0; j < b.length; j++) {
     const j1 = (j + 1) % b.length;
     for (let s = 0; s < step; s++) face(a[j * step + s], a[(j * step + s + 1) % a.length], b[j]);

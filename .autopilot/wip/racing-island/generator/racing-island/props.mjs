@@ -1,27 +1,38 @@
 // Small props: light poles with glowing sun lenses, tyre stacks and cones on the apron and infield ends,
 // faceted ice boulders, and glowing ice crystals (one cluster on top, one trio below).
 import * as THREE from "three";
-import { WHITE, RED, GARNET, TRACK2, APRON2, CRYSTAL, SUN } from "./palette.mjs";
+import { WHITE, CREAM, CORAL, MINT, RED, GARNET, SUNS, APRON2, CRYSTAL, SUN } from "./palette.mjs";
 import { main, lamp, glow, box, extrude, circle, stad, apronPt, outAt, rr, V, UP } from "./shared.mjs";
 
-// Light poles: an off-white mast with a garnet collar, an off-white lamp housing facing the track,
+// Light poles: a mint mast with a garnet collar, a garnet lamp housing facing the track,
 // and a glowing sun lens on its front and underside.
 const bar = (hw, hd) => [[hw, hd], [-hw, hd], [-hw, -hd], [hw, -hd]];
 export function buildPoles() {
+  const tops = [];
   [0.2, 0.3, 0.47, 0.68, 0.8, 0.95].forEach((u, k) => {
     const p = apronPt(u, k % 2 ? 0.5 : 0.42), h = 0.72;
-    box(main, p.x, -0.02, p.z, 0.04, h, 0.04, WHITE);
+    box(main, p.x, -0.02, p.z, 0.04, h, 0.04, k % 2 ? CREAM : MINT);
+    tops.push(p.clone().setY(h - 0.06));
     box(main, p.x, 0.12, p.z, 0.06, 0.05, 0.06, GARNET);
     const n = outAt(u), side = V(-n.z, 0, n.x), at = (s, dn, y) => p.clone().addScaledVector(side, s).addScaledVector(n, dn).setY(y);
-    extrude(main, at(-0.1, 0, h), at(0.1, 0, h), bar(0.04, 0.035), WHITE, { side: UP.clone() });
+    extrude(main, at(-0.1, 0, h), at(0.1, 0, h), bar(0.04, 0.035), GARNET, { side: UP.clone() });
     extrude(lamp, at(-0.085, -0.036, h), at(0.085, -0.036, h), bar(0.03, 0.006), [SUN, SUN, SUN], { side: UP.clone() });
     extrude(lamp, at(-0.085, -0.01, h - 0.041), at(0.085, -0.01, h - 0.041), bar(0.006, 0.022), [SUN, SUN, SUN], { side: UP.clone() });
   });
+  // Bunting: a sagging line of coral, off-white and sun pennants between two pairs of poles.
+  [[0, 1], [3, 4]].forEach(([i, j]) => {
+    const a = tops[i], b = tops[j];
+    for (let s = 0; s < 7; s++) {
+      const t = (s + 0.5) / 7, p = a.clone().lerp(b, t).setY(a.y - 0.12 * 4 * t * (1 - t)), q = a.clone().lerp(b, t + 0.09).setY(p.y);
+      const tip = p.clone().lerp(q, 0.5).setY(p.y - 0.07), c = [CORAL, WHITE, CREAM][s % 3][1];
+      main.tri(p, q, tip, c, V(0, 0, 1)); main.tri(p, q, tip, c, V(0, 0, -1));
+    }
+  });
 }
 
-// Tyre stacks: short octagonal drums, alternating red and deep blue, in the infield ends and on the apron.
+// Tyre stacks: short octagonal drums, alternating red and sun yellow, in the infield ends and on the apron.
 function tyres(c, high) {
-  for (let k = 0; k < high; k++) extrude(main, V(c.x, k * 0.05, c.z), V(c.x, k * 0.05 + 0.048, c.z), circle(0.055, 8), k % 2 ? RED : TRACK2);
+  for (let k = 0; k < high; k++) extrude(main, V(c.x, k * 0.05, c.z), V(c.x, k * 0.05 + 0.048, c.z), circle(0.055, 8), k % 2 ? RED : SUNS);
 }
 // A small red cone with an off-white tip band.
 function cone(c) {
