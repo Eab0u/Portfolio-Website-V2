@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
+import { Html, useCursor } from "@react-three/drei";
 import { Color, Float32BufferAttribute, IcosahedronGeometry, Vector3, type Mesh } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
@@ -31,12 +31,15 @@ function makeBall() {
 }
 
 const SERVE_SECONDS = 1.8;
+const HOP_SECONDS = 0.3; // reduced motion: a short hop in place, no travel or spin
 
-// Hovers gently and spins slowly. Click to serve: it arcs over the net and returns. Still when reduced motion is on.
+// Hovers gently and spins slowly. Click to serve: it arcs over the net and returns. Reduced motion keeps it still and a click gives a short 0.3 s hop.
 export default function Volleyball({ position, size = 0.13 }: { position: [number, number, number]; size?: number }) {
   const ref = useRef<Mesh>(null);
   const reduced = useReducedMotion();
   const serve = useRef(-1);
+  const [hovered, setHovered] = useState(false);
+  useCursor(hovered);
   const [serves, setServes] = useState(0);
   const geometry = useMemo(() => makeBall(), []);
   useEffect(() => () => geometry.dispose(), [geometry]);
@@ -44,10 +47,13 @@ export default function Volleyball({ position, size = 0.13 }: { position: [numbe
     if (!ref.current) return;
     if (serve.current >= 0) {
       serve.current += delta;
-      const p = Math.min(serve.current / SERVE_SECONDS, 1);
+      const p = Math.min(serve.current / (reduced ? HOP_SECONDS : SERVE_SECONDS), 1);
       const arc = Math.sin(p * Math.PI);
-      ref.current.position.set(position[0] + 0.9 * arc, position[1] + 0.45 * arc, position[2]);
-      ref.current.rotation.y = p * Math.PI * 6;
+      if (reduced) ref.current.position.set(position[0], position[1] + 0.1 * arc, position[2]);
+      else {
+        ref.current.position.set(position[0] + 0.9 * arc, position[1] + 0.45 * arc, position[2]);
+        ref.current.rotation.y = p * Math.PI * 6;
+      }
       if (p >= 1) serve.current = -1;
       return;
     }
@@ -67,12 +73,12 @@ export default function Volleyball({ position, size = 0.13 }: { position: [numbe
         position={position}
         scale={size}
         onPointerDown={() => {
-          if (reduced || serve.current >= 0) return;
+          if (serve.current >= 0) return;
           serve.current = 0;
           setServes((n) => n + 1);
         }}
-        onPointerOver={() => !reduced && (document.body.style.cursor = "pointer")}
-        onPointerOut={() => (document.body.style.cursor = "")}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
       >
         <meshStandardMaterial vertexColors flatShading roughness={0.55} emissive={PALETTE.sun} emissiveIntensity={0.05} />
       </mesh>

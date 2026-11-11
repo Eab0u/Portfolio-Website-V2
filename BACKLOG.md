@@ -20,7 +20,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Split the single `ModelErrorBoundary` in `Scene`: give `VolleyballIsland` and `CloudLayer` each their own boundary plus `Suspense`, so one failed GLB no longer hides the crystal, hub island and ring
 - [x] Fix: `VolleyballIsland` leaks its tinted island clone. Move the dispose effect from `SmallIsland` into `src/hooks/useTintedIsland.ts` (`scene, color, fade` returns the copy) and use it in both components
 - [x] Add `useGLTF.preload` at module scope for `/models/crystals.glb`, `/models/palm.glb` and `/models/volleyball-net.glb` (next to the existing island preload)
-- [ ] Volleyball: replace the manual `document.body.style.cursor` with drei `useCursor`, and under reduced motion let a click do a short 0.3 s hop with no spin instead of ignoring it
+- [x] Volleyball: replace the manual `document.body.style.cursor` with drei `useCursor`, and under reduced motion let a click do a short 0.3 s hop with no spin instead of ignoring it
 - [ ] Clouds: merge each `Cloud` into one mesh with vertex colors and one shared material (36 draw calls down to 6, keep the look and the `dim` tint)
 - [ ] Update the `VISION.md` intro ritual line (loader fades out by itself, no Start, no sound prompt). This ticket explicitly allows editing `VISION.md`, that one line only
 
