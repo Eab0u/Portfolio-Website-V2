@@ -38,6 +38,15 @@ function Satellites({ children }: { children: ReactNode }) {
 
 useGLTF.preload("/models/crystals.glb");
 
+// A failed model hides only its own subtree, so the crystal, hub island and ring survive.
+function Guarded({ children }: { children: ReactNode }) {
+  return (
+    <ModelErrorBoundary>
+      <Suspense fallback={null}>{children}</Suspense>
+    </ModelErrorBoundary>
+  );
+}
+
 function HeroCrystal() {
   const ref = useRef<Group>(null);
   const fit = useFit();
@@ -147,11 +156,15 @@ export default function Scene() {
           </HubHover>
           <Satellites>
             <IslandRing />
-            <VolleyballIsland />
+            <Guarded>
+              <VolleyballIsland />
+            </Guarded>
             <RacingIsland />
           </Satellites>
           <Sun />
-          <CloudLayer />
+          <Guarded>
+            <CloudLayer />
+          </Guarded>
         </Suspense>
         </ModelErrorBoundary>
       </group>
