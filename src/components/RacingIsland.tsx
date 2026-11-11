@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import type { Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
-import { tintIsland } from "@/lib/tintIsland";
+import { useTintedIsland } from "@/hooks/useTintedIsland";
 
 const BASE: [number, number, number] = [-3.9, -1.5, 0.4];
 
@@ -15,7 +15,7 @@ export default function RacingIsland() {
   const ref = useRef<Group>(null);
   const reduced = useReducedMotion();
   const { scene } = useGLTF("/models/island.glb");
-  const copy = useMemo(() => tintIsland(scene, PALETTE.ice), [scene]);
+  const copy = useTintedIsland(scene, PALETTE.ice);
   useFrame((state) => {
     if (ref.current) ref.current.position.y = BASE[1] + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.5 + 4.1) * 0.1);
   });

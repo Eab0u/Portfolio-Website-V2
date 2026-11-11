@@ -6,7 +6,7 @@ import { useGLTF } from "@react-three/drei";
 import { Color, type Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
-import { tintIsland } from "@/lib/tintIsland";
+import { useTintedIsland } from "@/hooks/useTintedIsland";
 import Volleyball from "./Volleyball";
 
 // Sand lightened toward off-white so the beach reads brighter than the small sand island.
@@ -28,7 +28,7 @@ export default function VolleyballIsland() {
   const netCopy = useMemo(() => net.clone(true), [net]);
   const chair = useGLTF("/models/referee-chair.glb").scene;
   const chairCopy = useMemo(() => chair.clone(true), [chair]);
-  const copy = useMemo(() => tintIsland(scene, BEACH), [scene]);
+  const copy = useTintedIsland(scene, BEACH);
   useFrame((state) => {
     if (ref.current) ref.current.position.y = BASE[1] + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.55 + 2.4) * 0.1);
   });

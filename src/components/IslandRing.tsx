@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useCursor, useGLTF } from "@react-three/drei";
-import type { Group, Mesh } from "three";
+import type { Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
-import { tintIsland } from "@/lib/tintIsland";
+import { useTintedIsland } from "@/hooks/useTintedIsland";
 
 // Four small islands in a loose ring behind the hub. Each one swaps its green top for another palette color.
 const ISLANDS = [
@@ -25,17 +25,7 @@ function SmallIsland({ top, scale, position, phase }: { top: string; scale: numb
   const ref = useRef<Group>(null);
   const reduced = useReducedMotion();
   const { scene } = useGLTF("/models/island.glb");
-  const copy = useMemo(() => tintIsland(scene, top, fade), [scene, top, fade]);
-  // The tinted copy owns cloned geometries; free those (never ones shared with the cached scene) when the island goes away.
-  useEffect(() => {
-    const shared = new Set<unknown>();
-    scene.traverse((o) => (o as Mesh).isMesh && shared.add((o as Mesh).geometry));
-    return () =>
-      copy.traverse((o) => {
-        const m = o as Mesh;
-        if (m.isMesh && !shared.has(m.geometry)) m.geometry.dispose();
-      });
-  }, [scene, copy]);
+  const copy = useTintedIsland(scene, top, fade);
   const [hovered, setHovered] = useState(false);
   const lift = useRef(0);
   const active = hovered && !reduced;
