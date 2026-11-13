@@ -4,7 +4,9 @@ import { usePanel } from "@/context/PanelContext";
 import WindowPanel from "./WindowPanel";
 
 const CONTROLS = [
-  ["Mouse", "Move the pointer to tilt the view."],
+  ["Mouse", "Move the pointer to tilt the view and light the nearby islands."],
+  ["Crystal", "Click or tap the hero crystal to squash it."],
+  ["Hello", "Press the hello pill, top left, to greet in another language."],
   ["Touch", "Tap the buttons to open windows."],
   ["Keyboard", "Tab to move between buttons, Enter to open, Esc to close a window."],
 ];

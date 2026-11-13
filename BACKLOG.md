@@ -32,7 +32,10 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Reactive lighting: a faint ice point light follows the pointer across the scene; off under reduced motion
 - [x] Sky: a rare shooting-star streak (CSS) crossing the upper sky every 16 s; hidden under reduced motion
 - [ ] (Needs: a transparent canvas, since the sky is the canvas CSS background and a CSS layer behind it is hidden) Sky: 24 tiny twinkling star dots in the upper sky behind the scene; static under reduced motion
-- [ ] Help panel: list the new interactions (click the crystal, say hello) once they exist
+- [x] Help panel: list the new interactions (click the crystal, say hello) once they exist
+
+- [ ] Timeline: read `public/snapshots/index.json` and show each weekly snapshot as a card (image, week label) on `/timeline`
+- [ ] Home footer: add keyboard-reachable "Timeline" and "Credits" links under the credit line
 
 ## Week of 2026-11-09 theme: Racing district, a generic circuit island
 - [x] Add a `RacingIsland` component: island.glb tinted `PALETTE.ice`, scale 0.2, front left of the hub (about [-3.9, -1.5, 0.4]), own bob phase, still when reduced motion; render it inside the `Satellites` group in `Scene`
