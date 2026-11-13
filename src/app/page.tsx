@@ -4,6 +4,7 @@ import HelloPill from "@/components/HelloPill";
 import HelpButton from "@/components/HelpButton";
 import SettingsButton from "@/components/SettingsButton";
 import TitleReveal from "@/components/TitleReveal";
+import ShootingStar from "@/components/ShootingStar";
 import SceneClient from "@/components/SceneClient";
 import { profile } from "../../content/profile";
 
@@ -13,6 +14,7 @@ export default function Home() {
       <div className="absolute inset-0">
         <SceneClient />
       </div>
+      <ShootingStar />
       <Preloader />
       <Letterbox />
       <HelloPill />

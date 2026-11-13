@@ -30,8 +30,8 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Language learning: a small "say hello" pill under the tagline that cycles Hello, Hola, Bonjour, Bon dia on click (aria-live, no sound)
 - [x] Crystal click: a short squash and spring on the hero crystal when clicked (scale only, no bursts); no effect under reduced motion
 - [x] Reactive lighting: a faint ice point light follows the pointer across the scene; off under reduced motion
-- [ ] Sky: a rare shooting-star streak (CSS) crossing the upper sky every 12 to 20 s; hidden under reduced motion
-- [ ] Sky: 24 tiny twinkling star dots (CSS) in the upper sky behind the scene; static under reduced motion
+- [x] Sky: a rare shooting-star streak (CSS) crossing the upper sky every 16 s; hidden under reduced motion
+- [ ] (Needs: a transparent canvas, since the sky is the canvas CSS background and a CSS layer behind it is hidden) Sky: 24 tiny twinkling star dots in the upper sky behind the scene; static under reduced motion
 - [ ] Help panel: list the new interactions (click the crystal, say hello) once they exist
 
 ## Week of 2026-11-09 theme: Racing district, a generic circuit island

@@ -40,3 +40,8 @@ body {
 .shard { position: absolute; bottom: -8%; width: 0; height: 0; border-style: solid; border-color: transparent; opacity: 0.35; animation: shard-rise linear infinite; }
 @keyframes shard-rise { to { transform: translateY(-115dvh) rotate(200deg); } }
 @media (prefers-reduced-motion: reduce) { .shard { display: none; } }
+
+/* Shooting star: a short ice-to-clear streak that crosses the upper sky once per loop. */
+.shooting-star { position: absolute; top: 8%; left: 14%; z-index: 5; width: 120px; height: 2px; border-radius: 2px; pointer-events: none; opacity: 0; background: linear-gradient(to right, transparent, #9be7ff); box-shadow: 0 0 8px #9be7ff88; rotate: 18deg; animation: shooting-star 16s linear 6s infinite; }
+@keyframes shooting-star { 0%, 90% { opacity: 0; translate: 0 0; } 91% { opacity: 1; } 98% { opacity: 1; } 100% { opacity: 0; translate: 50vw 16vw; } }
+@media (prefers-reduced-motion: reduce) { .shooting-star { display: none; } }
