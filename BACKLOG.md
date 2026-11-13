@@ -24,6 +24,16 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Clouds: merge each `Cloud` into one mesh with vertex colors and one shared material (36 draw calls down to 6, keep the look and the `dim` tint)
 - [ ] Update the `VISION.md` intro ritual line (loader fades out by itself, no Start, no sound prompt). This ticket explicitly allows editing `VISION.md`, that one line only
 
+## Refill 2026-11-12 (from VISION.md, small and unblocked)
+- [x] Cinematography: letterbox bars frame the intro and slide away as the preloader leaves
+- [ ] Hero title card: the name and tagline fade and rise in once the preloader leaves; static under reduced motion
+- [ ] Language learning: a small "say hello" pill under the tagline that cycles Hello, Hola, Bonjour, Bon dia on click (aria-live, no sound)
+- [ ] Crystal click: a short squash and spring on the hero crystal when clicked (scale only, no bursts); a color flash only under reduced motion
+- [ ] Reactive lighting: a faint ice point light follows the pointer across the scene; fixed under reduced motion
+- [ ] Sky: a rare shooting-star streak (CSS) crossing the upper sky every 12 to 20 s; hidden under reduced motion
+- [ ] Sky: 24 tiny twinkling star dots (CSS) in the upper sky behind the scene; static under reduced motion
+- [ ] Help panel: list the new interactions (click the crystal, say hello) once they exist
+
 ## Week of 2026-11-09 theme: Racing district, a generic circuit island
 - [x] Add a `RacingIsland` component: island.glb tinted `PALETTE.ice`, scale 0.2, front left of the hub (about [-3.9, -1.5, 0.4]), own bob phase, still when reduced motion; render it inside the `Satellites` group in `Scene`
 - [ ] Put `race-car.glb` on the track and loop it around the oval at a steady pace, tilting into the bends; park it still when reduced motion (Needs: race-car model, track)

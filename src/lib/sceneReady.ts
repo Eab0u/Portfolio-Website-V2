@@ -23,6 +23,22 @@ export function useSceneReady() {
 // Set when the preloader starts leaving; the camera eases in from here. Read per frame, so not reactive.
 export const reveal = { start: -1 };
 
+const revealListeners = new Set<() => void>();
+
 export function markRevealing() {
-  if (reveal.start < 0) reveal.start = performance.now();
+  if (reveal.start >= 0) return;
+  reveal.start = performance.now();
+  revealListeners.forEach((l) => l());
+}
+
+// Reactive twin of `reveal`, for UI that reacts when the preloader starts leaving.
+export function useRevealing() {
+  return useSyncExternalStore(
+    (cb) => {
+      revealListeners.add(cb);
+      return () => revealListeners.delete(cb);
+    },
+    () => reveal.start >= 0,
+    () => false,
+  );
 }

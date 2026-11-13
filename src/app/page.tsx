@@ -1,3 +1,4 @@
+import Letterbox from "@/components/Letterbox";
 import Preloader from "@/components/Preloader";
 import HelpButton from "@/components/HelpButton";
 import SettingsButton from "@/components/SettingsButton";
@@ -11,6 +12,7 @@ export default function Home() {
         <SceneClient />
       </div>
       <Preloader />
+      <Letterbox />
       <HelpButton />
       <SettingsButton />
       <header className="pointer-events-none absolute inset-x-0 bottom-12 text-center">
