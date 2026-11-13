@@ -27,7 +27,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 ## Refill 2026-11-12 (from VISION.md, small and unblocked)
 - [x] Cinematography: letterbox bars frame the intro and slide away as the preloader leaves
 - [x] Hero title card: the name and tagline fade and rise in once the preloader leaves; static under reduced motion
-- [ ] Language learning: a small "say hello" pill under the tagline that cycles Hello, Hola, Bonjour, Bon dia on click (aria-live, no sound)
+- [x] Language learning: a small "say hello" pill under the tagline that cycles Hello, Hola, Bonjour, Bon dia on click (aria-live, no sound)
 - [ ] Crystal click: a short squash and spring on the hero crystal when clicked (scale only, no bursts); a color flash only under reduced motion
 - [ ] Reactive lighting: a faint ice point light follows the pointer across the scene; fixed under reduced motion
 - [ ] Sky: a rare shooting-star streak (CSS) crossing the upper sky every 12 to 20 s; hidden under reduced motion

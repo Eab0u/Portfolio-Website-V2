@@ -1,5 +1,6 @@
 import Letterbox from "@/components/Letterbox";
 import Preloader from "@/components/Preloader";
+import HelloPill from "@/components/HelloPill";
 import HelpButton from "@/components/HelpButton";
 import SettingsButton from "@/components/SettingsButton";
 import TitleReveal from "@/components/TitleReveal";
@@ -14,6 +15,7 @@ export default function Home() {
       </div>
       <Preloader />
       <Letterbox />
+      <HelloPill />
       <HelpButton />
       <SettingsButton />
       <header className="pointer-events-none absolute inset-x-0 bottom-12 text-center">
