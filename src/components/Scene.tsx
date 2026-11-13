@@ -15,6 +15,7 @@ import { markSceneReady, reveal } from "@/lib/sceneReady";
 import CloudLayer from "./CloudLayer";
 import ModelErrorBoundary from "./ModelErrorBoundary";
 import IslandRing from "./IslandRing";
+import PointerLight from "./PointerLight";
 import Particles from "./Particles";
 import RacingIsland from "./RacingIsland";
 import Sun from "./Sun";
@@ -160,6 +161,7 @@ export default function Scene() {
       <directionalLight position={[3, 4, 2]} intensity={2} />
       <directionalLight position={[-4, -1, -3]} intensity={1.2} color={PALETTE.ice} />
       <CameraRig />
+      <PointerLight />
       <Particles />
       <group position={[0, 0.6, 0]}>
         <ModelErrorBoundary>
