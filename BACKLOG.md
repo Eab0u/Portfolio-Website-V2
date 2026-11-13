@@ -35,7 +35,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Help panel: list the new interactions (click the crystal, say hello) once they exist
 
 - [x] Timeline: read `public/snapshots/index.json` and show each weekly snapshot as a card (image, week label) on `/timeline`
-- [ ] Home footer: add keyboard-reachable "Timeline" and "Credits" links under the credit line
+- [x] Home footer: add keyboard-reachable "Timeline" and "Credits" links under the credit line
 
 ## Week of 2026-11-09 theme: Racing district, a generic circuit island
 - [x] Add a `RacingIsland` component: island.glb tinted `PALETTE.ice`, scale 0.2, front left of the hub (about [-3.9, -1.5, 0.4]), own bob phase, still when reduced motion; render it inside the `Satellites` group in `Scene`

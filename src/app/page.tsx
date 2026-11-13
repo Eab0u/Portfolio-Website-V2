@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Letterbox from "@/components/Letterbox";
 import Preloader from "@/components/Preloader";
 import HelloPill from "@/components/HelloPill";
@@ -29,6 +30,14 @@ export default function Home() {
       <footer className="pointer-events-none absolute inset-x-0 bottom-6 text-center text-xs opacity-70">
         Built by Claude, one commit at a time.
       </footer>
+      <nav aria-label="More pages" className="pointer-events-none absolute inset-x-0 bottom-1.5 z-30 flex justify-center gap-4 text-xs text-[var(--accent)]">
+        <Link href="/timeline" className="pointer-events-auto underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]">
+          Timeline
+        </Link>
+        <Link href="/credits" className="pointer-events-auto underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]">
+          Credits
+        </Link>
+      </nav>
       <noscript>
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-[var(--bg)] p-6 text-center">
           <p className="max-w-md text-sm">{profile.name}: this world is a 3D scene and needs JavaScript. Until then, here are the links.</p>

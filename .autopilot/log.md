@@ -51,3 +51,18 @@ Newest entries at the bottom.
 - fix: volleyball uses useCursor, brief 0.3 s hop under reduced motion (code critic approved).
 - style: sand small island tinted mint (code and artist critics approved first pass).
 - No (model) tickets attempted. Skipped: crystal click (too large), cloud merge (needs emissive baked into vertex colors, too large for one commit), racing tickets (blocked on [!] models), VISION.md edit (off limits). Deploy status not polled to completion. No rate-limit stop.
+
+## 2026-11-12 (run started 21:28 ET, planned 9, made 9)
+- Backlog refill (8 tickets from VISION.md) folded into the first commit, no separate bookkeeping commit.
+- feat: letterbox intro bars (both critics approved).
+- feat: title card fade-up (code critic rejected once: reduced motion and SSR hidden state; fixed with CSS motion-reduce variants, approved).
+- feat: say hello pill, four languages (both approved).
+- feat: crystal click squash (both approved).
+- feat: pointer-following ice light (both approved).
+- feat: rare shooting star (both approved; fixed path after screenshot showed it crossing the hub).
+- docs: help panel lists new interactions (code critic only, text change).
+- feat: timeline snapshot cards (both approved).
+- feat: footer Timeline and Credits links (both approved; pointer-events fix applied).
+- Skipped: Priority (model) tickets (race car, tire stack, racing island). Not attempted, same as the previous two runs: each needs a long Opus plus critic loop and has failed repeatedly; stars ticket blocked (canvas CSS sky hides a layer behind it); cloud merge too large; VISION.md edit off limits.
+- Note: the first commit used the session trailer; later commits use the CLAUDE.md trailer exactly.
+- Deploy status for earlier commits: first commit success. No rate-limit stop.
