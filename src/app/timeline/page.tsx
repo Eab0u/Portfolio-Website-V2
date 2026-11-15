@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CareerStrip from "@/components/CareerStrip";
 import FloatingShards from "@/components/FloatingShards";
 import { SKY } from "@/lib/sky";
 import snapshots from "../../../public/snapshots/index.json";
@@ -15,6 +16,7 @@ export default function Timeline() {
       <FloatingShards />
       <h1 className="text-3xl font-semibold tracking-tight">Timeline</h1>
       <p className="text-sm opacity-70">The road so far, one weekly snapshot at a time.</p>
+      <CareerStrip />
       <ul className="grid w-full max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {WEEKS.map((w) => (
           <li key={w.week} className="overflow-hidden rounded-xl border border-[var(--accent)]/40 bg-black/30 text-left backdrop-blur">
