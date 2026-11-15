@@ -276,4 +276,4 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add `.nvmrc` and an `engines` field in `package.json`
 - [ ] Add a README structure overview
 - [ ] Add a CI status badge to the README
-- [ ] Add `sitemap.ts` and `robots.ts`
+- [x] Add `sitemap.ts` and `robots.ts`
