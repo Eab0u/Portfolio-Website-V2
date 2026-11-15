@@ -193,7 +193,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add an "Adept Systems" highlight card to About
 - [ ] Add a Credits `WindowPanel` with an attributions section (Needs: WindowPanel)
 - [x] Add a footer line: "Built by Claude, one commit at a time" (done: footer credit shipped)
-- [ ] Add a `404` page with a broken low-poly crystal
+- [x] Add a `404` page with a broken low-poly crystal
 
 ## Timeline and snapshots
 - [x] Add a `/timeline` route with a placeholder list (done: stub shipped)
