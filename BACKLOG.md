@@ -186,7 +186,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add an About `WindowPanel` showing the bio, skills, and interests from `content/profile.ts` (Needs: WindowPanel)
 - [ ] Add an Experience section to the About window from `content/experience.ts`
 - [x] Show experience entries on the `/timeline` route as a career strip above the snapshots
-- [ ] Add a Projects `WindowPanel` listing project cards from `content/projects.ts` (hide link buttons when a link is null) (Needs: WindowPanel)
+- [x] Add a Projects `WindowPanel` listing project cards from `content/projects.ts` (hide link buttons when a link is null) (Needs: WindowPanel)
 - [ ] Add a project detail view inside the Projects window
 - [ ] Add a Contact `WindowPanel` with email and social links (Needs: WindowPanel)
 - [ ] Add a Tools list (React, Three.js, TypeScript, AI agents) to About

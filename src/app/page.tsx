@@ -4,6 +4,7 @@ import Letterbox from "@/components/Letterbox";
 import Preloader from "@/components/Preloader";
 import HelloPill from "@/components/HelloPill";
 import HelpButton from "@/components/HelpButton";
+import ProjectsButton from "@/components/ProjectsButton";
 import SettingsButton from "@/components/SettingsButton";
 import TitleReveal from "@/components/TitleReveal";
 import ShootingStar from "@/components/ShootingStar";
@@ -22,6 +23,7 @@ export default function Home() {
       <CursorDot />
       <HelloPill />
       <HelpButton />
+      <ProjectsButton />
       <SettingsButton />
       <header className="pointer-events-none absolute inset-x-0 bottom-12 text-center">
         <TitleReveal>

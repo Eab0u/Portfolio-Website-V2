@@ -66,3 +66,16 @@ Newest entries at the bottom.
 - Skipped: Priority (model) tickets (race car, tire stack, racing island). Not attempted, same as the previous two runs: each needs a long Opus plus critic loop and has failed repeatedly; stars ticket blocked (canvas CSS sky hides a layer behind it); cloud merge too large; VISION.md edit off limits.
 - Note: the first commit used the session trailer; later commits use the CLAUDE.md trailer exactly.
 - Deploy status for earlier commits: first commit success. No rate-limit stop.
+
+## 2026-11-14 (run started 21:28 ET, planned 9, made 9)
+- feat: 404 page with broken crystal (code critic approved; artist rejected once for small flat crystal, revised with glow and value steps, approved 7.67).
+- chore: .nvmrc and engines field (code critic approved).
+- feat: sitemap and robots (code critic approved).
+- docs: README structure overview (code critic approved).
+- feat: career strip on /timeline (both approved).
+- feat: cursor follower dot, desktop only (artist rejected once for low visibility, revised with ring and glow, both approved).
+- feat: timeline empty state (code critic approved).
+- docs: CI status badge in README (code critic approved).
+- feat: Projects window panel (both approved).
+- Skipped: Priority (model) tickets (race car, tire stack, racing island), same as the last runs; crystal click burst and cloud merge too large; VISION.md edit off limits; stars blocked. No (model) tickets attempted. Deploy status success for the commits polled (404, cursor dot). No rate-limit stop.
+- Note: pushes from a detached HEAD needed `git push origin HEAD:main`. All commits used the CLAUDE.md trailer.
