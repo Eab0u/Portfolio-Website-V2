@@ -1,5 +1,7 @@
 # Portfolio Website V2
 
+[![CI](https://github.com/Eab0u/Portfolio-Website-V2/actions/workflows/ci.yml/badge.svg)](https://github.com/Eab0u/Portfolio-Website-V2/actions/workflows/ci.yml)
+
 A 3D portfolio that builds itself. A scheduled Claude agent makes a few small commits each day, a second agent reviews every one, and two reviewers audit the code and visuals each week.
 
 **Live site:** https://rahulmi.org
