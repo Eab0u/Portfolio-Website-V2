@@ -251,7 +251,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 ## Secrets and polish
 - [ ] Add 7 hidden easter eggs, one per district, and a "secrets found" counter in settings
-- [ ] Add a cursor follower dot on desktop only
+- [x] Add a cursor follower dot on desktop only
 - [ ] Add hover glow on interactive 3D objects
 - [ ] Add a one-time intro animation where the hub island assembles from shards (Needs: Island model; replaces the preloader gem handoff)
 - [ ] Add a text scramble effect on the hero title

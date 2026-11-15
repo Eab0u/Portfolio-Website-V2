@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CursorDot from "@/components/CursorDot";
 import Letterbox from "@/components/Letterbox";
 import Preloader from "@/components/Preloader";
 import HelloPill from "@/components/HelloPill";
@@ -18,6 +19,7 @@ export default function Home() {
       <ShootingStar />
       <Preloader />
       <Letterbox />
+      <CursorDot />
       <HelloPill />
       <HelpButton />
       <SettingsButton />
