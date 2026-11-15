@@ -10,6 +10,10 @@ Next.js, TypeScript, Tailwind, React Three Fiber, drei, postprocessing, GSAP, Le
 ## Structure
 - `src/app`: routes and layout
 - `src/components`: 3D scenes and UI
+- `src/hooks`, `src/context`, `src/lib`: shared hooks, React context, palette and helpers
+- `content/`: the only source of personal facts (profile, experience, projects)
+- `public/models`: generated low-poly GLB models
+- `tools/`: model generators, screenshot and snapshot scripts
 - `BACKLOG.md`: the queue of small tickets
 - `CLAUDE.md`: rules every commit must follow
 - `AUTOPILOT.md`: the daily and weekly procedures
