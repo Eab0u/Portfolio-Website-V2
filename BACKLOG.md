@@ -273,7 +273,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a `compress:models` npm script that runs glTF-Transform over `public/models/*.glb` (dev script only). Approved new devDependency for this ticket: `@gltf-transform/cli`
 
 ## Housekeeping
-- [ ] Add `.nvmrc` and an `engines` field in `package.json`
+- [x] Add `.nvmrc` and an `engines` field in `package.json`
 - [ ] Add a README structure overview
 - [ ] Add a CI status badge to the README
 - [ ] Add `sitemap.ts` and `robots.ts`
