@@ -199,7 +199,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a `/timeline` route with a placeholder list (done: stub shipped)
 - [ ] Add a snapshot entry type and a loader for `public/snapshots/index.json`
 - [ ] Render snapshot entries as cards on `/timeline`
-- [ ] Add an empty state for weeks with no snapshot yet
+- [x] Add an empty state for weeks with no snapshot yet
 - [ ] Show commits, lines added, and lines removed on each card
 - [ ] Add a 3D gallery layout for snapshot cards (flat planes in a row)
 - [ ] Move the camera between snapshot planes on scroll

@@ -17,6 +17,7 @@ export default function Timeline() {
       <h1 className="text-3xl font-semibold tracking-tight">Timeline</h1>
       <p className="text-sm opacity-70">The road so far, one weekly snapshot at a time.</p>
       <CareerStrip />
+      {WEEKS.length === 0 && <p className="text-sm opacity-70">No weekly snapshot yet. The first one lands soon.</p>}
       <ul className="grid w-full max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {WEEKS.map((w) => (
           <li key={w.week} className="overflow-hidden rounded-xl border border-[var(--accent)]/40 bg-black/30 text-left backdrop-blur">
