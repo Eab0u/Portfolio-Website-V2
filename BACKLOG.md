@@ -4,7 +4,25 @@ Status: `[ ]` todo, `[~]` in progress, `[x]` done, `[!]` blocked (reason after i
 Each ticket is ONE small problem (about 30 to 50 changed lines). Take the top unchecked ticket that fits the current theme. If none fit, take the top unchecked ticket. Reviewers add new tickets at the top.
 Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before planning new tickets.
 
-**Current theme: Racing district, a generic circuit island (week of 2026-11-09)**
+**Current theme: Football district, a generic pitch island in blue and garnet mood (week of 2026-11-16). Racing stays open under Priority; ticket 2 of the 2026-11-15 review is a code-only way to finish it.**
+
+## Week of 2026-11-16 theme: Football district, a generic pitch island (original art, blue and garnet mood only, no crests, stripes, numbers or kit designs)
+- [ ] Add a `FootballIsland` component: island.glb tinted `PALETTE.grass` via `useTintedIsland`, scale 0.2, at a free spot in the ring (read `IslandRing` positions first, do not overlap them or the title band), own bob phase, still when reduced motion; render it in `Satellites` inside its own `Guarded`
+- [ ] (Needs: FootballIsland) Pitch deck: on the island add a flat rectangle (box, `PALETTE.grass`) with 5 lighter mowing stripes as one instanced mesh and thin `PALETTE.offWhite` line boxes for the outline and halfway line; all procedural, shares the island bob
+- [ ] (Needs: pitch deck) Two generic goals at the pitch ends: thin offWhite box posts and crossbar plus a net drawn as a lattice of thin instanced bars (reads as mesh, not a solid plane); no logos
+- [ ] (Needs: pitch deck) Ball kick: a low-poly ball (icosahedron detail 1, `PALETTE.offWhite`) rests on the center spot; a click sends it on a short arc toward the nearer goal and it rolls back after 1.5 s; `useCursor` pointer on hover; reduced motion shows a 0.3 s hop only
+- [ ] (Needs: ball kick) Score pill: a small `Html` badge over the pitch (same style as the serve badge) showing "Goals N", up by one on each kick; `aria-live="polite"`, count in React state
+- [ ] (model) Generic faceless footballer, ONE figure in its own GLB (`player.glb`): rounded faceted head with no face, a solid `PALETTE.blue` shirt and `PALETTE.offWhite` shorts (no stripes, numbers or crest), `PALETTE.sand` limbs, mid-stride pose, small grass tuft base. Original and generic. Hints from past rejections: shade sides went mauve, use `ramp()` from `tools/models/lib/shade.mjs`, keep the silhouette chunky and readable at 0.1 scale
+- [ ] (model) Floodlight tower, ONE tower in its own GLB (`floodlight.glb`): tapered faceted mast with cross braces, a head of 6 lamp panels with soft `PALETTE.ice` and `offWhite` emissive faces, a `PALETTE.garnet` ladder stripe on the mast, concrete-free palette base. Not a copy of any stadium; keep under 6k triangles
+
+## Review 2026-11-15 (code review fixes, small, do after Priority)
+- [ ] Refactor only: move `HeroCrystal`, `Island`, `HubHover` and `CameraRig` out of `src/components/Scene.tsx` (195 of 200 lines) into `src/components/scene/` files, and fix the mis-indented `ModelErrorBoundary` children. No behavior change; keep each diff under the limit by moving two components per commit if needed
+- [ ] Racing without a model loop: build the oval track in code on `RacingIsland`. A flat `ringGeometry` (`PALETTE.night` asphalt, `PALETTE.offWhite` edge) on a thin disc deck raised just above the island top, plus 24 instanced offWhite dashes along the center line, all sharing the island bob; no GLB, no artist-critic model loop. If this passes, mark the Priority `racing-island.glb` ticket `[x] (superseded by procedural track)`
+- [ ] Use the shipped `pine.glb` (240 KB, currently never loaded): place two clones on the hub island rim behind the crystal (scale so they stay under the crystal tip, share the hub bob) and add `useGLTF.preload` for `/models/pine.glb` and `/models/referee-chair.glb`
+- [ ] Mobile top bar: at 390 px the Projects pill (`right-52`) reaches the Hello pill (`left-4`). Take a 390 px shot, and if they touch, move the Hello pill to `top-14` below the `sm` breakpoint (one class change, nothing else)
+- [ ] a11y: add `aria-expanded={open}` to the Help, Projects and Settings buttons so the open state is announced (they only have `aria-haspopup="dialog"` now)
+- [ ] Clouds, step 1 of the merge: replace the per-mesh `<icosahedronGeometry>` and `<cylinderGeometry>` with two module-level shared geometries and cache the three materials per `dim` value in a module `Map` (36 geometries and 18 materials down to 2 and 12); keep the look identical
+- [ ] Timeline: the snapshot job skipped week 3 and labels week 4 on 11-09. Fix the week math in `tools/snapshot.mjs` (the 12 hour shift) so a Monday 03:30 UTC run names the week that just ended, and make `/timeline` show a short "no snapshot" card for any missing week number
 
 ## Review 2026-11-09 (visual review, do after Priority)
 - [x] Preloader gem: raise its brightness (emissive mint, offWhite rim light) so it is clearly visible on the dark page from the first frame, and add a slow spin
