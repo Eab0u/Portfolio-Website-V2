@@ -79,3 +79,5 @@ Newest entries at the bottom.
 - feat: Projects window panel (both approved).
 - Skipped: Priority (model) tickets (race car, tire stack, racing island), same as the last runs; crystal click burst and cloud merge too large; VISION.md edit off limits; stars blocked. No (model) tickets attempted. Deploy status success for the commits polled (404, cursor dot). No rate-limit stop.
 - Note: pushes from a detached HEAD needed `git push origin HEAD:main`. All commits used the CLAUDE.md trailer.
+
+- 2026-11-15 (manual test with Rahul, not a nightly run): (model) player.glb, a hard figure, built by an Opus subagent (agent model opus) with fresh Sonnet critics under the second-round pipeline (model-check per-surface table, audit, upgrades, 8 passes). Artist critic avg per pass: 6.33, 6.33, 6.33, 6.50, 6.67, 6.83, 7.00, 7.33. REJECT at the 8-pass cap with every score 7 or higher (last scores 8 7 8 7 7 7). Builder rounds: 11, about 2 million builder tokens total. Not committed to public/models; best round saved in .autopilot/wip/player/ and the BACKLOG ticket lists the open fixes. Draco unavailable, GLB uncompressed (209 KB, 1,866 triangles).
