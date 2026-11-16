@@ -23,12 +23,12 @@
   },
   {
     "week": 4,
-    "date": "2026-11-09",
+    "date": "2026-11-16",
     "image": "/snapshots/week-04.png",
-    "sha": "96ea712",
-    "commits": 31,
-    "added": 1384,
-    "removed": 212,
+    "sha": "e1929e5",
+    "commits": 41,
+    "added": 2422,
+    "removed": 685,
     "summary": "",
     "deploymentUrl": null
   }
