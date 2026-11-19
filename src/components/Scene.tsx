@@ -13,6 +13,7 @@ import { PALETTE } from "@/lib/palette";
 import { SKY } from "@/lib/sky";
 import { markSceneReady, reveal } from "@/lib/sceneReady";
 import CloudLayer from "./CloudLayer";
+import FootballIsland from "./FootballIsland";
 import ModelErrorBoundary from "./ModelErrorBoundary";
 import IslandRing from "./IslandRing";
 import PointerLight from "./PointerLight";
@@ -176,6 +177,9 @@ export default function Scene() {
               <VolleyballIsland />
             </Guarded>
             <RacingIsland />
+            <Guarded>
+              <FootballIsland />
+            </Guarded>
           </Satellites>
           <Sun />
           <Guarded>

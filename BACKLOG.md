@@ -17,7 +17,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Sky top: add a faint star layer (about 60 instanced points, offWhite, slow twinkle) above y 0.6 of the view so the dark top feels like space, not an empty fill
 
 ## Week of 2026-11-16 theme: Football district, a generic pitch island (original art, blue and garnet mood only, no crests, stripes, numbers or kit designs)
-- [ ] Add a `FootballIsland` component: island.glb tinted `PALETTE.grass` via `useTintedIsland`, scale 0.2, at a free spot in the ring (read `IslandRing` positions first, do not overlap them or the title band), own bob phase, still when reduced motion; render it in `Satellites` inside its own `Guarded`
+- [x] Add a `FootballIsland` component: island.glb tinted `PALETTE.grass` via `useTintedIsland`, scale 0.2, at a free spot in the ring (read `IslandRing` positions first, do not overlap them or the title band), own bob phase, still when reduced motion; render it in `Satellites` inside its own `Guarded`
 - [ ] (Needs: FootballIsland) Pitch deck: on the island add a flat rectangle (box, `PALETTE.grass`) with 5 lighter mowing stripes as one instanced mesh and thin `PALETTE.offWhite` line boxes for the outline and halfway line; all procedural, shares the island bob
 - [ ] (Needs: pitch deck) Two generic goals at the pitch ends: thin offWhite box posts and crossbar plus a net drawn as a lattice of thin instanced bars (reads as mesh, not a solid plane); no logos
 - [ ] (Needs: pitch deck) Ball kick: a low-poly ball (icosahedron detail 1, `PALETTE.offWhite`) rests on the center spot; a click sends it on a short arc toward the nearer goal and it rolls back after 1.5 s; `useCursor` pointer on hover; reduced motion shows a 0.3 s hop only
