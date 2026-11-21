@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Color, Float32BufferAttribute, IcosahedronGeometry, type Mesh } from "three";
+import { BackSide, Color, Float32BufferAttribute, IcosahedronGeometry, type Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
 
@@ -11,7 +11,7 @@ const STEPS = [0.86, 0.94, 1];
 
 function useSunGeometry() {
   return useMemo(() => {
-    const geo = new IcosahedronGeometry(1.1, 1); // non-indexed, so every face can own a color
+    const geo = new IcosahedronGeometry(0.82, 1); // non-indexed, so every face can own a color
     const base = new Color(PALETTE.sun);
     const colors: number[] = [];
     for (let f = 0; f < geo.attributes.position.count / 3; f++) {
@@ -23,18 +23,30 @@ function useSunGeometry() {
   }, []);
 }
 
-// A low-poly sun disc rising behind the hub island. Unlit and fog-free so it glows. Slow pulse, still when reduced motion is on.
+// A low-poly sun disc rising behind the hub island. Unlit and fog-free so it glows. Slow pulse and spin, with a soft coral rim shell; still when reduced motion is on.
 export default function Sun() {
-  const ref = useRef<Mesh>(null);
+  const ref = useRef<Group>(null);
   const reduced = useReducedMotion();
   const geometry = useSunGeometry();
   useEffect(() => () => geometry.dispose(), [geometry]);
   useFrame((state) => {
-    if (ref.current) ref.current.scale.setScalar(reduced ? 1 : 1 + Math.sin(state.clock.elapsedTime * 0.5) * 0.05);
+    if (!ref.current) return;
+    if (reduced) {
+      ref.current.scale.setScalar(1);
+      ref.current.rotation.y = 0;
+      return;
+    }
+    ref.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 0.5) * 0.05);
+    ref.current.rotation.y = state.clock.elapsedTime * 0.1;
   });
   return (
-    <mesh ref={ref} geometry={geometry} position={[1.8, -1.2, -8]}>
-      <meshBasicMaterial vertexColors fog={false} />
-    </mesh>
+    <group ref={ref} position={[1.2, -0.7, -8]}>
+      <mesh geometry={geometry}>
+        <meshBasicMaterial vertexColors fog={false} />
+      </mesh>
+      <mesh geometry={geometry} scale={1.1}>
+        <meshBasicMaterial color={PALETTE.coral} side={BackSide} fog={false} transparent opacity={0.55} depthWrite={false} />
+      </mesh>
+    </group>
   );
 }

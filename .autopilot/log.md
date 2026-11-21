@@ -88,3 +88,10 @@ Newest entries at the bottom.
 - docs commit carries the blocker note and this log (a bookkeeping carrier, since the feature commit was already pushed).
 - Skipped: Priority (model) tickets, same as earlier runs. Deploy status not polled. No rate-limit stop.
 - Notes: first commit used the session trailer instead of the CLAUDE.md trailer by mistake. `next build` intermittently prints a security upgrade notice and exits 1; retrying passes. The upgrade was not run (new dependency rules).
+
+## 2026-11-20 (run started 21:28 ET, planned 3, made 3)
+- feat: aria-expanded on Help, Projects, Settings buttons (code critic approved). Used the session trailer by mistake, as on 11-18; later commits use the CLAUDE.md trailer.
+- fix: Hello pill on its own row at narrow widths (both critics approved, artist change mode 8.00).
+- style: sun polish, smaller, moved up and left, coral rim shell at 55% opacity, slow spin (first review rejected for a hard opaque rim and a stray scratch file; revised once, both approved; artist change mode 7.50, notes say the rim still reads fairly hard).
+- Skipped: Priority (model) tickets (race car, tire stack, racing island), same as earlier runs; football theme tickets blocked by the pitch deck; preloader ritual too large for one commit. No (model) tickets attempted. Deploy status not polled for the first two commits. No rate-limit stop.
+- Note: `next build` printed the intermittent security upgrade notice and exited 1 on first try each time; retry passed.
