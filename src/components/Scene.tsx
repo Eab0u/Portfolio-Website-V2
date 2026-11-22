@@ -16,6 +16,7 @@ import CloudLayer from "./CloudLayer";
 import FootballIsland from "./FootballIsland";
 import HubHover from "./scene/HubHover";
 import HubPines from "./scene/HubPines";
+import Island from "./scene/Island";
 import ModelErrorBoundary from "./ModelErrorBoundary";
 import IslandRing from "./IslandRing";
 import PointerLight from "./PointerLight";
@@ -81,26 +82,6 @@ function HeroCrystal() {
   );
 }
 
-// The floating island under the crystal. Bobs slowly, still when reduced motion is on.
-const ISLAND_Y = -1.5;
-
-function Island() {
-  const ref = useRef<Group>(null);
-  const reduced = useReducedMotion();
-  const { scene } = useGLTF("/models/island.glb");
-  useFrame((state) => {
-    if (ref.current) ref.current.position.y = ISLAND_Y + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.6) * 0.1);
-  });
-  return (
-    <group ref={ref} position={[0, ISLAND_Y, 0]}>
-      <primitive object={scene} scale={0.6} />
-      <Guarded>
-        <HubPines />
-      </Guarded>
-    </group>
-  );
-}
-
 // Eases the camera toward the pointer for a little parallax. Static when reduced motion is on.
 function CameraRig() {
   const reduced = useReducedMotion();
@@ -151,7 +132,11 @@ export default function Scene() {
         <Suspense fallback={null}>
           <HubHover>
             <HeroCrystal />
-            <Island />
+            <Island>
+              <Guarded>
+                <HubPines />
+              </Guarded>
+            </Island>
           </HubHover>
           <Satellites>
             <IslandRing />
