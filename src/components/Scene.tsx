@@ -1,11 +1,11 @@
 "use client";
 
-import { Suspense, useRef, useState, type ReactNode } from "react";
+import { Suspense, useRef, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
-import { Float, useCursor, useGLTF } from "@react-three/drei";
+import { Float, useGLTF } from "@react-three/drei";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
-import type { Group, PointLight } from "three";
+import type { Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { usePageVisible } from "@/hooks/usePageVisible";
 import { useSettings } from "@/context/SettingsContext";
@@ -14,6 +14,7 @@ import { SKY } from "@/lib/sky";
 import { markSceneReady, reveal } from "@/lib/sceneReady";
 import CloudLayer from "./CloudLayer";
 import FootballIsland from "./FootballIsland";
+import HubHover from "./scene/HubHover";
 import ModelErrorBoundary from "./ModelErrorBoundary";
 import IslandRing from "./IslandRing";
 import PointerLight from "./PointerLight";
@@ -90,34 +91,6 @@ function Island() {
     if (ref.current) ref.current.position.y = ISLAND_Y + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.6) * 0.1);
   });
   return <primitive ref={ref} object={scene} position={[0, ISLAND_Y, 0]} scale={0.6} />;
-}
-
-// Pointer over the hub or crystal lifts both about 0.15 units and fades in a soft ice glow. Still when reduced motion is on.
-function HubHover({ children }: { children: ReactNode }) {
-  const ref = useRef<Group>(null);
-  const glow = useRef<PointLight>(null);
-  const reduced = useReducedMotion();
-  const [hovered, setHovered] = useState(false);
-  const active = hovered && !reduced;
-  useCursor(active);
-  useFrame((_, delta) => {
-    const k = 1 - Math.exp(-delta * 8);
-    if (ref.current) ref.current.position.y += ((active ? 0.15 : 0) - ref.current.position.y) * k;
-    if (glow.current) glow.current.intensity += ((active ? 6 : 0) - glow.current.intensity) * k;
-  });
-  return (
-    <group
-      ref={ref}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(true);
-      }}
-      onPointerOut={() => setHovered(false)}
-    >
-      <pointLight ref={glow} color={PALETTE.ice} intensity={0} distance={5} position={[0, -1.2, 1.5]} />
-      {children}
-    </group>
-  );
 }
 
 // Eases the camera toward the pointer for a little parallax. Static when reduced motion is on.
