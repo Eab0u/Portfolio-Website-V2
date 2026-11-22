@@ -8,7 +8,14 @@ import snapshots from "../../../public/snapshots/index.json";
 export const metadata = { title: "Timeline" };
 
 // One card per weekly snapshot, newest first, read from public/snapshots/index.json.
-const WEEKS = [...snapshots].sort((a, b) => b.week - a.week);
+// A week number with no snapshot (a skipped job) gets a placeholder card, so gaps are visible.
+const SORTED = [...snapshots].sort((a, b) => b.week - a.week);
+const WEEKS = SORTED.length
+  ? Array.from({ length: SORTED[0].week - SORTED[SORTED.length - 1].week + 1 }, (_, i) => {
+      const week = SORTED[0].week - i;
+      return SORTED.find((w) => w.week === week) ?? { week, missing: true as const };
+    })
+  : [];
 
 export default function Timeline() {
   return (
@@ -19,14 +26,20 @@ export default function Timeline() {
       <CareerStrip />
       {WEEKS.length === 0 && <p className="text-sm opacity-70">No weekly snapshot yet. The first one lands soon.</p>}
       <ul className="grid w-full max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {WEEKS.map((w) => (
-          <li key={w.week} className="overflow-hidden rounded-xl border border-[var(--accent)]/40 bg-black/30 text-left backdrop-blur">
-            <Image src={w.image} alt={`The world in week ${w.week}`} width={1440} height={900} sizes="(min-width: 1024px) 352px, (min-width: 640px) 45vw, 100vw" className="h-auto w-full" />
-            <p className="px-3 py-2 font-mono text-xs text-[var(--accent)]">
-              Week {w.week} · {w.date} · {w.commits} commits
-            </p>
-          </li>
-        ))}
+        {WEEKS.map((w) =>
+          "missing" in w ? (
+            <li key={w.week} className="flex items-center justify-center rounded-xl border border-dashed border-[var(--accent)]/30 bg-black/20 p-6 font-mono text-xs opacity-60">
+              Week {w.week} · no snapshot
+            </li>
+          ) : (
+            <li key={w.week} className="overflow-hidden rounded-xl border border-[var(--accent)]/40 bg-black/30 text-left backdrop-blur">
+              <Image src={w.image} alt={`The world in week ${w.week}`} width={1440} height={900} sizes="(min-width: 1024px) 352px, (min-width: 640px) 45vw, 100vw" className="h-auto w-full" />
+              <p className="px-3 py-2 font-mono text-xs text-[var(--accent)]">
+                Week {w.week} · {w.date} · {w.commits} commits
+              </p>
+            </li>
+          ),
+        )}
       </ul>
       <Link href="/" className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-medium text-[var(--bg)]">
         Back to the world
