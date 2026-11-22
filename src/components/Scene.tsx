@@ -15,6 +15,7 @@ import { markSceneReady, reveal } from "@/lib/sceneReady";
 import CloudLayer from "./CloudLayer";
 import FootballIsland from "./FootballIsland";
 import HubHover from "./scene/HubHover";
+import HubPines from "./scene/HubPines";
 import ModelErrorBoundary from "./ModelErrorBoundary";
 import IslandRing from "./IslandRing";
 import PointerLight from "./PointerLight";
@@ -90,7 +91,14 @@ function Island() {
   useFrame((state) => {
     if (ref.current) ref.current.position.y = ISLAND_Y + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.6) * 0.1);
   });
-  return <primitive ref={ref} object={scene} position={[0, ISLAND_Y, 0]} scale={0.6} />;
+  return (
+    <group ref={ref} position={[0, ISLAND_Y, 0]}>
+      <primitive object={scene} scale={0.6} />
+      <Guarded>
+        <HubPines />
+      </Guarded>
+    </group>
+  );
 }
 
 // Eases the camera toward the pointer for a little parallax. Static when reduced motion is on.
