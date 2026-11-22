@@ -19,6 +19,7 @@ import IslandRing from "./IslandRing";
 import PointerLight from "./PointerLight";
 import Particles from "./Particles";
 import RacingIsland from "./RacingIsland";
+import Stars from "./Stars";
 import Sun from "./Sun";
 import VolleyballIsland from "./VolleyballIsland";
 
@@ -39,7 +40,6 @@ function Satellites({ children }: { children: ReactNode }) {
 }
 
 useGLTF.preload("/models/crystals.glb");
-
 // A failed model hides only its own subtree, so the crystal, hub island and ring survive.
 function Guarded({ children }: { children: ReactNode }) {
   return (
@@ -163,6 +163,7 @@ export default function Scene() {
       <directionalLight position={[-4, -1, -3]} intensity={1.2} color={PALETTE.ice} />
       <CameraRig />
       <PointerLight />
+      <Stars />
       <Particles />
       <group position={[0, 0.6, 0]}>
         <ModelErrorBoundary>
