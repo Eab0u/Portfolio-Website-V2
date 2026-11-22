@@ -31,7 +31,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Use the shipped `pine.glb` (240 KB, currently never loaded): place two clones on the hub island rim behind the crystal (scale so they stay under the crystal tip, share the hub bob) and add `useGLTF.preload` for `/models/pine.glb` and `/models/referee-chair.glb`
 - [ ] Mobile top bar: at 390 px the Projects pill (`right-52`) reaches the Hello pill (`left-4`). Take a 390 px shot, and if they touch, move the Hello pill to `top-14` below the `sm` breakpoint (one class change, nothing else)
 - [x] a11y: add `aria-expanded={open}` to the Help, Projects and Settings buttons so the open state is announced (they only have `aria-haspopup="dialog"` now)
-- [ ] Clouds, step 1 of the merge: replace the per-mesh `<icosahedronGeometry>` and `<cylinderGeometry>` with two module-level shared geometries and cache the three materials per `dim` value in a module `Map` (36 geometries and 18 materials down to 2 and 12); keep the look identical
+- [x] Clouds, step 1 of the merge: replace the per-mesh `<icosahedronGeometry>` and `<cylinderGeometry>` with two module-level shared geometries and cache the three materials per `dim` value in a module `Map` (36 geometries and 18 materials down to 2 and 12); keep the look identical
 - [ ] Timeline: the snapshot job skipped week 3 and labels week 4 on 11-09. Fix the week math in `tools/snapshot.mjs` (the 12 hour shift) so a Monday 03:30 UTC run names the week that just ended, and make `/timeline` show a short "no snapshot" card for any missing week number
 
 ## Review 2026-11-09 (visual review, do after Priority)
