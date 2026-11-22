@@ -95,3 +95,14 @@ Newest entries at the bottom.
 - style: sun polish, smaller, moved up and left, coral rim shell at 55% opacity, slow spin (first review rejected for a hard opaque rim and a stray scratch file; revised once, both approved; artist change mode 7.50, notes say the rim still reads fairly hard).
 - Skipped: Priority (model) tickets (race car, tire stack, racing island), same as earlier runs; football theme tickets blocked by the pitch deck; preloader ritual too large for one commit. No (model) tickets attempted. Deploy status not polled for the first two commits. No rate-limit stop.
 - Note: `next build` printed the intermittent security upgrade notice and exited 1 on first try each time; retry passed.
+
+## 2026-11-21 (run started 21:28 ET, planned 10, made 10)
+- style: bottom right cloud moved clear of the racing island (artist rejected the first shot for a loading-state screenshot, then the first position still overlapped; revised once, both approved, 7.50).
+- perf: shared cloud geometries and per-dim material cache (code critic approved, look identical).
+- feat: credits card with models and library licences (code critic rejected once for overflow at phone height; revised with min-h-dvh, approved; artist 7.43 change mode, approved). GSAP listed with its real license, not MIT.
+- feat: timeline "no snapshot" placeholder for missing weeks (both approved). Per-card captions split off into a new ticket because no caption data exists.
+- feat: faint twinkling star layer, 60 instanced octahedra (both approved).
+- refactor x4: moved HubHover, Island, CameraRig plus useFit, and HeroCrystal out of Scene.tsx (Scene.tsx 199 to 101 lines). Each pure move was 60 to 78 changed lines because a move cannot be split smaller; the code critic accepted that each time.
+- feat: two pines on the hub island plus preloads for pine and referee chair (code critic rejected once for a missing Guarded wrapper; fixed; both approved, artist 7.33 change mode).
+- Skipped: Priority (model) tickets (race car, tire stack, racing island), same as earlier runs; football pitch deck still blocked; hub click burst, crystal burst and preloader ritual too large; procedural racing track risky at the edge-on camera. No (model) tickets attempted. Deploy status not polled. No rate-limit stop.
+- Notes: `next build` intermittently exits 1 with a security upgrade notice and passes on retry; the upgrade was not run. A stale `next start` process kept serving an old build until killed (use pkill -f next).
