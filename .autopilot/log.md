@@ -106,3 +106,15 @@ Newest entries at the bottom.
 - feat: two pines on the hub island plus preloads for pine and referee chair (code critic rejected once for a missing Guarded wrapper; fixed; both approved, artist 7.33 change mode).
 - Skipped: Priority (model) tickets (race car, tire stack, racing island), same as earlier runs; football pitch deck still blocked; hub click burst, crystal burst and preloader ritual too large; procedural racing track risky at the edge-on camera. No (model) tickets attempted. Deploy status not polled. No rate-limit stop.
 - Notes: `next build` intermittently exits 1 with a security upgrade notice and passes on retry; the upgrade was not run. A stale `next start` process kept serving an old build until killed (use pkill -f next).
+
+## 2026-11-22 (run started 21:28 ET, planned 7, made 7)
+- fix: hide /dev/model-preview on production unless ENABLE_MODEL_PREVIEW is set (code critic approved).
+- refactor: split the CursorDot class string into an array (code critic approved).
+- fix: snapshot week math names the week that just ended on a Sunday or Monday run (code critic approved).
+- style: palette tokens for particles, cursor dot shadows and the credits card (both critics approved, artist 7.67).
+- style: 8px gap between the footer line and nav links (both approved, artist 7.67).
+- style: soft violet band at the top of the sky, done in src/lib/sky.ts (both approved, artist 7.50).
+- style: loader bars recolored to the loader color so no black frame shows (both approved, artist 7.50).
+- Tram track attempted first and reverted: 3 artist passes (avg 5.17, 7.33, 6.17), notes contradicted each other (grey sleepers and tube, halo ellipse). Marked [!] in BACKLOG with the best state and a retry hint. The tram tickets that need it stay blocked. No commit made for it, so commits made equals the plan.
+- Skipped: Priority (model) tickets (race car, tire stack, racing island), same as earlier runs. No (model) ticket attempted. Deploy status checked once at the end. No rate-limit stop.
+- Notes: `next build` fails on the first try with the security upgrade notice and passes on retry. Two earlier runs used a detached HEAD after checkout, so pushes used HEAD:main until the branch was recreated.

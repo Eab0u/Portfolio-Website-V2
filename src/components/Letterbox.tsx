@@ -3,8 +3,8 @@
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useRevealing } from "@/lib/sceneReady";
 
-// Cinematic intro: two black bars frame the scene, then slide away as the preloader leaves. Skipped under reduced motion.
-const BAR = "pointer-events-none absolute inset-x-0 z-20 h-[11dvh] bg-black transition-transform duration-[1400ms] ease-out";
+// Cinematic intro: two bars in the loader color frame the scene, then slide away as the preloader leaves. Skipped under reduced motion.
+const BAR = "pointer-events-none absolute inset-x-0 z-20 h-[11dvh] bg-[var(--bg)] transition-transform duration-[1400ms] ease-out";
 
 export default function Letterbox() {
   const open = useRevealing();

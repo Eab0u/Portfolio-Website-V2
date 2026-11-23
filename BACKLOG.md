@@ -13,7 +13,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Ring island hover: hovered ring islands lift 0.08 and tilt 3 degrees toward the cursor, then settle; reuse the existing bob group
 - [ ] Far layer: add one distant row of 5 dark `PALETTE.night` faceted mountain cones low in the sky behind the ring with a slow parallax of 0.02 on pointer move, one instanced mesh
 - [x] Sky top gradient: add a soft `PALETTE.violet` band at the top of the sky gradient in `globals.css` so the dark top reads as dusk, not a flat fill
-- [ ] Preloader frame: make the loader overlay cover the full viewport (no black bars above and below the box) and center the gem on it (CSS only)
+- [x] Preloader frame: make the loader overlay cover the full viewport (no black bars above and below the box) and center the gem on it (CSS only)
 - [x] Footer spacing: add 8 px between the tagline and the Timeline and Credits links at 1280 and 390 px (one class change)
 
 ## Review 2026-11-22 (code review fixes, small, do after Priority)
