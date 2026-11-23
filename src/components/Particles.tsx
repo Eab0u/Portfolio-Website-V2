@@ -57,7 +57,7 @@ export default function Particles() {
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, COUNT]} frustumCulled={false}>
       <tetrahedronGeometry args={[1, 0]} />
-      <meshStandardMaterial color="#ffffff" flatShading emissive={PALETTE.offWhite} emissiveIntensity={0.3} />
+      <meshStandardMaterial color={PALETTE.offWhite} flatShading emissive={PALETTE.offWhite} emissiveIntensity={0.3} />
     </instancedMesh>
   );
 }

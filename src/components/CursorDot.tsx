@@ -16,7 +16,7 @@ const DOT_CLASS = [
   "border-[var(--fg)]",
   "bg-[var(--accent)]",
   "opacity-0",
-  "shadow-[0_0_0_2px_#1a1f3a99,0_0_8px_#7cf0c8,0_0_18px_#7cf0c888]",
+  "shadow-[0_0_0_2px_color-mix(in_srgb,var(--navy)_60%,transparent),0_0_8px_var(--accent),0_0_18px_color-mix(in_srgb,var(--accent)_53%,transparent)]",
   "transition-opacity",
   "duration-300",
   "motion-reduce:transition-none",
