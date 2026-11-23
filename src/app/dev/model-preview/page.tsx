@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import ModelPreviewClient from "@/components/ModelPreviewClient";
 
 export const metadata = { title: "Model preview", robots: { index: false } };
@@ -7,6 +8,8 @@ export default async function ModelPreview({
 }: {
   searchParams: Promise<{ src?: string; angle?: string; unlit?: string }>;
 }) {
+  // The preview is a dev tool: hide it on production unless ENABLE_MODEL_PREVIEW is set.
+  if (process.env.NODE_ENV === "production" && !process.env.ENABLE_MODEL_PREVIEW) notFound();
   const { src, angle, unlit } = await searchParams;
   const view = /^[0-3]$/.test(angle ?? "") ? Number(angle) : 0;
   const valid = typeof src === "string" && /^\/models\/[\w.-]+\.glb$/.test(src);

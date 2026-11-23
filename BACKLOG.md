@@ -17,14 +17,14 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Footer spacing: add 8 px between the tagline and the Timeline and Credits links at 1280 and 390 px (one class change)
 
 ## Review 2026-11-22 (code review fixes, small, do after Priority)
-- [ ] Gate `/dev/model-preview`: in `src/app/dev/model-preview/page.tsx` call `notFound()` when `process.env.NODE_ENV === "production"` and `process.env.ENABLE_MODEL_PREVIEW` is unset, so the tool route is not live on Vercel (keep it working in `npm run dev`)
+- [x] Gate `/dev/model-preview`: in `src/app/dev/model-preview/page.tsx` call `notFound()` when `process.env.NODE_ENV === "production"` and `process.env.ENABLE_MODEL_PREVIEW` is unset, so the tool route is not live on Vercel (keep it working in `npm run dev`)
 - [ ] Palette hygiene: replace `#ffffff` in `Particles` with `PALETTE.offWhite`, the hex shadows in `CursorDot` with `var(--accent)` based values, and `bg-[#0d0d1c]` on the credits card with a `--night` token in `globals.css` (colors only, no layout change)
 - [ ] Split the 330 character class string in `CursorDot.tsx` line 41 into a `const` array joined with spaces (no behavior change, refactor only)
 - [ ] Racing without a model loop is now the best way to unblock Priority: do the 2026-11-15 "Racing without a model loop" ticket first this week and mark the Priority `racing-island.glb` ticket `[x] (superseded by procedural track)` when it passes
 - [ ] Fix `tools/snapshot.mjs` week math (open since 2026-11-15, week 3 is missing and week 4 was taken early): name the week that just ended for a Monday run, so the 11-23 snapshot is week 5
 
 ## Week of 2026-11-23 theme: Public transit, a tram line between the islands (generic, no real network, route colors or signage)
-- [ ] Tram track: one `TramLine` component in `Satellites` drawing a closed loop through the ring as a thin tube or flat ribbon (`PALETTE.night`, `offWhite` edge) with about 20 small instanced sleepers; high above the islands, still when reduced motion
+- [!] (2026-11-22: 3 artist passes, avg 5.17 / 7.33 / 6.17, critic notes contradicted each other: grey sleepers and tube, smooth tube, halo ellipse crossing sun and crystal island. Best state: ice tube radius 0.06 with 5 radial segments, 0.65x0.1x0.2 offWhite emissive sleepers, loop as tilted ellipse rx 5.4 ry 1.5 at z -3.6. Retry with a lower loop that threads between ring islands and clears the sun) Tram track: one `TramLine` component in `Satellites` drawing a closed loop through the ring as a thin tube or flat ribbon (`PALETTE.night`, `offWhite` edge) with about 20 small instanced sleepers; high above the islands, still when reduced motion
 - [ ] (Needs: Tram track) Tram car: a procedural generic car (a chamfered box body in `PALETTE.mint`, a `PALETTE.offWhite` roof, 4 window boxes, a coral nose wedge, no numbers or logos) that glides along the track curve with `CatmullRomCurve3`; slow, paused under reduced motion
 - [ ] (Needs: Tram track) Three stations: a small platform box with a roof slab and a glowing `PALETTE.sun` lamp on three ring islands, each placed on the track; platforms share the island bob
 - [ ] (Needs: Tram car) Tram hover: hovering the car shows `useCursor` pointer and a soft ice rim; clicking it makes it stop for 2 s and puffs 6 small offWhite steam shards
