@@ -34,7 +34,7 @@ export default function Home() {
       <footer className="pointer-events-none absolute inset-x-0 bottom-6 text-center text-xs opacity-70">
         Built by Claude, one commit at a time.
       </footer>
-      <nav aria-label="More pages" className="pointer-events-none absolute inset-x-0 bottom-1.5 z-30 flex justify-center gap-4 text-xs text-[var(--accent)]">
+      <nav aria-label="More pages" className="pointer-events-none absolute inset-x-0 bottom-0 z-30 flex justify-center gap-4 text-xs text-[var(--accent)]">
         <Link href="/timeline" className="pointer-events-auto underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]">
           Timeline
         </Link>
