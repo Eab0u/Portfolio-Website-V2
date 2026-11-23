@@ -2,6 +2,26 @@
 
 import { useEffect, useRef } from "react";
 
+// Tailwind classes for the dot, one per line so the string stays readable.
+const DOT_CLASS = [
+  "pointer-events-none",
+  "fixed",
+  "left-0",
+  "top-0",
+  "z-40",
+  "h-3",
+  "w-3",
+  "rounded-full",
+  "border-[1.5px]",
+  "border-[var(--fg)]",
+  "bg-[var(--accent)]",
+  "opacity-0",
+  "shadow-[0_0_0_2px_#1a1f3a99,0_0_8px_#7cf0c8,0_0_18px_#7cf0c888]",
+  "transition-opacity",
+  "duration-300",
+  "motion-reduce:transition-none",
+].join(" ");
+
 // A small mint dot that eases after the mouse on desktop. Not rendered for touch, and it snaps to the pointer under reduced motion.
 export default function CursorDot() {
   const ref = useRef<HTMLSpanElement>(null);
@@ -38,5 +58,5 @@ export default function CursorDot() {
       document.documentElement.removeEventListener("pointerleave", onLeave);
     };
   }, []);
-  return <span ref={ref} aria-hidden className="pointer-events-none fixed left-0 top-0 z-40 h-3 w-3 rounded-full border-[1.5px] border-[var(--fg)] bg-[var(--accent)] opacity-0 shadow-[0_0_0_2px_#1a1f3a99,0_0_8px_#7cf0c8,0_0_18px_#7cf0c888] transition-opacity duration-300 motion-reduce:transition-none" />;
+  return <span ref={ref} aria-hidden className={DOT_CLASS} />;
 }

@@ -19,7 +19,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 ## Review 2026-11-22 (code review fixes, small, do after Priority)
 - [x] Gate `/dev/model-preview`: in `src/app/dev/model-preview/page.tsx` call `notFound()` when `process.env.NODE_ENV === "production"` and `process.env.ENABLE_MODEL_PREVIEW` is unset, so the tool route is not live on Vercel (keep it working in `npm run dev`)
 - [ ] Palette hygiene: replace `#ffffff` in `Particles` with `PALETTE.offWhite`, the hex shadows in `CursorDot` with `var(--accent)` based values, and `bg-[#0d0d1c]` on the credits card with a `--night` token in `globals.css` (colors only, no layout change)
-- [ ] Split the 330 character class string in `CursorDot.tsx` line 41 into a `const` array joined with spaces (no behavior change, refactor only)
+- [x] Split the 330 character class string in `CursorDot.tsx` line 41 into a `const` array joined with spaces (no behavior change, refactor only)
 - [ ] Racing without a model loop is now the best way to unblock Priority: do the 2026-11-15 "Racing without a model loop" ticket first this week and mark the Priority `racing-island.glb` ticket `[x] (superseded by procedural track)` when it passes
 - [ ] Fix `tools/snapshot.mjs` week math (open since 2026-11-15, week 3 is missing and week 4 was taken early): name the week that just ended for a Monday run, so the 11-23 snapshot is week 5
 
