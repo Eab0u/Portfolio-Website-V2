@@ -4,7 +4,23 @@ Status: `[ ]` todo, `[~]` in progress, `[x]` done, `[!]` blocked (reason after i
 Each ticket is ONE small problem (about 30 to 50 changed lines). Take the top unchecked ticket that fits the current theme. If none fit, take the top unchecked ticket. Reviewers add new tickets at the top.
 Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before planning new tickets.
 
-**Current theme: Football district, a generic pitch island in blue and garnet mood (week of 2026-11-16). Racing stays open under Priority; ticket 2 of the 2026-11-15 review is a code-only way to finish it.**
+**Current theme: Public transit, a low-poly tram line looping the islands (week of 2026-11-23). Procedural and code-first, so it does not depend on the stalled model loop. Football is parked until its pitch deck is unblocked; Racing stays open under Priority.**
+
+## Review 2026-11-22 (code review fixes, small, do after Priority)
+- [ ] Gate `/dev/model-preview`: in `src/app/dev/model-preview/page.tsx` call `notFound()` when `process.env.NODE_ENV === "production"` and `process.env.ENABLE_MODEL_PREVIEW` is unset, so the tool route is not live on Vercel (keep it working in `npm run dev`)
+- [ ] Palette hygiene: replace `#ffffff` in `Particles` with `PALETTE.offWhite`, the hex shadows in `CursorDot` with `var(--accent)` based values, and `bg-[#0d0d1c]` on the credits card with a `--night` token in `globals.css` (colors only, no layout change)
+- [ ] Split the 330 character class string in `CursorDot.tsx` line 41 into a `const` array joined with spaces (no behavior change, refactor only)
+- [ ] Racing without a model loop is now the best way to unblock Priority: do the 2026-11-15 "Racing without a model loop" ticket first this week and mark the Priority `racing-island.glb` ticket `[x] (superseded by procedural track)` when it passes
+- [ ] Fix `tools/snapshot.mjs` week math (open since 2026-11-15, week 3 is missing and week 4 was taken early): name the week that just ended for a Monday run, so the 11-23 snapshot is week 5
+
+## Week of 2026-11-23 theme: Public transit, a tram line between the islands (generic, no real network, route colors or signage)
+- [ ] Tram track: one `TramLine` component in `Satellites` drawing a closed loop through the ring as a thin tube or flat ribbon (`PALETTE.night`, `offWhite` edge) with about 20 small instanced sleepers; high above the islands, still when reduced motion
+- [ ] (Needs: Tram track) Tram car: a procedural generic car (a chamfered box body in `PALETTE.mint`, a `PALETTE.offWhite` roof, 4 window boxes, a coral nose wedge, no numbers or logos) that glides along the track curve with `CatmullRomCurve3`; slow, paused under reduced motion
+- [ ] (Needs: Tram track) Three stations: a small platform box with a roof slab and a glowing `PALETTE.sun` lamp on three ring islands, each placed on the track; platforms share the island bob
+- [ ] (Needs: Tram car) Tram hover: hovering the car shows `useCursor` pointer and a soft ice rim; clicking it makes it stop for 2 s and puffs 6 small offWhite steam shards
+- [ ] (Needs: Three stations) Route map pill: a small mono pill in the header area drawing a 3 dot route line (CSS only, station dots light up as the car passes), `aria-hidden`, hidden below `sm`
+- [ ] (Needs: Tram car) Help panel: add one line for the tram ("watch the tram loop the islands, click it to stop it")
+- [ ] (model) Generic tram car, ONE car in its own GLB (`tram.glb`): a rounded faceted body in `PALETTE.mint` and `offWhite`, two glowing window bands, a pantograph arm, small bogies, under 4k triangles, no numbers, stripes or logos. Only attempt if the procedural car looks flat after review; counts toward the three model cap
 
 ## Review 2026-11-16 (visual review, do after Priority)
 - [ ] Preloader ritual: under the gem show a mono percent counter that counts to 100 over the minimum 2.4 s, then a "Start" pill; clicking it fades the overlay. Reduced motion skips the count and shows Start at once
