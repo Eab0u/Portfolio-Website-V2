@@ -6,7 +6,8 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 
 const START = Date.UTC(2026, 9, 19); // Monday Oct 19, 2026 = week 1 start
 const now = new Date();
-const week = Math.floor((now.getTime() - 12 * 3600e3 - START) / (7 * 86400e3)) + 1;
+// Minus one day so a Sunday or Monday run names the week that just ended (Mon Nov 23 is week 5, not week 6). Run it on those days only.
+const week = Math.floor((now.getTime() - 86400e3 - START) / (7 * 86400e3)) + 1;
 const name = `week-${String(week).padStart(2, "0")}`;
 
 const dir = "public/snapshots";
