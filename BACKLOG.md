@@ -6,6 +6,16 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 
 **Current theme: Public transit, a low-poly tram line looping the islands (week of 2026-11-23). Procedural and code-first, so it does not depend on the stalled model loop. Football is parked until its pitch deck is unblocked; Racing stays open under Priority.**
 
+## Review 2026-11-22 (visual review, small, do after Priority)
+- [ ] Hub click glow: cap the emissive pulse at about 0.6 intensity and tint it `PALETTE.mint` so the grass and rim stay readable instead of washing to white (one constant plus a clamp)
+- [ ] Crystal hover: when the pointer is over the crystal island, ramp its emissive up 0.3 over 0.2 s and use `useCursor` pointer; ease back on leave; skipped under reduced motion
+- [ ] Ring island variety: give each ring island a distinct scale (0.8 to 1.2) and a tint from `PALETTE` so no two neighbours match (data change in `IslandRing`, no new meshes)
+- [ ] Ring island hover: hovered ring islands lift 0.08 and tilt 3 degrees toward the cursor, then settle; reuse the existing bob group
+- [ ] Far layer: add one distant row of 5 dark `PALETTE.night` faceted mountain cones low in the sky behind the ring with a slow parallax of 0.02 on pointer move, one instanced mesh
+- [ ] Sky top gradient: add a soft `PALETTE.violet` band at the top of the sky gradient in `globals.css` so the dark top reads as dusk, not a flat fill
+- [ ] Preloader frame: make the loader overlay cover the full viewport (no black bars above and below the box) and center the gem on it (CSS only)
+- [ ] Footer spacing: add 8 px between the tagline and the Timeline and Credits links at 1280 and 390 px (one class change)
+
 ## Review 2026-11-22 (code review fixes, small, do after Priority)
 - [ ] Gate `/dev/model-preview`: in `src/app/dev/model-preview/page.tsx` call `notFound()` when `process.env.NODE_ENV === "production"` and `process.env.ENABLE_MODEL_PREVIEW` is unset, so the tool route is not live on Vercel (keep it working in `npm run dev`)
 - [ ] Palette hygiene: replace `#ffffff` in `Particles` with `PALETTE.offWhite`, the hex shadows in `CursorDot` with `var(--accent)` based values, and `bg-[#0d0d1c]` on the credits card with a `--night` token in `globals.css` (colors only, no layout change)
