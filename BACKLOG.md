@@ -10,7 +10,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Hub click glow: cap the emissive pulse at about 0.6 intensity and tint it `PALETTE.mint` so the grass and rim stay readable instead of washing to white (one constant plus a clamp)
 - [ ] Crystal hover: when the pointer is over the crystal island, ramp its emissive up 0.3 over 0.2 s and use `useCursor` pointer; ease back on leave; skipped under reduced motion
 - [ ] Ring island variety: give each ring island a distinct scale (0.8 to 1.2) and a tint from `PALETTE` so no two neighbours match (data change in `IslandRing`, no new meshes)
-- [ ] Ring island hover: hovered ring islands lift 0.08 and tilt 3 degrees toward the cursor, then settle; reuse the existing bob group
+- [x] Ring island hover: hovered ring islands lift 0.08 and tilt 3 degrees toward the cursor, then settle; reuse the existing bob group
 - [ ] Far layer: add one distant row of 5 dark `PALETTE.night` faceted mountain cones low in the sky behind the ring with a slow parallax of 0.02 on pointer move, one instanced mesh
 - [x] Sky top gradient: add a soft `PALETTE.violet` band at the top of the sky gradient in `globals.css` so the dark top reads as dusk, not a flat fill
 - [x] Preloader frame: make the loader overlay cover the full viewport (no black bars above and below the box) and center the gem on it (CSS only)

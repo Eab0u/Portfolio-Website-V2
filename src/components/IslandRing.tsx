@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useCursor, useGLTF } from "@react-three/drei";
-import type { Group } from "three";
+import { Vector3, type Group } from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { PALETTE } from "@/lib/palette";
 import { useTintedIsland } from "@/hooks/useTintedIsland";
@@ -19,6 +19,8 @@ const ISLANDS = [
 useGLTF.preload("/models/island.glb");
 
 const FAR_Z = -3;
+const TILT = (3 * Math.PI) / 180; // hover leans the island 3 degrees toward the pointer
+const tmp = new Vector3();
 
 function SmallIsland({ top, scale, position, phase }: { top: string; scale: number; position: [number, number, number]; phase: number }) {
   const fade = position[2] < FAR_Z ? 0.35 : 0; // the farthest islands sink toward navy for depth
@@ -28,11 +30,16 @@ function SmallIsland({ top, scale, position, phase }: { top: string; scale: numb
   const copy = useTintedIsland(scene, top, fade);
   const [hovered, setHovered] = useState(false);
   const lift = useRef(0);
+  const tilt = useRef(0);
+  const tiltTo = useRef(0);
   const active = hovered && !reduced;
   useCursor(active);
   useFrame((state, delta) => {
-    // Hover lifts the island about 0.15 units with an eased lerp (no lift when reduced motion).
-    lift.current += ((active ? 0.15 : 0) - lift.current) * (1 - Math.exp(-delta * 8));
+    // Hover lifts the island 0.08 units and leans it toward the pointer with an eased lerp (no lift or tilt when reduced motion).
+    const k = 1 - Math.exp(-delta * 8);
+    lift.current += ((active ? 0.08 : 0) - lift.current) * k;
+    tilt.current += ((active ? tiltTo.current : 0) - tilt.current) * k;
+    if (ref.current) ref.current.rotation.z = tilt.current;
     if (ref.current) ref.current.position.y = position[1] + lift.current + (reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.5 + phase) * 0.12);
   });
   return (
@@ -42,6 +49,9 @@ function SmallIsland({ top, scale, position, phase }: { top: string; scale: numb
       onPointerOver={(e) => {
         e.stopPropagation();
         setHovered(true);
+      }}
+      onPointerMove={(e) => {
+        if (ref.current) tiltTo.current = -Math.max(-1, Math.min(1, ref.current.worldToLocal(tmp.copy(e.point)).x / (scale * 2))) * TILT;
       }}
       onPointerOut={() => setHovered(false)}
     >

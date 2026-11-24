@@ -118,3 +118,8 @@ Newest entries at the bottom.
 - Tram track attempted first and reverted: 3 artist passes (avg 5.17, 7.33, 6.17), notes contradicted each other (grey sleepers and tube, halo ellipse). Marked [!] in BACKLOG with the best state and a retry hint. The tram tickets that need it stay blocked. No commit made for it, so commits made equals the plan.
 - Skipped: Priority (model) tickets (race car, tire stack, racing island), same as earlier runs. No (model) ticket attempted. Deploy status checked once at the end. No rate-limit stop.
 - Notes: `next build` fails on the first try with the security upgrade notice and passes on retry. Two earlier runs used a detached HEAD after checkout, so pushes used HEAD:main until the branch was recreated.
+
+## 2026-11-23 (run started 21:28 ET, planned 1, made 1)
+- style: ring island hover lifts 0.08 and leans 3 degrees toward the pointer (code critic approved with minor comment fix applied; artist 8.00 change mode).
+- Skipped: "Hub click glow" (no click emissive pulse exists in the code, ticket premise is stale), Priority (model) tickets, same as earlier runs. Tram track still [!]. No rate-limit stop.
+- Notes: `next build` printed a Next upgrade notice on the first try and passed on retry; upgrade not run.
