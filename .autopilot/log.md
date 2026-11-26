@@ -123,3 +123,11 @@ Newest entries at the bottom.
 - style: ring island hover lifts 0.08 and leans 3 degrees toward the pointer (code critic approved with minor comment fix applied; artist 8.00 change mode).
 - Skipped: "Hub click glow" (no click emissive pulse exists in the code, ticket premise is stale), Priority (model) tickets, same as earlier runs. Tram track still [!]. No rate-limit stop.
 - Notes: `next build` printed a Next upgrade notice on the first try and passed on retry; upgrade not run.
+
+## 2026-11-25 (run started 21:28 ET, planned 3, made 3)
+- style: crystals glow 0.3 brighter on hover (code approved, artist 7.50 change mode). Deploy success.
+- style: distant row of five dark faceted mountains (code approved, artist 6.00 change mode, optional polish: faint facet step, cone clutter under the beach island). The ticket's 0.02 parallax was read as 0.2 world units. Deploy status not checked for this one before the next push.
+- style: hub click pops to 1.04 and bursts 8 ice shards (code approved, artist 7.83 change mode; optional polish: larger or emissive shards).
+- Skipped: Priority (model) tickets (same as earlier runs), "Ring island variety" (stale, scales and tints already unique), "Hub click glow" (stale premise). Crystal hover cursor part already provided by HubHover.
+- Attempted and reverted: Racing procedural track (oval renders edge-on from the hero camera, a thin floating sliver). Ticket left open; needs a different camera-facing approach.
+- Notes: first `npm run check` often fails with the Next upgrade notice and passes on retry. `pkill -f "next start"` does not stop the server, use `pkill -f next`, or a stale server serves a broken build. No rate-limit stop.
