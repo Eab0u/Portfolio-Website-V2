@@ -17,6 +17,7 @@ import HubPines from "./scene/HubPines";
 import Island from "./scene/Island";
 import ModelErrorBoundary from "./ModelErrorBoundary";
 import IslandRing from "./IslandRing";
+import MountainRow from "./MountainRow";
 import PointerLight from "./PointerLight";
 import Particles from "./Particles";
 import RacingIsland from "./RacingIsland";
@@ -61,6 +62,7 @@ export default function Scene() {
       <CameraRig />
       <PointerLight />
       <Stars />
+      <MountainRow />
       <Particles />
       <group position={[0, 0.6, 0]}>
         <ModelErrorBoundary>
