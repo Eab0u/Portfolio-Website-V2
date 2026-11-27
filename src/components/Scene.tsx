@@ -1,7 +1,8 @@
 "use client";
 
-import { Suspense, type ReactNode } from "react";
+import { Suspense, useState, type ReactNode } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
+import { PerformanceMonitor } from "@react-three/drei";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import { usePageVisible } from "@/hooks/usePageVisible";
 import { useSettings } from "@/context/SettingsContext";
@@ -47,11 +48,14 @@ function Guarded({ children }: { children: ReactNode }) {
 export default function Scene() {
   const visible = usePageVisible();
   const { quality } = useSettings();
+  // PerformanceMonitor reports 0 (struggling) to 1 (smooth). The render scale follows it from 1x to 2x in
+  // quarter steps and settles at 1x once it has flip-flopped more than 3 times.
+  const [perf, setPerf] = useState(1);
   return (
     <Canvas
       frameloop={visible ? "always" : "never"}
       camera={{ position: [0, 0, 7.5], fov: 50 }}
-      dpr={quality === "low" ? 1 : [1, 2]}
+      dpr={quality === "low" ? 1 : [1, 1 + Math.round(perf * 4) / 4]}
       onCreated={markSceneReady}
       style={{ background: SKY }}
     >
@@ -59,6 +63,7 @@ export default function Scene() {
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 4, 2]} intensity={2} />
       <directionalLight position={[-4, -1, -3]} intensity={1.2} color={PALETTE.ice} />
+      <PerformanceMonitor factor={1} flipflops={3} onChange={({ factor }) => setPerf(factor)} onFallback={() => setPerf(0)} />
       <CameraRig />
       <PointerLight />
       <Stars />

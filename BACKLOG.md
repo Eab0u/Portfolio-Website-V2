@@ -315,7 +315,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a light and dark accent toggle
 
 ## Performance and quality
-- [ ] Add adaptive quality: lower `dpr` when FPS drops
+- [x] Add adaptive quality: lower `dpr` when FPS drops
 - [ ] Dispose of geometries and materials on unmount in scene components
 - [ ] Memoize shared geometries and materials
 - [ ] Add a simple error boundary around the canvas with a text fallback
