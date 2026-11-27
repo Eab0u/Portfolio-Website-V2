@@ -3,7 +3,8 @@
 import { Suspense, useState, type ReactNode } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { PerformanceMonitor } from "@react-three/drei";
-import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
+import { Bloom, ChromaticAberration, EffectComposer, Vignette } from "@react-three/postprocessing";
+import { Vector2 } from "three";
 import { usePageVisible } from "@/hooks/usePageVisible";
 import { useSettings } from "@/context/SettingsContext";
 import { PALETTE } from "@/lib/palette";
@@ -25,6 +26,9 @@ import RacingIsland from "./RacingIsland";
 import Stars from "./Stars";
 import Sun from "./Sun";
 import VolleyballIsland from "./VolleyballIsland";
+
+// A very small red/blue split that grows toward the screen edge; kept as one shared vector so it is not rebuilt per render.
+const FRINGE = new Vector2(0.0006, 0.0006);
 
 // Portrait screens (aspect under 0.7) pull the satellite islands toward the hub so none is cropped. The scale falls
 // with the aspect to the power 2.5 (the view narrows and the islands also sit nearer the camera), never below 0.32.
@@ -100,6 +104,7 @@ export default function Scene() {
       {quality !== "low" && (
         <EffectComposer multisampling={0}>
           <Bloom intensity={0.35} luminanceThreshold={0.85} luminanceSmoothing={0.2} mipmapBlur />
+          <ChromaticAberration offset={FRINGE} radialModulation modulationOffset={0.4} />
           <Vignette eskil={false} offset={0.25} darkness={0.55} />
         </EffectComposer>
       )}
