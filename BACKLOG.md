@@ -311,7 +311,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [ ] Add a one-time intro animation where the hub island assembles from shards (Needs: Island model; replaces the preloader gem handoff)
 - [ ] Add a text scramble effect on the hero title
 - [ ] Add a subtle chromatic aberration pass
-- [ ] Add idle camera sway that stops on interaction
+- [x] Add idle camera sway that stops on interaction
 - [ ] Add a light and dark accent toggle
 
 ## Performance and quality
