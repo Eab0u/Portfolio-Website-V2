@@ -318,7 +318,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add adaptive quality: lower `dpr` when FPS drops
 - [ ] Dispose of geometries and materials on unmount in scene components
 - [ ] Memoize shared geometries and materials
-- [ ] Add a simple error boundary around the canvas with a text fallback
+- [x] Add a simple error boundary around the canvas with a text fallback
 - [x] Add a `noscript` fallback with links
 - [ ] Add a Lighthouse CI config with performance budgets
 - [ ] Add alt text and aria labels to all non-decorative elements

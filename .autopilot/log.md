@@ -131,3 +131,11 @@ Newest entries at the bottom.
 - Skipped: Priority (model) tickets (same as earlier runs), "Ring island variety" (stale, scales and tints already unique), "Hub click glow" (stale premise). Crystal hover cursor part already provided by HubHover.
 - Attempted and reverted: Racing procedural track (oval renders edge-on from the hero camera, a thin floating sliver). Ticket left open; needs a different camera-facing approach.
 - Notes: first `npm run check` often fails with the Next upgrade notice and passes on retry. `pkill -f "next start"` does not stop the server, use `pkill -f next`, or a stale server serves a broken build. No rate-limit stop.
+
+## 2026-11-26 (run started 21:29 ET, planned 4, made 4)
+- perf: render scale follows frame rate between 1x and 2x, settles at 1x after flip-flops (code critic rejected once for monitor start value and no fallback, approved after fix; artist 7.83 change mode). Deploy success.
+- feat: idle camera sway after 4 s, stops on any input (code critic rejected once for missing input reset, approved after fix; artist 8.00 change mode). Deploy success.
+- style: subtle chromatic aberration (code approved, artist 7.50 change mode; optional polish: fringe on tiny corner stars). Deploy status of the last two commits checked once after push.
+- feat: error boundary with text fallback around the canvas (code approved, artist 8.00 change mode).
+- Skipped: Priority (model) tickets (same as earlier runs), stale tickets (Hub click glow, Ring island variety), tram track retry. No rate-limit stop.
+- Notes: first two commits used the session trailer `Co-Authored-By: Claude Sonnet 5.5`; later ones used the CLAUDE.md form. A mid-run screenshot script crash caused one code critic pass on a stale diff, redone.

@@ -2,8 +2,13 @@
 
 import { Component, type ReactNode } from "react";
 
-// Renders nothing if a child throws (for example a model that fails to load), so the rest of the scene survives.
-export default class ModelErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+// Renders the fallback (nothing by default) if a child throws, for example a model that fails to load or a device
+// without WebGL, so the rest of the scene and page survive.
+type Props = { children: ReactNode; fallback?: ReactNode };
+export default class ModelErrorBoundary extends Component<
+  Props,
+  { failed: boolean }
+> {
   state = { failed: false };
 
   static getDerivedStateFromError() {
@@ -11,10 +16,12 @@ export default class ModelErrorBoundary extends Component<{ children: ReactNode 
   }
 
   componentDidCatch(error: unknown) {
-    console.warn("Scene model failed to load", error);
+    console.warn("Scene failed to render", error);
   }
 
   render() {
-    return this.state.failed ? null : this.props.children;
+    return this.state.failed
+      ? (this.props.fallback ?? null)
+      : this.props.children;
   }
 }
