@@ -312,7 +312,7 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a text scramble effect on the hero title
 - [x] Add a subtle chromatic aberration pass
 - [x] Add idle camera sway that stops on interaction
-- [ ] Add a light and dark accent toggle
+- [x] Add a light and dark accent toggle (mint and coral accent select in settings)
 
 ## Performance and quality
 - [x] Add adaptive quality: lower `dpr` when FPS drops

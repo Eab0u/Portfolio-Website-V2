@@ -5,7 +5,7 @@ import { useSettings } from "@/context/SettingsContext";
 import WindowPanel from "./WindowPanel";
 
 export default function SettingsButton() {
-  const { quality, update } = useSettings();
+  const { quality, accent, update } = useSettings();
   const { open, show, close } = usePanel("settings");
 
   return (
@@ -33,6 +33,20 @@ export default function SettingsButton() {
             >
               <option value="high">High</option>
               <option value="low">Low</option>
+            </select>
+          </label>
+          <label className="mt-4 flex items-center justify-between gap-4">
+            <span>
+              Accent color
+              <small className="block text-xs opacity-60">Tints buttons and links</small>
+            </span>
+            <select
+              value={accent}
+              onChange={(e) => update({ accent: e.target.value === "coral" ? "coral" : "mint" })}
+              className="rounded-full border border-[var(--accent)] bg-[var(--navy)] px-3 py-1 text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+            >
+              <option value="mint">Mint</option>
+              <option value="coral">Coral</option>
             </select>
           </label>
         </WindowPanel>
