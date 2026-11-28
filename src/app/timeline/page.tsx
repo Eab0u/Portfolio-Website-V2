@@ -37,6 +37,7 @@ export default function Timeline() {
               <p className="px-3 py-2 font-mono text-xs text-[var(--accent)]">
                 Week {w.week} · {w.date} · {w.commits} commits
               </p>
+              {w.caption && <p className="truncate px-3 pb-3 text-xs opacity-80">{w.caption}</p>}
             </li>
           ),
         )}

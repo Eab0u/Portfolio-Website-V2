@@ -56,6 +56,7 @@ filtered.push({
   added,
   removed,
   summary: "",
+  caption: entries.find((e) => e.week === week)?.caption ?? "",
   deploymentUrl: null,
 });
 writeFileSync(indexPath, JSON.stringify(filtered, null, 2) + "\n");
