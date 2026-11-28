@@ -6,6 +6,7 @@ import HelloPill from "@/components/HelloPill";
 import HelpButton from "@/components/HelpButton";
 import ProjectsButton from "@/components/ProjectsButton";
 import SettingsButton from "@/components/SettingsButton";
+import ScrambleText from "@/components/ScrambleText";
 import TitleReveal from "@/components/TitleReveal";
 import ShootingStar from "@/components/ShootingStar";
 import SceneClient from "@/components/SceneClient";
@@ -27,7 +28,7 @@ export default function Home() {
       <SettingsButton />
       <header className="pointer-events-none absolute inset-x-0 bottom-12 text-center">
         <TitleReveal>
-          <h1 className="px-4 text-4xl font-semibold tracking-tight text-balance">{profile.name.replace("-", "\u2011")}</h1>
+          <h1 className="px-4 text-4xl font-semibold tracking-tight text-balance"><ScrambleText text={profile.name.replace("-", "\u2011")} /></h1>
           <p className="mt-2 text-sm opacity-70">{profile.tagline}</p>
         </TitleReveal>
       </header>
