@@ -139,3 +139,11 @@ Newest entries at the bottom.
 - feat: error boundary with text fallback around the canvas (code approved, artist 8.00 change mode).
 - Skipped: Priority (model) tickets (same as earlier runs), stale tickets (Hub click glow, Ring island variety), tram track retry. No rate-limit stop.
 - Notes: first two commits used the session trailer `Co-Authored-By: Claude Sonnet 5.5`; later ones used the CLAUDE.md form. A mid-run screenshot script crash caused one code critic pass on a stale diff, redone.
+
+## 2026-11-27 (run started 21:29 ET, planned 4, made 4)
+- feat: caption line under timeline snapshot cards (code critic rejected once because only week 5 had text, approved after captions for weeks 4 and 5 and a one-line truncate; weeks 1 and 2 left empty because their commits are not in the 50-commit clone history). Deploy success.
+- feat: hero title letters scramble and settle after the reveal (code approved, artist 8.00 change mode). Deploy success.
+- feat: accent color choice in settings, mint or coral (code approved, artist 7.67 change mode; the "light and dark" ticket was read as two accent colors). Deploy success.
+- style: header pill glows follow the accent color (code approved, artist 7.50 change mode). Deploy status checked after push.
+- Skipped: Priority (model) tickets (same as earlier runs), stale tickets (Hub click glow, Ring island variety), tram track retry, Clouds merge (per step emissive cannot survive one vertex colored material). No rate-limit stop.
+- Notes: `npm run check` printed a Next upgrade notice on every other run and passed on retry; the notice's upgrade command was not run. The checkout was a detached HEAD, so `main` was re-pointed before pushing.

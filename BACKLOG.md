@@ -313,6 +313,8 @@ Direction comes from `VISION.md` and `benchmarks/BRIEF.md`. Read both before pla
 - [x] Add a subtle chromatic aberration pass
 - [x] Add idle camera sway that stops on interaction
 - [x] Add a light and dark accent toggle (mint and coral accent select in settings)
+- [x] Header pill glows follow the accent color (follow-up from the accent toggle review, 2026-11-27)
+- [ ] Preloader gem glow in `globals.css` (`.gem-body`, `.gem-glow`) still hardcodes mint; tint it from `var(--accent)` with `color-mix` (follow-up, optional)
 
 ## Performance and quality
 - [x] Add adaptive quality: lower `dpr` when FPS drops
